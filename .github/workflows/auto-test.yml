@@ -35,56 +35,76 @@ jobs:
       - name: 📥 Install dependencies
         run: yarn install --frozen-lockfile
 
+      # 🚨 Run Lint check
+      - name: 🚨 Run Lint
+        run: yarn run lint | tee lint-results.txt
+
+      # 🎨 Run Prettier format check
+      - name: 🎨 Run Prettier
+        run: yarn run format | tee prettier-results.txt
+
       # 🧪 Run tests
       - name: 🧪 Run tests
         run: yarn run test:ci | tee test-results.txt
 
-      # 🚮 Clean up test results for comment
-      - name: 🚮 Clean up test results
-        run: sed -i 's/\x1b\[[0-9;]*m//g' test-results.txt # Removes ANSI color codes
+      # 🚮 Clean up all results for comment
+      - name: 🚮 Clean up results
+        run: |
+          sed -i 's/\x1b\[[0-9;]*m//g' prettier-results.txt
+          sed -i 's/\x1b\[[0-9;]*m//g' lint-results.txt
+          sed -i 's/\x1b\[[0-9;]*m//g' test-results.txt
 
-      # 📄 Format test results for better readability
-      - name: 📄 Format test results
+      # 📄 Format all results for better readability
+      - name: 📄 Format all results
         run: |
           {
             echo "### 🧪 Test Results"
             echo ""
             if grep -q "failed" test-results.txt; then
-              # Extract failed test details if any
               echo "❌ **Some tests failed**:"
               echo '```'
               grep -E "Test Files|Tests|Duration|failed" test-results.txt
               echo '```'
-              echo ""
               echo "💥 Please review the failed tests above."
             else
-              # Format output for passing tests
-              grep -E "(Test Files|Tests|Duration)" test-results.txt | while read -r line; do
-                if [[ $line == *"Test Files"* ]]; then
-                  echo "🗂 **Test Summary**: $line"
-                elif [[ $line == *"Tests"* ]]; then
-                  echo "✅ **Tests Passed**: $line"
-                elif [[ $line == *"Duration"* ]]; then
-                  echo "⏱️ **Total Duration**: $line"
-                fi
-              done
-              echo ""
-              echo "🎉 All tests passed successfully!"
+              echo "✅ **Tests Passed**: All tests passed successfully!"
+            fi
+            echo ""
+            echo "### 🎨 Prettier Format Check"
+            echo ""
+            if [[ -s prettier-results.txt ]]; then
+              echo "⚠️ **Prettier Issues Found**"
+              echo '```'
+              cat prettier-results.txt
+              echo '```'
+            else
+              echo "✅ **Prettier**: No formatting issues found!"
+            fi
+            echo ""
+            echo "### 🚨 Lint Check"
+            echo ""
+            if [[ -s lint-results.txt ]]; then
+              echo "⚠️ **Lint Issues Found**"
+              echo '```'
+              cat lint-results.txt
+              echo '```'
+            else
+              echo "✅ **Lint**: No linting issues found!"
             fi
           } > formatted-results.txt
 
-      # 💬 Post formatted test results to PR
-      - name: 💬 Comment test results
+      # 💬 Post all results to PR
+      - name: 💬 Comment results
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const testResults = fs.readFileSync('formatted-results.txt', 'utf8');
+            const allResults = fs.readFileSync('formatted-results.txt', 'utf8');
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: testResults
+              body: allResults
             });
