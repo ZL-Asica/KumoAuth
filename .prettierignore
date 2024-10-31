@@ -1,0 +1,9 @@
+node_modules/*
+.yarn/*
+.wrangler/*
+.pnp.*
+package-lock.json
+yarn.lock
+.vscode/*
+.prettierignore
+LICENSE

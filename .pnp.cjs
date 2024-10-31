@@ -29,6 +29,9 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["hono", "npm:4.6.8"],\
+          ["prettier", "npm:3.3.3"],\
+          ["prettier-plugin-organize-imports", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:4.1.0"],\
+          ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
           ["wrangler", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:3.84.0"]\
         ],\
         "linkType": "SOFT"\
@@ -1043,6 +1046,9 @@ const RAW_RUNTIME_STATE =
           ["hono-cloudflare-auth", "workspace:."],\
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["hono", "npm:4.6.8"],\
+          ["prettier", "npm:3.3.3"],\
+          ["prettier-plugin-organize-imports", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:4.1.0"],\
+          ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
           ["wrangler", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:3.84.0"]\
         ],\
         "linkType": "SOFT"\
@@ -1573,6 +1579,45 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["prettier", [\
+      ["npm:3.3.3", {\
+        "packageLocation": "./.yarn/unplugged/prettier-npm-3.3.3-e811f023f3/node_modules/prettier/",\
+        "packageDependencies": [\
+          ["prettier", "npm:3.3.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["prettier-plugin-organize-imports", [\
+      ["npm:4.1.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/prettier-plugin-organize-imports-npm-4.1.0-49b8116ea7-10c0.zip/node_modules/prettier-plugin-organize-imports/",\
+        "packageDependencies": [\
+          ["prettier-plugin-organize-imports", "npm:4.1.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:4.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/prettier-plugin-organize-imports-virtual-ef77118656/5/.yarn/berry/cache/prettier-plugin-organize-imports-npm-4.1.0-49b8116ea7-10c0.zip/node_modules/prettier-plugin-organize-imports/",\
+        "packageDependencies": [\
+          ["prettier-plugin-organize-imports", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:4.1.0"],\
+          ["@types/prettier", null],\
+          ["@types/typescript", null],\
+          ["@types/vue-tsc", null],\
+          ["prettier", "npm:3.3.3"],\
+          ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
+          ["vue-tsc", null]\
+        ],\
+        "packagePeers": [\
+          "@types/prettier",\
+          "@types/typescript",\
+          "@types/vue-tsc",\
+          "prettier",\
+          "typescript",\
+          "vue-tsc"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["printable-characters", [\
       ["npm:1.0.42", {\
         "packageLocation": "../../../../.yarn/berry/cache/printable-characters-npm-1.0.42-88f6789fd4-10c0.zip/node_modules/printable-characters/",\
@@ -1899,6 +1944,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../.yarn/berry/cache/tslib-npm-2.8.0-6ce3ffdd05-10c0.zip/node_modules/tslib/",\
         "packageDependencies": [\
           ["tslib", "npm:2.8.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["typescript", [\
+      ["patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40", {\
+        "packageLocation": "../../../../.yarn/berry/cache/typescript-patch-8964a48ba3-10c0.zip/node_modules/typescript/",\
+        "packageDependencies": [\
+          ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"]\
         ],\
         "linkType": "HARD"\
       }]\
