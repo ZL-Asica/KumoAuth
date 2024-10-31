@@ -5,6 +5,7 @@
     "lint": "eslint src/**/*.{js,mjs,cjs,ts,tsx} --fix",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
+    "db:init": "npx wrangler d1 execute hono-cf-auth --local --file=./db/schema.sql",
     "postinstall": "husky"
   },
   "lint-staged": {
