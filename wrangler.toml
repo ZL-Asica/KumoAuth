@@ -1,4 +1,4 @@
-name = "hono-cloudflare-auth"
+name = "kumo-auth"
 main = "src/index.ts"
 compatibility_date = "2024-10-31"
 
@@ -17,7 +17,7 @@ JWT_SECRET = "${JWT_SECRET}"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "${D1_DATABASE_NAME}"
+database_name = "kumo-auth"
 database_id = "${D1_DATABASE_ID}"
 
 # [ai]
