@@ -29,8 +29,10 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["@eslint/js", "npm:9.13.0"],\
+          ["@types/bcryptjs", "npm:2.4.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:8.12.2"],\
           ["@typescript-eslint/parser", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:8.12.2"],\
+          ["bcryptjs", "npm:2.4.3"],\
           ["eslint", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:9.13.0"],\
           ["eslint-config-prettier", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:9.1.0"],\
           ["eslint-plugin-prettier", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:5.2.1"],\
@@ -661,6 +663,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/bcryptjs", [\
+      ["npm:2.4.6", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@types-bcryptjs-npm-2.4.6-50588b8234-10c0.zip/node_modules/@types/bcryptjs/",\
+        "packageDependencies": [\
+          ["@types/bcryptjs", "npm:2.4.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/estree", [\
       ["npm:1.0.6", {\
         "packageLocation": "../../../../.yarn/berry/cache/@types-estree-npm-1.0.6-b5e23f2ea2-10c0.zip/node_modules/@types/estree/",\
@@ -1082,6 +1093,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../.yarn/berry/cache/balanced-match-npm-1.0.2-a53c126459-10c0.zip/node_modules/balanced-match/",\
         "packageDependencies": [\
           ["balanced-match", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["bcryptjs", [\
+      ["npm:2.4.3", {\
+        "packageLocation": "../../../../.yarn/berry/cache/bcryptjs-npm-2.4.3-32de4957eb-10c0.zip/node_modules/bcryptjs/",\
+        "packageDependencies": [\
+          ["bcryptjs", "npm:2.4.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2024,8 +2044,10 @@ const RAW_RUNTIME_STATE =
           ["hono-cloudflare-auth", "workspace:."],\
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["@eslint/js", "npm:9.13.0"],\
+          ["@types/bcryptjs", "npm:2.4.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:8.12.2"],\
           ["@typescript-eslint/parser", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:8.12.2"],\
+          ["bcryptjs", "npm:2.4.3"],\
           ["eslint", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:9.13.0"],\
           ["eslint-config-prettier", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:9.1.0"],\
           ["eslint-plugin-prettier", "virtual:cdb0b091b28b7ffd8b9d49623d2a4e38c354c44e7c23ca0b0cf4e93c3aea153309d753b88c47fe2afc94c0fbe695395f50d007e0a8ca139a19335ec768eca1db#npm:5.2.1"],\
