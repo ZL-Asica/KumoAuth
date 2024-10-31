@@ -1,8 +1,8 @@
-# Hono Cloudflare Auth
+# KumoAuth
 
 [中文](./README.md) | [English](./README_EN.md)
 
-> A lightweight and efficient authentication system built with Cloudflare Workers, D1 Database, and the Hono framework.
+> Kumo - means cloud (雲☁️) in Japanese - is a lightweight and efficient authentication system built with Cloudflare Workers, D1 Database, and the Hono framework.
 
 ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare) | ![D1](https://img.shields.io/badge/Database-D1-F38020?logo=sqlite) | ![Hono](https://img.shields.io/badge/Framework-Hono-007ACC?logo=typescript) | ![JWT](https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens) | ![TypeScript](https://img.shields.io/badge/Language-TypeScript-007ACC?logo=typescript) | ![Wrangler](https://img.shields.io/badge/CLI-Wrangler-F38020?logo=cloudflare) | ![Eslint](https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white) | ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=Prettier&logoColor=white)
 
@@ -54,8 +54,8 @@ Designed for small applications and personal projects, this system provides a se
 1. Clone the project and install dependencies:
 
    ```bash
-   git clone https://github.com/ZL-Asica/Hono-Cloudflare-Auth.git
-   cd Hono-Cloudflare-Auth
+   git clone https://github.com/ZL-Asica/KumoAuth.git
+   cd KumoAuth
    yarn install
    ```
 

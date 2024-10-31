@@ -1,4 +1,4 @@
-# Code of Conduct - Hono Cloudflare Auth
+# Code of Conduct - KumoAuth
 
 ## Our Pledge
 
