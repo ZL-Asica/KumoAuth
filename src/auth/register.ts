@@ -12,10 +12,8 @@ export const registerHandler = async (c: Context) => {
   // Save the user to the database
   const db = c.env.DB // Cloudflare D1
   await db
-    .prepare(
-      'INSERT INTO users (username, password_hash, user_role) VALUES (?, ?, ?)'
-    )
-    .bind(username, hashedPassword, 'user')
+    .prepare('INSERT INTO users (username, password_hash) VALUES (?, ?)')
+    .bind(username, hashedPassword)
     .run()
 
   return c.json({ message: 'User registered successfully' })
