@@ -25,6 +25,11 @@ export const passwordValidator = async (
     return `Password must be at least ${passwordRule.min_length} characters long`
   }
 
+  // Hard rule: must less than 64 characters
+  if (password.length > 64) {
+    return 'Password cannot exceed 64 characters'
+  }
+
   const typeChecks = [
     { regex: /[a-z]/, required: false, message: 'lowercase letter' },
     {
