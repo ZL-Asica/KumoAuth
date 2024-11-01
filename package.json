@@ -17,9 +17,11 @@
     ]
   },
   "dependencies": {
+    "@hono/zod-openapi": "^0.16.4",
     "bad-words": "^4.0.0",
     "bcryptjs": "^2.4.3",
-    "hono": "^4.6.8"
+    "hono": "^4.6.8",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241022.0",

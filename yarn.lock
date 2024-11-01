@@ -5,6 +5,17 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@asteasolutions/zod-to-openapi@npm:^7.1.0":
+  version: 7.2.0
+  resolution: "@asteasolutions/zod-to-openapi@npm:7.2.0"
+  dependencies:
+    openapi3-ts: "npm:^4.1.2"
+  peerDependencies:
+    zod: ^3.20.2
+  checksum: 10c0/f9f571c94ff7cf0da4be0e84f6a8b9db4e36bfe950f31b91631b4db881cb8391e1b2bc278e97b2acfd42c6db34630e10581e647adc1e907bc44766bec07b677c
+  languageName: node
+  linkType: hard
+
 "@cloudflare/kv-asset-handler@npm:0.3.4":
   version: 0.3.4
   resolution: "@cloudflare/kv-asset-handler@npm:0.3.4"
@@ -491,6 +502,29 @@ __metadata:
   version: 2.1.1
   resolution: "@fastify/busboy@npm:2.1.1"
   checksum: 10c0/6f8027a8cba7f8f7b736718b013f5a38c0476eea67034c94a0d3c375e2b114366ad4419e6a6fa7ffc2ef9c6d3e0435d76dd584a7a1cbac23962fda7650b579e3
+  languageName: node
+  linkType: hard
+
+"@hono/zod-openapi@npm:^0.16.4":
+  version: 0.16.4
+  resolution: "@hono/zod-openapi@npm:0.16.4"
+  dependencies:
+    "@asteasolutions/zod-to-openapi": "npm:^7.1.0"
+    "@hono/zod-validator": "npm:0.3.0"
+  peerDependencies:
+    hono: ">=4.3.6"
+    zod: 3.*
+  checksum: 10c0/23352bcb9ab570403713ce8ab9427d8dfd8dce79f2034e45086a07192550968e8a0c5c284eb849130710106d72899ebd29316280663a3e5233d8f892edcfcd22
+  languageName: node
+  linkType: hard
+
+"@hono/zod-validator@npm:0.3.0":
+  version: 0.3.0
+  resolution: "@hono/zod-validator@npm:0.3.0"
+  peerDependencies:
+    hono: ">=3.9.0"
+    zod: ^3.19.1
+  checksum: 10c0/0c33f99bec89aa5bf042e1d490b894044b60db98d9d7b1d9586ee2d4855a72b216a0101c4549118e7c7643acf12237c716a27c1849f07276dccb8e0be362a63e
   languageName: node
   linkType: hard
 
@@ -2387,6 +2421,7 @@ __metadata:
   dependencies:
     "@cloudflare/workers-types": "npm:^4.20241022.0"
     "@eslint/js": "npm:^9.13.0"
+    "@hono/zod-openapi": "npm:^0.16.4"
     "@types/bcryptjs": "npm:^2"
     "@typescript-eslint/eslint-plugin": "npm:^8.12.2"
     "@typescript-eslint/parser": "npm:^8.12.2"
@@ -2404,6 +2439,7 @@ __metadata:
     typescript: "npm:^5.6.3"
     vitest: "npm:^2.1.4"
     wrangler: "npm:^3.84.1"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
 
@@ -2834,6 +2870,15 @@ __metadata:
   dependencies:
     mimic-function: "npm:^5.0.0"
   checksum: 10c0/5cb9179d74b63f52a196a2e7037ba2b9a893245a5532d3f44360012005c9cadb60851d56716ebff18a6f47129dab7168022445df47c2aff3b276d92585ed1221
+  languageName: node
+  linkType: hard
+
+"openapi3-ts@npm:^4.1.2":
+  version: 4.4.0
+  resolution: "openapi3-ts@npm:4.4.0"
+  dependencies:
+    yaml: "npm:^2.5.0"
+  checksum: 10c0/900b834279fc8a43c545728ad75ec7c26934ec5344225b60d1e1c0df44d742d7e7379aea18d9034e03031f079d3308ba5a68600682eece3ed41cdbdd10346a9e
   languageName: node
   linkType: hard
 
@@ -3968,6 +4013,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"yaml@npm:^2.5.0":
+  version: 2.6.0
+  resolution: "yaml@npm:2.6.0"
+  bin:
+    yaml: bin.mjs
+  checksum: 10c0/9e74cdb91cc35512a1c41f5ce509b0e93cc1d00eff0901e4ba831ee75a71ddf0845702adcd6f4ee6c811319eb9b59653248462ab94fa021ab855543a75396ceb
+  languageName: node
+  linkType: hard
+
 "yaml@npm:~2.5.0":
   version: 2.5.1
   resolution: "yaml@npm:2.5.1"
@@ -3995,7 +4049,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.3":
+"zod@npm:^3.22.3, zod@npm:^3.23.8":
   version: 3.23.8
   resolution: "zod@npm:3.23.8"
   checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69

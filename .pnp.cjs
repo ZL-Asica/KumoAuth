@@ -29,6 +29,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["@eslint/js", "npm:9.13.0"],\
+          ["@hono/zod-openapi", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.16.4"],\
           ["@types/bcryptjs", "npm:2.4.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
           ["@typescript-eslint/parser", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
@@ -45,9 +46,33 @@ const RAW_RUNTIME_STATE =
           ["prettier-plugin-organize-imports", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:4.1.0"],\
           ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
           ["vitest", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:2.1.4"],\
-          ["wrangler", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:3.84.1"]\
+          ["wrangler", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:3.84.1"],\
+          ["zod", "npm:3.23.8"]\
         ],\
         "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@asteasolutions/zod-to-openapi", [\
+      ["npm:7.2.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@asteasolutions-zod-to-openapi-npm-7.2.0-6b808ece15-10c0.zip/node_modules/@asteasolutions/zod-to-openapi/",\
+        "packageDependencies": [\
+          ["@asteasolutions/zod-to-openapi", "npm:7.2.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:307b191b202f1e27d677b393b5c74d0ef3fe874fdd42a91911232eed97f46c6a8324c61979b11bf3855092df29587640ccb9de737d596a78ab7b960cc56d0d84#npm:7.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/@asteasolutions-zod-to-openapi-virtual-53a2c2335a/5/.yarn/berry/cache/@asteasolutions-zod-to-openapi-npm-7.2.0-6b808ece15-10c0.zip/node_modules/@asteasolutions/zod-to-openapi/",\
+        "packageDependencies": [\
+          ["@asteasolutions/zod-to-openapi", "virtual:307b191b202f1e27d677b393b5c74d0ef3fe874fdd42a91911232eed97f46c6a8324c61979b11bf3855092df29587640ccb9de737d596a78ab7b960cc56d0d84#npm:7.2.0"],\
+          ["@types/zod", null],\
+          ["openapi3-ts", "npm:4.4.0"],\
+          ["zod", "npm:3.23.8"]\
+        ],\
+        "packagePeers": [\
+          "@types/zod",\
+          "zod"\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@cloudflare/kv-asset-handler", [\
@@ -660,6 +685,60 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../.yarn/berry/cache/@fastify-busboy-npm-2.1.1-455d8b6bf5-10c0.zip/node_modules/@fastify/busboy/",\
         "packageDependencies": [\
           ["@fastify/busboy", "npm:2.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@hono/zod-openapi", [\
+      ["npm:0.16.4", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@hono-zod-openapi-npm-0.16.4-e83af6f3bb-10c0.zip/node_modules/@hono/zod-openapi/",\
+        "packageDependencies": [\
+          ["@hono/zod-openapi", "npm:0.16.4"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.16.4", {\
+        "packageLocation": "./.yarn/__virtual__/@hono-zod-openapi-virtual-307b191b20/5/.yarn/berry/cache/@hono-zod-openapi-npm-0.16.4-e83af6f3bb-10c0.zip/node_modules/@hono/zod-openapi/",\
+        "packageDependencies": [\
+          ["@hono/zod-openapi", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.16.4"],\
+          ["@asteasolutions/zod-to-openapi", "virtual:307b191b202f1e27d677b393b5c74d0ef3fe874fdd42a91911232eed97f46c6a8324c61979b11bf3855092df29587640ccb9de737d596a78ab7b960cc56d0d84#npm:7.2.0"],\
+          ["@hono/zod-validator", "virtual:307b191b202f1e27d677b393b5c74d0ef3fe874fdd42a91911232eed97f46c6a8324c61979b11bf3855092df29587640ccb9de737d596a78ab7b960cc56d0d84#npm:0.3.0"],\
+          ["@types/hono", null],\
+          ["@types/zod", null],\
+          ["hono", "npm:4.6.8"],\
+          ["zod", "npm:3.23.8"]\
+        ],\
+        "packagePeers": [\
+          "@types/hono",\
+          "@types/zod",\
+          "hono",\
+          "zod"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@hono/zod-validator", [\
+      ["npm:0.3.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@hono-zod-validator-npm-0.3.0-49782454e4-10c0.zip/node_modules/@hono/zod-validator/",\
+        "packageDependencies": [\
+          ["@hono/zod-validator", "npm:0.3.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:307b191b202f1e27d677b393b5c74d0ef3fe874fdd42a91911232eed97f46c6a8324c61979b11bf3855092df29587640ccb9de737d596a78ab7b960cc56d0d84#npm:0.3.0", {\
+        "packageLocation": "./.yarn/__virtual__/@hono-zod-validator-virtual-e996722b7a/5/.yarn/berry/cache/@hono-zod-validator-npm-0.3.0-49782454e4-10c0.zip/node_modules/@hono/zod-validator/",\
+        "packageDependencies": [\
+          ["@hono/zod-validator", "virtual:307b191b202f1e27d677b393b5c74d0ef3fe874fdd42a91911232eed97f46c6a8324c61979b11bf3855092df29587640ccb9de737d596a78ab7b960cc56d0d84#npm:0.3.0"],\
+          ["@types/hono", null],\
+          ["@types/zod", null],\
+          ["hono", "npm:4.6.8"],\
+          ["zod", "npm:3.23.8"]\
+        ],\
+        "packagePeers": [\
+          "@types/hono",\
+          "@types/zod",\
+          "hono",\
+          "zod"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2874,6 +2953,7 @@ const RAW_RUNTIME_STATE =
           ["kumo-auth", "workspace:."],\
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["@eslint/js", "npm:9.13.0"],\
+          ["@hono/zod-openapi", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.16.4"],\
           ["@types/bcryptjs", "npm:2.4.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
           ["@typescript-eslint/parser", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
@@ -2890,7 +2970,8 @@ const RAW_RUNTIME_STATE =
           ["prettier-plugin-organize-imports", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:4.1.0"],\
           ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
           ["vitest", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:2.1.4"],\
-          ["wrangler", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:3.84.1"]\
+          ["wrangler", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:3.84.1"],\
+          ["zod", "npm:3.23.8"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -3356,6 +3437,16 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["onetime", "npm:7.0.0"],\
           ["mimic-function", "npm:5.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["openapi3-ts", [\
+      ["npm:4.4.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/openapi3-ts-npm-4.4.0-694442af4b-10c0.zip/node_modules/openapi3-ts/",\
+        "packageDependencies": [\
+          ["openapi3-ts", "npm:4.4.0"],\
+          ["yaml", "npm:2.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4614,6 +4705,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../.yarn/berry/cache/yaml-npm-2.5.1-8b2871f510-10c0.zip/node_modules/yaml/",\
         "packageDependencies": [\
           ["yaml", "npm:2.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:2.6.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/yaml-npm-2.6.0-1c0bd2fcf8-10c0.zip/node_modules/yaml/",\
+        "packageDependencies": [\
+          ["yaml", "npm:2.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
