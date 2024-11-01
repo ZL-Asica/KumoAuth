@@ -33,7 +33,7 @@ jobs:
 
       # 📥 Install dependencies
       - name: 📥 Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       # 🚨 Run Lint check
       - name: 🚨 Run Lint
@@ -70,21 +70,23 @@ jobs:
               echo "✅ **Tests Passed**: All tests passed successfully!"
             fi
             echo ""
+            echo "---"
+            echo  ""
             echo "### 🎨 Prettier Format Check"
             echo ""
-            if [[ -s prettier-results.txt ]]; then
-              echo "⚠️ **Prettier Issues Found**"
+            if grep -q "(changed)" prettier-results.txt; then
+              echo "⚠️ **Prettier Issues Found** - Some format issues are fixed automatically by Prettier:"
               echo '```'
-              cat prettier-results.txt
+              grep -E "\s+\(changed\)" prettier-results.txt || true
               echo '```'
             else
               echo "✅ **Prettier**: No formatting issues found!"
             fi
             echo ""
-            echo "### 🚨 Lint Check"
+            echo "### 🎨 Lint Check"
             echo ""
-            if [[ -s lint-results.txt ]]; then
-              echo "⚠️ **Lint Issues Found**"
+            if grep -qE "^[^0]* problems" lint-results.txt; then
+              echo "⚠️ **Lint Issues Found** - PLEASE FIX THEM!"
               echo '```'
               cat lint-results.txt
               echo '```'

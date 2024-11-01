@@ -1,9 +1,16 @@
 import { hashPassword } from '@/utils/hash'
 import { passwordValidator } from '@/utils/passwordValidator'
+import { usernameValidator } from '@/utils/usernameValidator'
 import type { Context } from 'hono'
 
 export const registerHandler = async (c: Context) => {
   const { username, password } = await c.req.json()
+
+  // Check if the username meets the required rules
+  const usernameError = await usernameValidator(c, username)
+  if (usernameError) {
+    return c.json({ error: usernameError }, { status: 400 })
+  }
 
   // Check if the password meets the required rules
   const validatorError = await passwordValidator(c, password)
