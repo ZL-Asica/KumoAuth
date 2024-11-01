@@ -45,9 +45,9 @@ export const usernameValidator = async (c: Context, username: string) => {
 
   // Check if username is already taken
   const existingUser = await db
-    .prepare(`SELECT id FROM users WHERE username = ?`)
+    .prepare(`SELECT user_id FROM users WHERE username = ?`)
     .bind(username)
-    .get()
+    .first()
 
   if (existingUser) {
     return `Username ${username} is already taken`
