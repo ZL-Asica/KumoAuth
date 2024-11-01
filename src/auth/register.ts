@@ -7,49 +7,53 @@ import type { Context } from 'hono'
 export const registerHandler = async (c: Context) => {
   const { username, password } = await c.req.json()
 
-  // Check if the username meets the required rules
+  // Username validation
   const usernameError = await usernameValidator(c, username)
   if (usernameError) {
     return c.json({ error: usernameError }, { status: 400 })
   }
 
-  // Check if the password meets the required rules
+  // Password validation
   const validatorError = await passwordValidator(c, password)
   if (validatorError) {
     return c.json({ error: validatorError }, { status: 400 })
   }
 
-  // Hash the password
+  // Hash password and insert user into DB
   const hashedPassword = await hashPassword(password)
-
-  // Save the user to the database
-  const db = c.env.DB // Cloudflare D1
+  const db = c.env.DB
   const result = await db
     .prepare('INSERT INTO users (username, password_hash) VALUES (?, ?)')
     .bind(username, hashedPassword)
     .run()
 
-  // Get the user from the database
+  if (!result || !result.meta.last_row_id) {
+    return c.json({ error: 'User registration failed' }, { status: 500 })
+  }
+
   const user = await db
-    .prepare('SELECT * FROM users WHERE username = ?')
-    .bind(result.lastInsertRowId)
+    .prepare('SELECT * FROM users WHERE user_id = ?')
+    .bind(result.meta.last_row_id)
     .first()
 
-  // Generate a JWT token
+  if (!user) {
+    return c.json({ error: 'User retrieval failed' }, { status: 500 })
+  }
+
+  // Generate JWT
   const token = await generateJWT(c, {
     userID: user.user_id,
     userRole: user.user_role_id,
-    exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
+    exp: Math.floor(Date.now() / 1000) + 60 * 60,
   })
 
-  // Return the token
-  return c.json({
-    message: 'User registered successfully',
-    data: {
+  return c.json(
+    {
       id: user.user_id,
       username: user.username,
       role: user.user_role_id,
       token,
     },
-  })
+    { status: 201 }
+  )
 }

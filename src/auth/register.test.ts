@@ -44,7 +44,7 @@ describe('registerHandler', () => {
     vi.mocked(usernameValidator).mockResolvedValueOnce(null) // Valid username
     vi.mocked(passwordValidator).mockResolvedValueOnce(null) // Valid password
     vi.mocked(hashPassword).mockResolvedValueOnce('hashedPassword')
-    mockDB.run.mockResolvedValueOnce({ lastInsertRowId: 1 }) // Simulate DB insert
+    mockDB.run.mockResolvedValueOnce({ meta: { last_row_id: 1 } })
     mockDB.first.mockResolvedValueOnce({
       user_id: 1,
       username: 'newUser',
@@ -60,15 +60,22 @@ describe('registerHandler', () => {
       'INSERT INTO users (username, password_hash) VALUES (?, ?)'
     )
     expect(mockDB.bind).toHaveBeenCalledWith('newUser', 'hashedPassword')
-    expect(mockContext.json).toHaveBeenCalledWith({
-      message: 'User registered successfully',
-      data: {
+
+    // Check if the user was inserted into the database
+    expect(mockDB.prepare).toHaveBeenCalledWith(
+      'SELECT * FROM users WHERE user_id = ?'
+    )
+    expect(mockDB.bind).toHaveBeenCalledWith(1)
+
+    expect(mockContext.json).toHaveBeenCalledWith(
+      {
         id: 1,
         username: 'newUser',
         role: 1,
         token: 'test.jwt.token',
       },
-    })
+      { status: 201 }
+    )
   })
 
   it('should return an error if username validation fails', async () => {
