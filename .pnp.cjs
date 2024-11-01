@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@types/bcryptjs", "npm:2.4.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
           ["@typescript-eslint/parser", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
+          ["bad-words", "npm:4.0.0"],\
           ["bcryptjs", "npm:2.4.3"],\
           ["eslint", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:9.13.0"],\
           ["eslint-config-prettier", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:9.1.0"],\
@@ -1520,6 +1521,25 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["bad-words", [\
+      ["npm:4.0.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/bad-words-npm-4.0.0-3d11dd536a-10c0.zip/node_modules/bad-words/",\
+        "packageDependencies": [\
+          ["bad-words", "npm:4.0.0"],\
+          ["badwords-list", "npm:2.0.1-4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["badwords-list", [\
+      ["npm:2.0.1-4", {\
+        "packageLocation": "../../../../.yarn/berry/cache/badwords-list-npm-2.0.1-4-6a50e8e28f-10c0.zip/node_modules/badwords-list/",\
+        "packageDependencies": [\
+          ["badwords-list", "npm:2.0.1-4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["balanced-match", [\
       ["npm:1.0.2", {\
         "packageLocation": "../../../../.yarn/berry/cache/balanced-match-npm-1.0.2-a53c126459-10c0.zip/node_modules/balanced-match/",\
@@ -2857,6 +2877,7 @@ const RAW_RUNTIME_STATE =
           ["@types/bcryptjs", "npm:2.4.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
           ["@typescript-eslint/parser", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
+          ["bad-words", "npm:4.0.0"],\
           ["bcryptjs", "npm:2.4.3"],\
           ["eslint", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:9.13.0"],\
           ["eslint-config-prettier", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:9.1.0"],\

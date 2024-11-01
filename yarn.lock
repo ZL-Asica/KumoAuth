@@ -1125,6 +1125,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bad-words@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "bad-words@npm:4.0.0"
+  dependencies:
+    badwords-list: "npm:^2.0.1-4"
+  checksum: 10c0/5146c10a97d47d94458c1064da7506b865117a5c85fa4f1351f79205c1732b23f70d1eacfd13dde451aaa15d774bb9a0e3915251791faf7a4a57f051b4a47d90
+  languageName: node
+  linkType: hard
+
+"badwords-list@npm:^2.0.1-4":
+  version: 2.0.1-4
+  resolution: "badwords-list@npm:2.0.1-4"
+  checksum: 10c0/2386192de7df8b61ec32ba3290b6cd994726e58f63ee4948d7d23f7f7d15ded54187fd54b4efbb77c9e72b0770bb9c88141da72130a2b719cb48db9230521994
+  languageName: node
+  linkType: hard
+
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -2374,6 +2390,7 @@ __metadata:
     "@types/bcryptjs": "npm:^2"
     "@typescript-eslint/eslint-plugin": "npm:^8.12.2"
     "@typescript-eslint/parser": "npm:^8.12.2"
+    bad-words: "npm:^4.0.0"
     bcryptjs: "npm:^2.4.3"
     eslint: "npm:^9.13.0"
     eslint-config-prettier: "npm:^9.1.0"
