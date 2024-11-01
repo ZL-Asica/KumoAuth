@@ -1,3 +1,4 @@
+import { getPasswordRoleByUserRoleId } from '@/lib/db'
 import type { Context } from 'hono'
 
 export const passwordValidator = async (
@@ -5,16 +6,7 @@ export const passwordValidator = async (
   password: string,
   userRoleId: number = 1
 ) => {
-  const db = c.env.DB // Cloudflare D1
-  const passwordRule = await db
-    .prepare(
-      `SELECT min_length, min_type, require_special, require_upper, require_number
-       FROM PasswordRules
-       JOIN UserRoles ON UserRoles.password_rule_id = PasswordRules.id
-       WHERE UserRoles.id = ?`
-    )
-    .bind(userRoleId)
-    .first()
+  const passwordRule = await getPasswordRoleByUserRoleId(c.env.DB, userRoleId)
 
   if (!passwordRule) {
     throw new Error(`Password rule not found for user role: ${userRoleId}`)
@@ -23,6 +15,11 @@ export const passwordValidator = async (
   // Check if password meets the minimum length requirement
   if (password.length < passwordRule.min_length) {
     return `Password must be at least ${passwordRule.min_length} characters long`
+  }
+
+  // Hard rule: must less than 64 characters
+  if (password.length > 64) {
+    return 'Password cannot exceed 64 characters'
   }
 
   const typeChecks = [

@@ -5,7 +5,10 @@ import { sign, verify } from 'hono/jwt'
 const JWT_SECRET = 'my-secret'
 
 // generate a JWT token
-export const generateJWT = async (c: Context, payload: Record<string, any>) => {
+export const generateJWT = async (
+  c: Context,
+  payload: Record<string, unknown>
+) => {
   return await sign(payload, c.env.JWT_SECRET)
 }
 
@@ -13,7 +16,7 @@ export const generateJWT = async (c: Context, payload: Record<string, any>) => {
 export const verifyJWT = async (c: Context, token: string) => {
   try {
     return await verify(token, JWT_SECRET)
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (error instanceof Error && error.name === 'TokenExpiredError') {
       return c.json(
         { error: 'Token expired', message: 'Please log in again' },

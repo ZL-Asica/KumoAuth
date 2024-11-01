@@ -41,8 +41,11 @@
 │   │   └── verify.ts         # 2FA 验证（开发中）
 │   ├── index.ts              # 主入口文件，初始化 Hono 应用
 │   └── utils
-│       ├── hash.ts           # 密码加密工具
-│       └── jwt.ts            # JWT 生成和验证
+│   │   ├── hash.ts           # 密码加密工具
+│   │   └── jwt.ts            # JWT 生成和验证
+│   └── lib
+│       ├── db                # 数据库操作
+│       └── helper            # 一些数据构建
 ├── wrangler.toml             # Wrangler 配置文件
 ├── package.json              # 项目依赖和脚本
 ├── example.env               # 环境变量示例文件

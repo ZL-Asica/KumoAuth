@@ -1,4 +1,4 @@
-import path from 'path'
+import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
@@ -6,10 +6,5 @@ export default defineConfig({
     reporters: process.env.GITHUB_ACTIONS ? ['dot', 'github-actions'] : ['dot'],
     globals: true,
   },
-  resolve: {
-    alias: {
-      hono: path.resolve(__dirname, '.yarn/$$virtual/hono-virtual-hono/jsx.js'),
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
+  plugins: [tsconfigPaths()],
 })

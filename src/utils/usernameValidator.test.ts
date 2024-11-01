@@ -1,12 +1,12 @@
+import { usernameValidator } from '@/utils/usernameValidator'
 import type { Context } from 'hono'
 import { describe, expect, it, vi } from 'vitest'
-import { usernameValidator } from './usernameValidator'
 
 // Mock database preparation function
 const mockDB = {
   prepare: vi.fn().mockReturnThis(),
   bind: vi.fn().mockReturnThis(),
-  get: vi.fn(),
+  first: vi.fn(),
 }
 
 // Mock context
@@ -18,7 +18,7 @@ const mockContext = {
 
 describe('usernameValidator', () => {
   it('should pass with a valid username', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(mockContext, 'valid_user')
 
@@ -26,7 +26,7 @@ describe('usernameValidator', () => {
   })
 
   it('should fail if username is already taken', async () => {
-    mockDB.get.mockResolvedValueOnce({ id: 1 }) // Username exists in DB
+    mockDB.first.mockResolvedValueOnce({ id: 1 }) // Username exists in DB
 
     const result = await usernameValidator(mockContext, 'taken_user')
 
@@ -34,7 +34,7 @@ describe('usernameValidator', () => {
   })
 
   it('should fail if username contains bad words', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(mockContext, 'fuck_user')
 
@@ -42,7 +42,7 @@ describe('usernameValidator', () => {
   })
 
   it('should fail if username contains risky words', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(mockContext, 'adminUser')
 
@@ -50,7 +50,7 @@ describe('usernameValidator', () => {
   })
 
   it('should fail if username contains reserved system words', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(mockContext, 'system')
 
@@ -58,7 +58,7 @@ describe('usernameValidator', () => {
   })
 
   it('should fail if username is too short', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(mockContext, 'usr')
 
@@ -66,7 +66,7 @@ describe('usernameValidator', () => {
   })
 
   it('should fail if username is too long', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(
       mockContext,
@@ -77,7 +77,7 @@ describe('usernameValidator', () => {
   })
 
   it('should fail if username contains disallowed special characters', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(mockContext, 'user@name')
 
@@ -87,7 +87,7 @@ describe('usernameValidator', () => {
   })
 
   it('should pass if username contains only allowed special characters', async () => {
-    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+    mockDB.first.mockResolvedValueOnce(null) // Username is not taken
 
     const result = await usernameValidator(mockContext, 'user-name')
 
