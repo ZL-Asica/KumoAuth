@@ -74,7 +74,7 @@ describe('registerHandler', () => {
         role: 1,
         token: 'test.jwt.token',
       },
-      { status: 201 }
+      201
     )
   })
 
@@ -89,7 +89,7 @@ describe('registerHandler', () => {
 
     expect(mockContext.json).toHaveBeenCalledWith(
       { error: 'Invalid username' },
-      { status: 400 }
+      400
     )
   })
 
@@ -105,7 +105,7 @@ describe('registerHandler', () => {
 
     expect(mockContext.json).toHaveBeenCalledWith(
       { error: 'Invalid password' },
-      { status: 400 }
+      400
     )
   })
 })

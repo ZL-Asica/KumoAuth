@@ -10,13 +10,13 @@ export const registerHandler = async (c: Context) => {
   // Username validation
   const usernameError = await usernameValidator(c, username)
   if (usernameError) {
-    return c.json({ error: usernameError }, { status: 400 })
+    return c.json({ error: usernameError }, 400)
   }
 
   // Password validation
   const validatorError = await passwordValidator(c, password)
   if (validatorError) {
-    return c.json({ error: validatorError }, { status: 400 })
+    return c.json({ error: validatorError }, 400)
   }
 
   // Hash password and insert user into DB
@@ -28,7 +28,7 @@ export const registerHandler = async (c: Context) => {
     .run()
 
   if (!result || !result.meta.last_row_id) {
-    return c.json({ error: 'User registration failed' }, { status: 500 })
+    return c.json({ error: 'User registration failed' }, 500)
   }
 
   const user = await db
@@ -37,7 +37,7 @@ export const registerHandler = async (c: Context) => {
     .first()
 
   if (!user) {
-    return c.json({ error: 'User retrieval failed' }, { status: 500 })
+    return c.json({ error: 'User retrieval failed' }, 500)
   }
 
   // Generate JWT
@@ -54,6 +54,6 @@ export const registerHandler = async (c: Context) => {
       role: user.user_role_id,
       token,
     },
-    { status: 201 }
+    201
   )
 }
