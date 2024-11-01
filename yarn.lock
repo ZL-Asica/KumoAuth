@@ -793,6 +793,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@scalar/hono-api-reference@npm:^0.5.158":
+  version: 0.5.158
+  resolution: "@scalar/hono-api-reference@npm:0.5.158"
+  dependencies:
+    "@scalar/types": "npm:0.0.18"
+  peerDependencies:
+    hono: ^4.0.0
+  checksum: 10c0/69c070a7d0147061ca7ddd17c7d374f2d37e2deb532383fee8ae55cda09f863b92049b0e278fecbf795d1dd9e9d37ec00f4a3e69acefe4604a34fe19207a8bbf
+  languageName: node
+  linkType: hard
+
+"@scalar/openapi-types@npm:0.1.4":
+  version: 0.1.4
+  resolution: "@scalar/openapi-types@npm:0.1.4"
+  checksum: 10c0/999a1f797f1ee33b5fb110ba7d545ea6c36cb34005cc065f2a438612dc8e74a929a06e69520a2a91a93e7da75bee30e6ae5c1359f6c76632a03f39f4ef514378
+  languageName: node
+  linkType: hard
+
+"@scalar/types@npm:0.0.18":
+  version: 0.0.18
+  resolution: "@scalar/types@npm:0.0.18"
+  dependencies:
+    "@scalar/openapi-types": "npm:0.1.4"
+    "@unhead/schema": "npm:^1.9.5"
+  checksum: 10c0/c45f2917e8e5ef641b623f23b664dcf545b4d9ecb232105714d51d0c0f803a2a9fdb52f94938ab8effe8e80a713138ae162d8d78648ae7dbe0b84de50f6bbea5
+  languageName: node
+  linkType: hard
+
 "@types/bcryptjs@npm:^2":
   version: 2.4.6
   resolution: "@types/bcryptjs@npm:2.4.6"
@@ -954,6 +982,16 @@ __metadata:
     "@typescript-eslint/types": "npm:8.12.2"
     eslint-visitor-keys: "npm:^3.4.3"
   checksum: 10c0/1f770d361bcb03ed028e5589824f6c7ba364da59fe8b982c2fed0878ad25890d80ebd6c72618ab5149317501964b7db106e20834179d4aa707a8cbffcca89d08
+  languageName: node
+  linkType: hard
+
+"@unhead/schema@npm:^1.9.5":
+  version: 1.11.10
+  resolution: "@unhead/schema@npm:1.11.10"
+  dependencies:
+    hookable: "npm:^5.5.3"
+    zhead: "npm:^2.2.4"
+  checksum: 10c0/b381a9d43967403f071cdda5d2c83aa1d98a7fe6696196c3cd287f71c6616dfd961632c45a337e24880041e1ac5789dac1e923d7ec0497912b55dfe7122ffde0
   languageName: node
   linkType: hard
 
@@ -2221,6 +2259,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hookable@npm:^5.5.3":
+  version: 5.5.3
+  resolution: "hookable@npm:5.5.3"
+  checksum: 10c0/275f4cc84d27f8d48c5a5cd5685b6c0fea9291be9deea5bff0cfa72856ed566abde1dcd8cb1da0f9a70b4da3d7ec0d60dc3554c4edbba647058cc38816eced3d
+  languageName: node
+  linkType: hard
+
 "http-cache-semantics@npm:^4.1.1":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
@@ -2481,6 +2526,7 @@ __metadata:
     "@cloudflare/workers-types": "npm:^4.20241022.0"
     "@eslint/js": "npm:^9.13.0"
     "@hono/zod-openapi": "npm:^0.16.4"
+    "@scalar/hono-api-reference": "npm:^0.5.158"
     "@types/bcryptjs": "npm:^2"
     "@types/node": "npm:^22.8.6"
     "@typescript-eslint/eslint-plugin": "npm:^8.12.2"
@@ -4181,6 +4227,13 @@ __metadata:
     mustache: "npm:^4.2.0"
     stacktracey: "npm:^2.1.8"
   checksum: 10c0/ab573c7dccebdaf2d6b084d262d5bfb22ad5c049fb1ad3e2d6a840af851042dd3a8a072665c5a5ee73c75bbc1618fbc08f1371ac896e54556bced0ddf996b026
+  languageName: node
+  linkType: hard
+
+"zhead@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "zhead@npm:2.2.4"
+  checksum: 10c0/3d166fb661f1b7fdf8a0ef2222d9e574ab241e72141f2f1fda62a9250ca73aabf2eaf0d66046a3984cd24d1dd9bac231338c6271684d6b8caa6b66af7c45f275
   languageName: node
   linkType: hard
 

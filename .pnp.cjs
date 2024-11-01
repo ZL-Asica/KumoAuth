@@ -30,6 +30,7 @@ const RAW_RUNTIME_STATE =
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["@eslint/js", "npm:9.13.0"],\
           ["@hono/zod-openapi", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.16.4"],\
+          ["@scalar/hono-api-reference", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.5.158"],\
           ["@types/bcryptjs", "npm:2.4.6"],\
           ["@types/node", "npm:22.8.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
@@ -1082,6 +1083,49 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@scalar/hono-api-reference", [\
+      ["npm:0.5.158", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@scalar-hono-api-reference-npm-0.5.158-1a370e7590-10c0.zip/node_modules/@scalar/hono-api-reference/",\
+        "packageDependencies": [\
+          ["@scalar/hono-api-reference", "npm:0.5.158"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.5.158", {\
+        "packageLocation": "./.yarn/__virtual__/@scalar-hono-api-reference-virtual-7a3ac56a88/5/.yarn/berry/cache/@scalar-hono-api-reference-npm-0.5.158-1a370e7590-10c0.zip/node_modules/@scalar/hono-api-reference/",\
+        "packageDependencies": [\
+          ["@scalar/hono-api-reference", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.5.158"],\
+          ["@scalar/types", "npm:0.0.18"],\
+          ["@types/hono", null],\
+          ["hono", "npm:4.6.8"]\
+        ],\
+        "packagePeers": [\
+          "@types/hono",\
+          "hono"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@scalar/openapi-types", [\
+      ["npm:0.1.4", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@scalar-openapi-types-npm-0.1.4-b778f26a3d-10c0.zip/node_modules/@scalar/openapi-types/",\
+        "packageDependencies": [\
+          ["@scalar/openapi-types", "npm:0.1.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@scalar/types", [\
+      ["npm:0.0.18", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@scalar-types-npm-0.0.18-90fe751536-10c0.zip/node_modules/@scalar/types/",\
+        "packageDependencies": [\
+          ["@scalar/types", "npm:0.0.18"],\
+          ["@scalar/openapi-types", "npm:0.1.4"],\
+          ["@unhead/schema", "npm:1.11.10"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/bcryptjs", [\
       ["npm:2.4.6", {\
         "packageLocation": "../../../../.yarn/berry/cache/@types-bcryptjs-npm-2.4.6-50588b8234-10c0.zip/node_modules/@types/bcryptjs/",\
@@ -1354,6 +1398,17 @@ const RAW_RUNTIME_STATE =
           ["@typescript-eslint/visitor-keys", "npm:8.12.2"],\
           ["@typescript-eslint/types", "npm:8.12.2"],\
           ["eslint-visitor-keys", "npm:3.4.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@unhead/schema", [\
+      ["npm:1.11.10", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@unhead-schema-npm-1.11.10-fa4e236f26-10c0.zip/node_modules/@unhead/schema/",\
+        "packageDependencies": [\
+          ["@unhead/schema", "npm:1.11.10"],\
+          ["hookable", "npm:5.5.3"],\
+          ["zhead", "npm:2.2.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2746,6 +2801,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["hookable", [\
+      ["npm:5.5.3", {\
+        "packageLocation": "../../../../.yarn/berry/cache/hookable-npm-5.5.3-82b0342097-10c0.zip/node_modules/hookable/",\
+        "packageDependencies": [\
+          ["hookable", "npm:5.5.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["http-cache-semantics", [\
       ["npm:4.1.1", {\
         "packageLocation": "../../../../.yarn/berry/cache/http-cache-semantics-npm-4.1.1-1120131375-10c0.zip/node_modules/http-cache-semantics/",\
@@ -3044,6 +3108,7 @@ const RAW_RUNTIME_STATE =
           ["@cloudflare/workers-types", "npm:4.20241022.0"],\
           ["@eslint/js", "npm:9.13.0"],\
           ["@hono/zod-openapi", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.16.4"],\
+          ["@scalar/hono-api-reference", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:0.5.158"],\
           ["@types/bcryptjs", "npm:2.4.6"],\
           ["@types/node", "npm:22.8.6"],\
           ["@typescript-eslint/eslint-plugin", "virtual:88d926bdfe94c1ba9790213eef6b6b37370078ca639b620084f8b9fcefe78a19079700cc479655b7a03e164930742750ad687bb0588703fb50e419f6a2de66a5#npm:8.12.2"],\
@@ -4965,6 +5030,15 @@ const RAW_RUNTIME_STATE =
           ["cookie", "npm:0.7.2"],\
           ["mustache", "npm:4.2.0"],\
           ["stacktracey", "npm:2.1.8"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["zhead", [\
+      ["npm:2.2.4", {\
+        "packageLocation": "../../../../.yarn/berry/cache/zhead-npm-2.2.4-1c1f24fa20-10c0.zip/node_modules/zhead/",\
+        "packageDependencies": [\
+          ["zhead", "npm:2.2.4"]\
         ],\
         "linkType": "HARD"\
       }]\
