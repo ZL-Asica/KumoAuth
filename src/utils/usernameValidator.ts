@@ -1,3 +1,4 @@
+import { Filter } from 'bad-words'
 import type { Context } from 'hono'
 
 interface UsernamePatternInterface {
@@ -17,6 +18,28 @@ const usernamePattern: UsernamePatternInterface = {
   ],
 }
 
+// Define risky and reserved system words
+const riskyWords = [
+  'admin',
+  'root',
+  'support',
+  'moderator',
+  'superuser',
+  'contact',
+  'god',
+]
+const reservedSystemWords = [
+  'system',
+  'null',
+  'undefined',
+  'true',
+  'false',
+  'undefined',
+]
+
+// Create a filter instance
+const filter = new Filter()
+
 export const usernameValidator = async (c: Context, username: string) => {
   const db = c.env.DB // Cloudflare D1
 
@@ -28,6 +51,20 @@ export const usernameValidator = async (c: Context, username: string) => {
 
   if (existingUser) {
     return `Username ${username} is already taken`
+  }
+
+  //  Check if username contains risky words or reserved system words
+  const lowercaseUsername = username.toLowerCase()
+  if (
+    riskyWords.some((word) => lowercaseUsername.includes(word)) ||
+    reservedSystemWords.includes(lowercaseUsername)
+  ) {
+    return `Username cannot contain the word ${username}`
+  }
+
+  // Check if username contains bad words
+  if (filter.isProfane(username.split('_').join(' '))) {
+    return 'Username cannot contain bad words'
   }
 
   // Check if username meets the minimum length requirement

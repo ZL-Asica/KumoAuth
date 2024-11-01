@@ -33,6 +33,30 @@ describe('usernameValidator', () => {
     expect(result).toBe('Username taken_user is already taken')
   })
 
+  it('should fail if username contains bad words', async () => {
+    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+
+    const result = await usernameValidator(mockContext, 'fuck_user')
+
+    expect(result).toBe('Username cannot contain bad words')
+  })
+
+  it('should fail if username contains risky words', async () => {
+    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+
+    const result = await usernameValidator(mockContext, 'adminUser')
+
+    expect(result).toBe('Username cannot contain the word adminUser')
+  })
+
+  it('should fail if username contains reserved system words', async () => {
+    mockDB.get.mockResolvedValueOnce(null) // Username is not taken
+
+    const result = await usernameValidator(mockContext, 'system')
+
+    expect(result).toBe('Username cannot contain the word system')
+  })
+
   it('should fail if username is too short', async () => {
     mockDB.get.mockResolvedValueOnce(null) // Username is not taken
 
