@@ -24,9 +24,10 @@ const mockDB = {
 
 // Mock Context
 const mockContext = {
-  env: { DB: mockDB },
+  env: { DB: mockDB, JWT_SECRET: 'testSecret' },
   req: { json: vi.fn().mockResolvedValueOnce({}) },
   json: vi.fn(),
+  header: vi.fn(),
 } as unknown as Context
 
 describe('registerHandler', () => {
@@ -50,7 +51,11 @@ describe('registerHandler', () => {
       username: 'newUser',
       user_role_id: 1,
     })
-    vi.mocked(generateJWT).mockResolvedValueOnce('test.jwt.token')
+
+    vi.mocked(generateJWT).mockResolvedValueOnce({
+      token: 'test.jwt.token',
+      exp: 1234567890,
+    })
 
     // Call handler
     await registerHandler(mockContext)
@@ -67,12 +72,18 @@ describe('registerHandler', () => {
     )
     expect(mockDB.bind).toHaveBeenCalledWith(1)
 
+    // Check if the JWT token was generated
+    expect(mockContext.header).toHaveBeenCalledWith(
+      expect.stringMatching(/set-cookie/i),
+      expect.stringContaining(`access_token=test.jwt.token`),
+      expect.objectContaining({ append: true })
+    )
+
     expect(mockContext.json).toHaveBeenCalledWith(
       {
         id: 1,
         username: 'newUser',
         role: 1,
-        token: 'test.jwt.token',
       },
       201
     )

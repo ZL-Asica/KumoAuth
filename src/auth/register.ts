@@ -6,6 +6,7 @@ import { passwordValidator } from '@/utils/passwordValidator'
 import { usernameValidator } from '@/utils/usernameValidator'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
+import { setSignedCookie } from 'hono/cookie'
 
 // Define the schema for the register request
 const registerSchema = z.object({
@@ -17,9 +18,6 @@ const registerSuccessResponseSchema = z.object({
   id: z.number().openapi({ example: 1 }),
   username: z.string().openapi({ example: 'username' }),
   role: z.number().openapi({ example: 1 }),
-  token: z
-    .string()
-    .openapi({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' }),
 })
 
 export const registerRoute = createRoute({
@@ -69,18 +67,22 @@ export const registerHandler = async (c: Context) => {
   }
 
   // Generate JWT
-  const token = await generateJWT(c, {
-    userID: user.user_id,
-    userRole: user.user_role_id,
-    exp: Math.floor(Date.now() / 1000) + 60 * 60,
-  })
+  const { token, exp } = await generateJWT(c, user.user_id, user.user_role_id)
 
+  // Set Cookie with the token
+  await setSignedCookie(c, 'access_token', token, c.env.JWT_SECRET, {
+    path: '/',
+    secure: true,
+    httpOnly: true,
+    sameSite: 'Strict',
+    maxAge: exp - Math.floor(Date.now() / 1000),
+    expires: new Date(exp * 1000),
+  })
   return c.json(
     {
       id: user.user_id,
       username: user.username,
       role: user.user_role_id,
-      token,
     },
     201
   )

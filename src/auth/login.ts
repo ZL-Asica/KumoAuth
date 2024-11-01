@@ -1,21 +1,19 @@
 import { getUserByUsername } from '@/lib/db'
-import { errorResponse, jsonContent, jsonContentRequired } from '@/lib/helper'
+import {
+  errorResponse,
+  jsonContentRequired,
+  jsonMessageContent,
+} from '@/lib/helper'
 import { verifyPassword } from '@/utils/hash'
 import { generateJWT } from '@/utils/jwt'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
+import { setSignedCookie } from 'hono/cookie'
 
 // Define the schema for the login request
 const loginSchema = z.object({
   username: z.string().openapi({ example: 'username' }),
   password: z.string().openapi({ example: '123goodPassword' }),
-})
-
-// Define the response schemas for the login route
-const loginSuccessResponseSchema = z.object({
-  token: z
-    .string()
-    .openapi({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' }),
 })
 
 // Define the route
@@ -26,7 +24,7 @@ export const loginRoute = createRoute({
     body: jsonContentRequired(loginSchema, 'Login request'),
   },
   responses: {
-    200: jsonContent(loginSuccessResponseSchema, 'Login successful'),
+    200: jsonMessageContent('Login successful'),
     404: errorResponse('User not found'),
     401: errorResponse('Invalid password'),
   },
@@ -50,11 +48,17 @@ export const loginHandler = async (c: Context) => {
   }
 
   // Generate a JWT token
-  const token = await generateJWT(c, {
-    userID: user.user_id,
-    userRole: user.user_role_id,
-    exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
+  const { token, exp } = await generateJWT(c, user.user_id, user.user_role_id)
+
+  // Set Cookie with the token
+  await setSignedCookie(c, 'access_token', token, c.env.JWT_SECRET, {
+    path: '/',
+    secure: true,
+    httpOnly: true,
+    sameSite: 'Strict',
+    maxAge: exp - Math.floor(Date.now() / 1000),
+    expires: new Date(exp * 1000),
   })
 
-  return c.json({ token }, 200)
+  return c.json({ message: 'Login successful' }, 200)
 }

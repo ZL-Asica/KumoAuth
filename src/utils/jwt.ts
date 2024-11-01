@@ -1,28 +1,19 @@
 import type { Context } from 'hono'
-import { sign, verify } from 'hono/jwt'
-
-// load secret from environment variable
-const JWT_SECRET = 'my-secret'
+import { sign } from 'hono/jwt'
 
 // generate a JWT token
 export const generateJWT = async (
   c: Context,
-  payload: Record<string, unknown>
+  user_id: number,
+  user_role_id: number
 ) => {
-  return await sign(payload, c.env.JWT_SECRET)
-}
-
-// verify a JWT token
-export const verifyJWT = async (c: Context, token: string) => {
-  try {
-    return await verify(token, JWT_SECRET)
-  } catch (error: unknown) {
-    if (error instanceof Error && error.name === 'TokenExpiredError') {
-      return c.json(
-        { error: 'Token expired', message: 'Please log in again' },
-        { status: 401 }
-      )
-    }
-    return c.json({ error: 'Invalid token' }, { status: 403 })
+  const exp =
+    Math.floor(Date.now() / 1000) + parseInt(c.env.JWT_EXPIRE_IN) * 24 * 60 * 60
+  const payload = {
+    user_id,
+    user_role_id,
+    exp: exp,
   }
+  const token = await sign(payload, c.env.JWT_SECRET)
+  return { token, exp }
 }
