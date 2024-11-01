@@ -1,6 +1,6 @@
+import { passwordValidator } from '@/utils/passwordValidator'
 import type { Context } from 'hono'
 import { describe, expect, it, vi } from 'vitest'
-import { passwordValidator } from './passwordValidator'
 
 // Mock database preparation function
 const mockDB = {
