@@ -41,8 +41,11 @@ Designed for small applications and personal projects, this system provides a se
 │   │   └── verify.ts         # 2FA verification (in development)
 │   ├── index.ts              # Main entry, initializes Hono app
 │   └── utils
-│       ├── hash.ts           # Password hashing utilities
-│       └── jwt.ts            # JWT generation and verification
+│   │   ├── hash.ts           # Password hashing utilities
+│   │   └── jwt.ts            # JWT generation and verification
+│   └── lib
+│       ├── db                # Database query
+│       └── helper            # Data structure builder
 ├── wrangler.toml             # Wrangler configuration file
 ├── package.json              # Project dependencies and scripts
 ├── example.env               # Environment variable sample file
