@@ -1,9 +1,42 @@
 import { createNewUser, getUserByUserId } from '@/lib/db'
+import { errorResponse, jsonContentRequired } from '@/lib/helper'
 import { hashPassword } from '@/utils/hash'
 import { generateJWT } from '@/utils/jwt'
 import { passwordValidator } from '@/utils/passwordValidator'
 import { usernameValidator } from '@/utils/usernameValidator'
+import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
+
+// Define the schema for the register request
+const registerSchema = z.object({
+  username: z.string().min(3).max(20).openapi({ example: 'username' }),
+  password: z.string().min(8).max(100).openapi({ example: '123goodPassword' }),
+})
+
+const registerSuccessResponseSchema = z.object({
+  id: z.number().openapi({ example: 1 }),
+  username: z.string().openapi({ example: 'username' }),
+  role: z.number().openapi({ example: 1 }),
+  token: z
+    .string()
+    .openapi({ example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' }),
+})
+
+export const registerRoute = createRoute({
+  method: 'post',
+  path: '/auth/register',
+  request: {
+    body: jsonContentRequired(registerSchema, 'Register request'),
+  },
+  responses: {
+    201: jsonContentRequired(
+      registerSuccessResponseSchema,
+      'Register successful'
+    ),
+    400: errorResponse('Invalid username or password'),
+    500: errorResponse('User registration failed'),
+  },
+})
 
 export const registerHandler = async (c: Context) => {
   const { username, password } = await c.req.json()
