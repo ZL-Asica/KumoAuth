@@ -9,3 +9,13 @@ export const getUserByUsername = async (
     .bind(username)
     .first()
 }
+
+export const getUserByUserId = async (
+  db: DBType,
+  user_id: number
+): Promise<User | undefined | null> => {
+  return await db
+    .prepare('SELECT * FROM users WHERE user_id = ?')
+    .bind(user_id)
+    .first()
+}

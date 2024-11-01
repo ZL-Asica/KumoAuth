@@ -1,3 +1,4 @@
+import { createNewUser, getUserByUserId } from '@/lib/db'
 import { hashPassword } from '@/utils/hash'
 import { generateJWT } from '@/utils/jwt'
 import { passwordValidator } from '@/utils/passwordValidator'
@@ -22,19 +23,13 @@ export const registerHandler = async (c: Context) => {
   // Hash password and insert user into DB
   const hashedPassword = await hashPassword(password)
   const db = c.env.DB
-  const result = await db
-    .prepare('INSERT INTO users (username, password_hash) VALUES (?, ?)')
-    .bind(username, hashedPassword)
-    .run()
+  const result = await createNewUser(db, username, hashedPassword)
 
   if (!result || !result.meta.last_row_id) {
     return c.json({ error: 'User registration failed' }, 500)
   }
 
-  const user = await db
-    .prepare('SELECT * FROM users WHERE user_id = ?')
-    .bind(result.meta.last_row_id)
-    .first()
+  const user = await getUserByUserId(db, result.meta.last_row_id)
 
   if (!user) {
     return c.json({ error: 'User retrieval failed' }, 500)

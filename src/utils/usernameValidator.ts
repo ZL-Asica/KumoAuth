@@ -1,3 +1,4 @@
+import { getUserByUsername } from '@/lib/db'
 import { Filter } from 'bad-words'
 import type { Context } from 'hono'
 
@@ -41,13 +42,8 @@ const reservedSystemWords = [
 const filter = new Filter()
 
 export const usernameValidator = async (c: Context, username: string) => {
-  const db = c.env.DB // Cloudflare D1
-
   // Check if username is already taken
-  const existingUser = await db
-    .prepare(`SELECT user_id FROM users WHERE username = ?`)
-    .bind(username)
-    .first()
+  const existingUser = await getUserByUsername(c.env.DB, username)
 
   if (existingUser) {
     return `Username ${username} is already taken`

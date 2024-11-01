@@ -26,3 +26,9 @@ export type PasswordRule = {
   created_at: string
   updated_at: string
 }
+
+export type UserQueryResult = {
+  meta: {
+    last_row_id: number
+  }
+}
