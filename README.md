@@ -4,7 +4,11 @@
 
 > Kumo - 日语中的雲☁️ - 一个基于 Cloudflare Workers、D1 数据库和 Hono 框架构建的高效身份认证系统
 
-![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare) | ![D1](https://img.shields.io/badge/Database-D1-F38020?logo=sqlite) | ![Hono](https://img.shields.io/badge/Framework-Hono-007ACC?logo=typescript) | ![JWT](https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens) | ![TypeScript](https://img.shields.io/badge/Language-TypeScript-007ACC?logo=typescript) | ![Wrangler](https://img.shields.io/badge/CLI-Wrangler-F38020?logo=cloudflare) | ![Eslint](https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white) | ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=Prettier&logoColor=white)
+![Test by Github Action](https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test) | ![GitHub License](https://img.shields.io/github/license/ZL-Asica/KumoAuth) | ![Yarn Version](https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff)
+
+![Hono](https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff) | ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white)
+
+![Eslint](https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white) | ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white)
 
 此项目旨在利用 Cloudflare 的无服务器架构搭建一个简单、轻量的身份认证系统。项目使用了 JWT 来实现用户的无状态认证和访问保护功能，未来计划加入更多功能，如双因素认证、刷新令牌等。
 
@@ -15,7 +19,9 @@
 ## 🎯 MVP 功能清单
 
 - [x] 用户注册功能（带密码加密）📝
-- [x] 用户登录功能（返回 JWT）🔑
+- [x] 用户登录功能（返回 JWT -通过Cookie）🔑
+- [x] 自动生成的 OpenAPI Schema 和可交互的 Reference（通过Cookie）📚
+- [x] 用户登陆状态验证（通过Cookie）🔄
 - [ ] 基础权限验证（基于 JWT 的路由保护）🔐
 - [ ] 密码重置功能 🔄 （in future）
 - [ ] 双因素身份验证（2FA）🔒 （in future）
@@ -25,7 +31,10 @@
 ## 📜 目前实现的功能
 
 - **用户注册**：用户可以通过 `/auth/register` 注册新账户，密码将会被加密存储在数据库中。
-- **用户登录**：通过 `/auth/login` 登录，验证通过后会返回 JWT 令牌。
+- **用户登录**：通过 `/auth/login` 登录，验证通过后会返回 JWT 令牌，并在 `HttpOnly` 的 Cookie 中储存。
+- **登陆状态验证**：通过 `/auth/status` 验证用户的登陆状态，检查请求是否有 Cookie ，有的状态下会检查 Cookie 中的 JWT 是否有效、过期、或者无效。
+- **OpenAPI Schema**：目前还没有添加权限验证，在 `/doc` 的路径下可以直接获取到符合 [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html) 结构的 JSON 格式的 Schema（采用了 [Zod OpenAPI](https://hono.dev/examples/zod-openapi) 实现)。
+- **交互式 API 文档**：目前还没有添加权限验证，在 `/reference` 的路径下可以直接使用和查看可交互的在线文档，并且可以查看对应的 Schema、不同语言进行请求的代码架构、示例等。（采用了 [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md) 实现)。
 
 ## 📂 项目结构
 
@@ -45,7 +54,7 @@
 │   │   └── jwt.ts            # JWT 生成和验证
 │   └── lib
 │       ├── db                # 数据库操作
-│       └── helper            # 一些数据构建
+│       └── helper            # JSON 构建和错误响应处理
 ├── wrangler.toml             # Wrangler 配置文件
 ├── package.json              # 项目依赖和脚本
 ├── example.env               # 环境变量示例文件

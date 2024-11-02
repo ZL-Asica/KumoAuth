@@ -6,6 +6,7 @@ compatibility_date = "2024-10-31"
 
 [vars]
 JWT_SECRET = "${JWT_SECRET}"
+JWT_EXPIRE_IN = "${JWT_EXPIRE_IN}"
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"

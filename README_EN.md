@@ -4,7 +4,11 @@
 
 > Kumo - means cloud (雲☁️) in Japanese - is a lightweight and efficient authentication system built with Cloudflare Workers, D1 Database, and the Hono framework.
 
-![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare) | ![D1](https://img.shields.io/badge/Database-D1-F38020?logo=sqlite) | ![Hono](https://img.shields.io/badge/Framework-Hono-007ACC?logo=typescript) | ![JWT](https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens) | ![TypeScript](https://img.shields.io/badge/Language-TypeScript-007ACC?logo=typescript) | ![Wrangler](https://img.shields.io/badge/CLI-Wrangler-F38020?logo=cloudflare) | ![Eslint](https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white) | ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=Prettier&logoColor=white)
+![Test by Github Action](https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test) | ![GitHub License](https://img.shields.io/github/license/ZL-Asica/KumoAuth) | ![Yarn Version](https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff)
+
+![Hono](https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff) | ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white)
+
+![Eslint](https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white) | ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white)
 
 This project leverages Cloudflare's serverless architecture to build a simple, lightweight authentication system. It uses JWTs for stateless authentication and access protection, with plans for additional features like two-factor authentication and refresh tokens.
 
@@ -15,7 +19,9 @@ Designed for small applications and personal projects, this system provides a se
 ## 🎯 MVP Feature List
 
 - [x] User registration with password encryption 📝
-- [x] User login (returns JWT) 🔑
+- [x] User login (returns JWT via Cookie) 🔑
+- [x] Auto-generated OpenAPI Schema and Interactive Reference 📚
+- [x] User login status verification (via Cookie) 🔄
 - [ ] Basic authorization (JWT-protected routes) 🔐
 - [ ] Password reset feature 🔄 (in future)
 - [ ] Two-factor authentication (2FA) 🔒 (in future)
@@ -25,7 +31,10 @@ Designed for small applications and personal projects, this system provides a se
 ## 📜 Current Features
 
 - **User Registration**: Users can register a new account via `/auth/register`, with passwords encrypted and stored in the database.
-- **User Login**: Users can log in via `/auth/login` to receive a JWT upon successful authentication.
+- **User Login**: Users can log in via `/auth/login` to receive a JWT upon successful authentication, which is stored in an `HttpOnly` Cookie.
+- **Login Status Verification**: Verify user login status via `/auth/status`, which checks the presence of the Cookie and the validity of the JWT within it.
+- **OpenAPI Schema**: Available at `/doc` as a JSON-compliant schema matching [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html), using [Zod OpenAPI](https://hono.dev/examples/zod-openapi).
+- **Interactive API Documentation**: Accessible at `/reference` for interactive documentation, code examples, and request templates, built with [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md).
 
 ## 📂 Project Structure
 
