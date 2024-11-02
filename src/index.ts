@@ -6,7 +6,12 @@ import { apiReference } from '@scalar/hono-api-reference'
 import type { Context } from 'hono'
 import { authStatusHandler, authStatusRoute } from './auth/status'
 
-const app = new OpenAPIHono()
+type Bindings = {
+  JWT_SECRET: string
+  JWT_EXPIRE_IN: string
+}
+
+const app = new OpenAPIHono<{ Bindings: Bindings }>()
 
 // Home route
 app.get('/', (c: Context) => {
