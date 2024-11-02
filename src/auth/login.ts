@@ -4,11 +4,10 @@ import {
   jsonContentRequired,
   jsonMessageContent,
 } from '@/lib/helper'
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import { verifyPassword } from '@/utils/hash'
-import { generateJWT } from '@/utils/jwt'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
-import { setSignedCookie } from 'hono/cookie'
 
 // Define the schema for the login request
 const loginSchema = z.object({
@@ -27,6 +26,7 @@ export const loginRoute = createRoute({
     200: jsonMessageContent('Login successful'),
     404: errorResponse('User not found'),
     401: errorResponse('Invalid password'),
+    500: errorResponse('Failed to generate JWT'),
   },
 })
 
@@ -47,18 +47,16 @@ export const loginHandler = async (c: Context) => {
     return c.json({ error: 'Invalid password' }, 401)
   }
 
-  // Generate a JWT token
-  const { token, exp } = await generateJWT(c, user.user_id, user.user_role_id)
+  // Generate a JWT token and set it as a cookie
+  const catchError = await generateAuthTokenAndSetCookie(
+    c,
+    user.user_id,
+    user.user_role_id
+  )
 
-  // Set Cookie with the token
-  await setSignedCookie(c, 'access_token', token, c.env.JWT_SECRET, {
-    path: '/',
-    secure: true,
-    httpOnly: true,
-    sameSite: 'Strict',
-    maxAge: exp - Math.floor(Date.now() / 1000),
-    expires: new Date(exp * 1000),
-  })
+  if (catchError) {
+    return c.json(catchError, 500)
+  }
 
   return c.json({ message: 'Login successful' }, 200)
 }

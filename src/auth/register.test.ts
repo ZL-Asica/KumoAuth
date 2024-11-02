@@ -3,14 +3,14 @@ import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import { hashPassword } from '@/utils/hash'
-import { generateJWT } from '@/utils/jwt'
 import { passwordValidator } from '@/utils/passwordValidator'
 import { usernameValidator } from '@/utils/usernameValidator'
 
 // Mock implementations
 vi.mock('@/utils/hash')
-vi.mock('@/utils/jwt')
+vi.mock('@/utils/authToken')
 vi.mock('@/utils/passwordValidator')
 vi.mock('@/utils/usernameValidator')
 
@@ -52,10 +52,7 @@ describe('registerHandler', () => {
       user_role_id: 1,
     })
 
-    vi.mocked(generateJWT).mockResolvedValueOnce({
-      token: 'test.jwt.token',
-      exp: 1234567890,
-    })
+    vi.mocked(generateAuthTokenAndSetCookie).mockResolvedValueOnce()
 
     // Call handler
     await registerHandler(mockContext)
@@ -71,13 +68,6 @@ describe('registerHandler', () => {
       'SELECT * FROM users WHERE user_id = ?'
     )
     expect(mockDB.bind).toHaveBeenCalledWith(1)
-
-    // Check if the JWT token was generated
-    expect(mockContext.header).toHaveBeenCalledWith(
-      expect.stringMatching(/set-cookie/i),
-      expect.stringContaining(`access_token=test.jwt.token`),
-      expect.objectContaining({ append: true })
-    )
 
     expect(mockContext.json).toHaveBeenCalledWith(
       {

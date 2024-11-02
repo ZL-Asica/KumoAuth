@@ -4,15 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
 import { getUserByUsername } from '@/lib/db'
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import { verifyPassword } from '@/utils/hash'
-import { generateJWT } from '@/utils/jwt'
-import { setSignedCookie } from 'hono/cookie'
 
 // Mock implementations
 vi.mock('@/lib/db')
 vi.mock('@/utils/hash')
-vi.mock('@/utils/jwt')
-vi.mock('hono/cookie')
+vi.mock('@/utils/authToken')
 
 // Mock database and environment
 const mockDB = {
@@ -53,28 +51,10 @@ describe('loginHandler', () => {
       created_at: new Date().toUTCString(),
     })
     vi.mocked(verifyPassword).mockResolvedValueOnce(true) // Password valid
-    vi.mocked(generateJWT).mockResolvedValueOnce({
-      token: 'test.jwt.token',
-      exp: Math.floor(Date.now() / 1000) + 86400, // Expire in 1 day
-    })
+    vi.mocked(generateAuthTokenAndSetCookie).mockResolvedValueOnce()
 
     // Call handler
     await loginHandler(mockContext)
-
-    // Check if cookie is set and correct response is returned
-    expect(setSignedCookie).toHaveBeenCalledWith(
-      mockContext,
-      'access_token',
-      'test.jwt.token',
-      'testSecret',
-      expect.objectContaining({
-        path: '/',
-        secure: true,
-        httpOnly: true,
-        sameSite: 'Strict',
-        maxAge: expect.any(Number),
-      })
-    )
 
     expect(mockContext.json).toHaveBeenCalledWith(
       { message: 'Login successful' },

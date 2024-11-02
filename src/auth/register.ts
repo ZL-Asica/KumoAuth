@@ -1,12 +1,11 @@
 import { createNewUser, getUserByUserId } from '@/lib/db'
 import { errorResponse, jsonContentRequired } from '@/lib/helper'
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import { hashPassword } from '@/utils/hash'
-import { generateJWT } from '@/utils/jwt'
 import { passwordValidator } from '@/utils/passwordValidator'
 import { usernameValidator } from '@/utils/usernameValidator'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
-import { setSignedCookie } from 'hono/cookie'
 
 // Define the schema for the register request
 const registerSchema = z.object({
@@ -66,18 +65,17 @@ export const registerHandler = async (c: Context) => {
     return c.json({ error: 'User retrieval failed' }, 500)
   }
 
-  // Generate JWT
-  const { token, exp } = await generateJWT(c, user.user_id, user.user_role_id)
+  // Generate a JWT token and set it as a cookie
+  const catchError = await generateAuthTokenAndSetCookie(
+    c,
+    user.user_id,
+    user.user_role_id
+  )
 
-  // Set Cookie with the token
-  await setSignedCookie(c, 'access_token', token, c.env.JWT_SECRET, {
-    path: '/',
-    secure: true,
-    httpOnly: true,
-    sameSite: 'Strict',
-    maxAge: exp - Math.floor(Date.now() / 1000),
-    expires: new Date(exp * 1000),
-  })
+  if (catchError) {
+    return c.json(catchError, 500)
+  }
+
   return c.json(
     {
       id: user.user_id,
