@@ -4,7 +4,13 @@
 
 > Kumo - means cloud (雲☁️) in Japanese - is a lightweight and efficient authentication system built with Cloudflare Workers, D1 Database, and the Hono framework.
 
-![Test by Github Action](https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test) ![GitHub License](https://img.shields.io/github/license/ZL-Asica/KumoAuth) ![Yarn Version](https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff) | ![Hono](https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff) ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white) ![Eslint](https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white)
+[![Test by Github Action][github-test-badge]][github-test-link]
+[![GitHub License][license-badge]][license-link]
+[![Yarn Version][yarn-badge]][yarn-link] |
+[![Hono][hono-badge]][hono-link]
+[![Cloudflare][cloudflare-badge]][cloudflare-link]
+[![Eslint][eslint-badge]][eslint-link]
+[![Prettier][prettier-badge]][prettier-link]
 
 This project leverages Cloudflare's serverless architecture to build a simple, lightweight authentication system. It uses JWTs for stateless authentication and access protection, with plans for additional features like two-factor authentication and refresh tokens.
 
@@ -94,3 +100,23 @@ Designed for small applications and personal projects, this system provides a se
 ---
 
 Thank you for your interest and support! Feel free to suggest features or contribute to help us improve this project 🙌
+
+<!-- Badge Links -->
+
+[github-test-badge]: https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test
+[license-badge]: https://img.shields.io/github/license/ZL-Asica/KumoAuth
+[yarn-badge]: https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff
+[hono-badge]: https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff
+[cloudflare-badge]: https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white
+[eslint-badge]: https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white
+[prettier-badge]: https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white
+
+<!-- Badge URL Links -->
+
+[github-test-link]: https://github.com/ZL-Asica/KumoAuth/actions/workflows/auto-test.yml
+[license-link]: https://github.com/ZL-Asica/KumoAuth?tab=GPL-3.0-1-ov-file#readme
+[yarn-link]: https://yarnpkg.com/
+[hono-link]: https://hono.dev/
+[cloudflare-link]: https://www.cloudflare.com/
+[eslint-link]: https://eslint.org/
+[prettier-link]: https://prettier.io/

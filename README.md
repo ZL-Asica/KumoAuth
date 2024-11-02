@@ -4,7 +4,13 @@
 
 > Kumo - 日语中的雲☁️ - 一个基于 Cloudflare Workers、D1 数据库和 Hono 框架构建的高效身份认证系统
 
-![Test by Github Action](https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test) ![GitHub License](https://img.shields.io/github/license/ZL-Asica/KumoAuth) ![Yarn Version](https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff) | ![Hono](https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff) ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white) ![Eslint](https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white)
+[![Test by Github Action][github-test-badge]][github-test-link]
+[![GitHub License][license-badge]][license-link]
+[![Yarn Version][yarn-badge]][yarn-link] |
+[![Hono][hono-badge]][hono-link]
+[![Cloudflare][cloudflare-badge]][cloudflare-link]
+[![Eslint][eslint-badge]][eslint-link]
+[![Prettier][prettier-badge]][prettier-link]
 
 此项目旨在利用 Cloudflare 的无服务器架构搭建一个简单、轻量的身份认证系统。项目使用了 JWT 来实现用户的无状态认证和访问保护功能，未来计划加入更多功能，如双因素认证、刷新令牌等。
 
@@ -94,3 +100,23 @@
 ---
 
 感谢你的关注与支持！欢迎提出建议或加入贡献，帮助我们一起完善这个项目 🙌
+
+<!-- Badge Links -->
+
+[github-test-badge]: https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test
+[license-badge]: https://img.shields.io/github/license/ZL-Asica/KumoAuth
+[yarn-badge]: https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff
+[hono-badge]: https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff
+[cloudflare-badge]: https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white
+[eslint-badge]: https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white
+[prettier-badge]: https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white
+
+<!-- Badge URL Links -->
+
+[github-test-link]: https://github.com/ZL-Asica/KumoAuth/actions/workflows/auto-test.yml
+[license-link]: https://github.com/ZL-Asica/KumoAuth?tab=GPL-3.0-1-ov-file#readme
+[yarn-link]: https://yarnpkg.com/
+[hono-link]: https://hono.dev/
+[cloudflare-link]: https://www.cloudflare.com/
+[eslint-link]: https://eslint.org/
+[prettier-link]: https://prettier.io/
