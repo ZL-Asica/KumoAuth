@@ -3,14 +3,14 @@ import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import { hashPassword } from '@/utils/hash'
-import { generateJWTAndSetCookie } from '@/utils/jwt'
 import { passwordValidator } from '@/utils/passwordValidator'
 import { usernameValidator } from '@/utils/usernameValidator'
 
 // Mock implementations
 vi.mock('@/utils/hash')
-vi.mock('@/utils/jwt')
+vi.mock('@/utils/authToken')
 vi.mock('@/utils/passwordValidator')
 vi.mock('@/utils/usernameValidator')
 
@@ -52,7 +52,7 @@ describe('registerHandler', () => {
       user_role_id: 1,
     })
 
-    vi.mocked(generateJWTAndSetCookie).mockResolvedValueOnce()
+    vi.mocked(generateAuthTokenAndSetCookie).mockResolvedValueOnce()
 
     // Call handler
     await registerHandler(mockContext)

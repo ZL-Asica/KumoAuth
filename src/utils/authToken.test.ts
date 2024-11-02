@@ -1,4 +1,4 @@
-import { generateJWTAndSetCookie } from '@/utils/jwt'
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import type { Context } from 'hono'
 import { setSignedCookie } from 'hono/cookie'
 import { sign } from 'hono/jwt'
@@ -14,7 +14,7 @@ const mockContext = {
   header: vi.fn(),
 } as unknown as Context
 
-describe('generateJWTAndSetCookie', () => {
+describe('generateAuthTokenAndSetCookie', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -25,7 +25,7 @@ describe('generateJWTAndSetCookie', () => {
     vi.mocked(sign).mockResolvedValueOnce(mockToken)
     vi.mocked(setSignedCookie).mockResolvedValueOnce(undefined)
 
-    await generateJWTAndSetCookie(mockContext, 1, 1)
+    await generateAuthTokenAndSetCookie(mockContext, 1, 1)
 
     // Ensure the token was generated with the correct payload
     const expectedPayload = {
@@ -59,7 +59,7 @@ describe('generateJWTAndSetCookie', () => {
     // Mock sign function to throw an error
     vi.mocked(sign).mockRejectedValueOnce(new Error('Failed to sign JWT'))
 
-    const result = await generateJWTAndSetCookie(mockContext, 1, 1)
+    const result = await generateAuthTokenAndSetCookie(mockContext, 1, 1)
 
     expect(result).toEqual({ error: 'Failed to generate JWT' })
     expect(setSignedCookie).not.toHaveBeenCalled()
@@ -72,7 +72,7 @@ describe('generateJWTAndSetCookie', () => {
       new Error('Failed to set cookie')
     )
 
-    const result = await generateJWTAndSetCookie(mockContext, 1, 1)
+    const result = await generateAuthTokenAndSetCookie(mockContext, 1, 1)
 
     expect(result).toEqual({ error: 'Failed to generate JWT' })
     expect(sign).toHaveBeenCalled()

@@ -4,13 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
 import { getUserByUsername } from '@/lib/db'
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import { verifyPassword } from '@/utils/hash'
-import { generateJWTAndSetCookie } from '@/utils/jwt'
 
 // Mock implementations
 vi.mock('@/lib/db')
 vi.mock('@/utils/hash')
-vi.mock('@/utils/jwt')
+vi.mock('@/utils/authToken')
 
 // Mock database and environment
 const mockDB = {
@@ -51,7 +51,7 @@ describe('loginHandler', () => {
       created_at: new Date().toUTCString(),
     })
     vi.mocked(verifyPassword).mockResolvedValueOnce(true) // Password valid
-    vi.mocked(generateJWTAndSetCookie).mockResolvedValueOnce()
+    vi.mocked(generateAuthTokenAndSetCookie).mockResolvedValueOnce()
 
     // Call handler
     await loginHandler(mockContext)

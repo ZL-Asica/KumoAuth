@@ -2,8 +2,8 @@ import type { Context } from 'hono'
 import { setSignedCookie } from 'hono/cookie'
 import { sign } from 'hono/jwt'
 
-// generate a JWT token and set it as a cookie
-export const generateJWTAndSetCookie = async (
+// Generate JWT token and set it as a cookie
+export const generateAuthTokenAndSetCookie = async (
   c: Context,
   user_id: number,
   user_role_id: number
@@ -11,7 +11,7 @@ export const generateJWTAndSetCookie = async (
   try {
     const exp =
       Math.floor(Date.now() / 1000) +
-      (parseInt(c.env.JWT_EXPIRE_IN) | 30) * 24 * 60 * 60
+      (parseInt(c.env.JWT_EXPIRE_IN) || 30) * 24 * 60 * 60
 
     const payload = {
       user_id,
@@ -19,12 +19,9 @@ export const generateJWTAndSetCookie = async (
       exp: exp,
     }
 
-    const secret = c.env.JWT_SECRET
+    const token = await sign(payload, c.env.JWT_SECRET)
 
-    const token = await sign(payload, secret)
-
-    // Set Cookie with the token
-    await setSignedCookie(c, 'access_token', token, secret, {
+    await setSignedCookie(c, 'access_token', token, c.env.JWT_SECRET, {
       path: '/',
       secure: true,
       httpOnly: true,

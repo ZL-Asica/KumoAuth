@@ -1,6 +1,6 @@
 import { getUserByUserId } from '@/lib/db'
 import { errorResponse, jsonContent } from '@/lib/helper'
-import { generateJWTAndSetCookie } from '@/utils/jwt'
+import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 import { getSignedCookie } from 'hono/cookie'
@@ -45,7 +45,7 @@ export const authStatusHandler = async (c: Context) => {
     }
 
     // Generate a JWT token and set it as a cookie
-    const catchError = await generateJWTAndSetCookie(
+    const catchError = await generateAuthTokenAndSetCookie(
       c,
       user.user_id,
       user.user_role_id
