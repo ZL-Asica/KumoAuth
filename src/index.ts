@@ -5,8 +5,14 @@ import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
 import type { Context } from 'hono'
 import { authStatusHandler, authStatusRoute } from './auth/status'
+import { authMiddleware } from './middleware/authMiddleware'
 
-const app = new OpenAPIHono()
+type Bindings = {
+  JWT_SECRET: string
+  JWT_EXPIRE_IN: string
+}
+
+const app = new OpenAPIHono<{ Bindings: Bindings }>()
 
 // Home route
 app.get('/', (c: Context) => {
@@ -20,6 +26,7 @@ app.openapi(loginRoute, loginHandler, errorHook)
 app.openapi(registerRoute, registerHandler, errorHook)
 
 // Auth Status route
+app.use('/auth/status', authMiddleware)
 app.openapi(authStatusRoute, authStatusHandler, errorHook)
 
 // Set OpenAPI documentation
