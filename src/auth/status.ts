@@ -1,5 +1,6 @@
 import { getUserByUserId } from '@/lib/db'
 import { errorResponse, jsonContent } from '@/lib/helper'
+import { generateJWTAndSetCookie } from '@/utils/jwt'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 import { getSignedCookie } from 'hono/cookie'
@@ -19,6 +20,7 @@ export const authStatusRoute = createRoute({
     200: jsonContent(authStatusSchema, 'User details'),
     401: errorResponse('Token expired'),
     403: errorResponse('Invalid token'),
+    500: errorResponse('Failed to generate JWT'),
   },
 })
 
@@ -40,6 +42,17 @@ export const authStatusHandler = async (c: Context) => {
 
     if (!user) {
       return c.json({ error: 'User not found' }, 403)
+    }
+
+    // Generate a JWT token and set it as a cookie
+    const catchError = await generateJWTAndSetCookie(
+      c,
+      user.user_id,
+      user.user_role_id
+    )
+
+    if (catchError) {
+      return c.json(catchError, 500)
     }
 
     return c.json(
