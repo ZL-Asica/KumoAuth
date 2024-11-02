@@ -1,5 +1,11 @@
 {
   "name": "kumo-auth",
+  "type": "module",
+  "author": {
+    "name": "ZL Asica",
+    "email": "zl@zla.app"
+  },
+  "readme": "README.md",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint src/**/*.{js,mjs,cjs,ts,tsx} --fix",
@@ -11,7 +17,7 @@
     "postinstall": "husky"
   },
   "lint-staged": {
-    "/src/**/*.{ts,tsx,js,jsx}": [
+    "src/**/*.{ts,tsx,js,jsx}": [
       "eslint --fix",
       "prettier --write"
     ]
@@ -22,18 +28,20 @@
     "bad-words": "^4.0.0",
     "bcryptjs": "^2.4.3",
     "hono": "^4.6.8",
-    "vite-tsconfig-paths": "^5.0.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.5.24",
     "@cloudflare/workers-types": "^4.20241022.0",
     "@eslint/js": "^9.13.0",
     "@types/bcryptjs": "^2",
     "@types/node": "^22.8.6",
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
+    "@vitest/runner": "^2.1.4",
+    "@vitest/snapshot": "^2.1.4",
     "@vitest/ui": "2.1.4",
-    "eslint": "^9.13.0",
+    "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.11.0",
@@ -43,6 +51,7 @@
     "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
+    "vite-tsconfig-paths": "^5.0.1",
     "vitest": "^2.1.4",
     "wrangler": "^3.84.1"
   },

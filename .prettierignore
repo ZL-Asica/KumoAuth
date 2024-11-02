@@ -4,6 +4,4 @@ node_modules/*
 .pnp.*
 package-lock.json
 yarn.lock
-.vscode/*
-.prettierignore
 LICENSE
