@@ -22,8 +22,8 @@
 
 - [x] 用户注册功能（带密码加密）📝
 - [x] 用户登录功能（返回 JWT -通过Cookie）🔑
-- [x] 自动生成的 OpenAPI Schema 和可交互的 Reference（通过Cookie）📚
-- [x] 用户登陆状态验证（通过Cookie）🔄
+- [x] 自动生成的 OpenAPI Schema 和可交互的 Reference 📚
+- [x] 用户登陆状态验证及自动刷新（通过Cookie和authMiddleware）🔄
 - [ ] 基础权限验证（基于 JWT 的路由保护）🔐
 - [ ] 密码重置功能 🔄 （in future）
 - [ ] 双因素身份验证（2FA）🔒 （in future）
@@ -34,7 +34,7 @@
 
 - **用户注册**：用户可以通过 `/auth/register` 注册新账户，密码将会被加密存储在数据库中。
 - **用户登录**：通过 `/auth/login` 登录，验证通过后会返回 JWT 令牌，并在 `HttpOnly` 的 Cookie 中储存。
-- **登陆状态验证**：通过 `/auth/status` 验证用户的登陆状态，检查请求是否有 Cookie ，有的状态下会检查 Cookie 中的 JWT 是否有效、过期、或者无效。
+- **登陆状态验证**：通过 `/auth/status` 使用 `authMiddleware` 验证用户的登陆状态。此功能检查请求中 JWT 的有效性并在有效时自动刷新 Cookie 中的 JWT。
 - **OpenAPI Schema**：目前还没有添加权限验证，在 `/doc` 的路径下可以直接获取到符合 [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html) 结构的 JSON 格式的 Schema（采用了 [Zod OpenAPI](https://hono.dev/examples/zod-openapi) 实现)。
 - **交互式 API 文档**：目前还没有添加权限验证，在 `/reference` 的路径下可以直接使用和查看可交互的在线文档，并且可以查看对应的 Schema、不同语言进行请求的代码架构、示例等。（采用了 [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md) 实现)。
 
@@ -53,7 +53,9 @@
 │   ├── index.ts              # 主入口文件，初始化 Hono 应用
 │   └── utils
 │   │   ├── hash.ts           # 密码加密工具
-│   │   └── jwt.ts            # JWT 生成和验证
+│   │   └── authToken.ts      # JWT生成、验证及自动刷新
+│   └── middleware
+│   │   └── authMiddleware.ts # 检测 Cookie 的登陆状态
 │   └── lib
 │       ├── db                # 数据库操作
 │       └── helper            # JSON 构建和错误响应处理

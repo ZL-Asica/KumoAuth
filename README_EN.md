@@ -23,7 +23,7 @@ Designed for small applications and personal projects, this system provides a se
 - [x] User registration with password encryption 📝
 - [x] User login (returns JWT via Cookie) 🔑
 - [x] Auto-generated OpenAPI Schema and Interactive Reference 📚
-- [x] User login status verification (via Cookie) 🔄
+- [x] User login status verification with auto-refresh (via Cookie and authMiddleware) 🔄
 - [ ] Basic authorization (JWT-protected routes) 🔐
 - [ ] Password reset feature 🔄 (in future)
 - [ ] Two-factor authentication (2FA) 🔒 (in future)
@@ -34,7 +34,7 @@ Designed for small applications and personal projects, this system provides a se
 
 - **User Registration**: Users can register a new account via `/auth/register`, with passwords encrypted and stored in the database.
 - **User Login**: Users can log in via `/auth/login` to receive a JWT upon successful authentication, which is stored in an `HttpOnly` Cookie.
-- **Login Status Verification**: Verify user login status via `/auth/status`, which checks the presence of the Cookie and the validity of the JWT within it.
+- **Login Status Verification**: Verifies user login status via `/auth/status` using `authMiddleware`. This functionality checks the validity of the JWT in the request and automatically refreshes the JWT in the Cookie if valid.
 - **OpenAPI Schema**: Available at `/doc` as a JSON-compliant schema matching [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html), using [Zod OpenAPI](https://hono.dev/examples/zod-openapi).
 - **Interactive API Documentation**: Accessible at `/reference` for interactive documentation, code examples, and request templates, built with [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md).
 
@@ -53,7 +53,9 @@ Designed for small applications and personal projects, this system provides a se
 │   ├── index.ts              # Main entry, initializes Hono app
 │   └── utils
 │   │   ├── hash.ts           # Password hashing utilities
-│   │   └── jwt.ts            # JWT generation and verification
+│   │   └── authToken.ts      # JWT generate, validate, and refresh
+│   └── middleware
+│   │   └── authMiddleware.ts # Check user auth status through Cookie
 │   └── lib
 │       ├── db                # Database query
 │       └── helper            # Data structure builder
