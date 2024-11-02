@@ -4,9 +4,7 @@
 
 > Kumo - 日语中的雲☁️ - 一个基于 Cloudflare Workers、D1 数据库和 Hono 框架构建的高效身份认证系统
 
-![Test by Github Action](https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test) ![GitHub License](https://img.shields.io/github/license/ZL-Asica/KumoAuth) ![Yarn Version](https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff)
-
-![Hono](https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff) ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white) ![Eslint](https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white)
+![Test by Github Action](https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test) ![GitHub License](https://img.shields.io/github/license/ZL-Asica/KumoAuth) ![Yarn Version](https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff) | ![Hono](https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff) ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white) ![Eslint](https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white)
 
 此项目旨在利用 Cloudflare 的无服务器架构搭建一个简单、轻量的身份认证系统。项目使用了 JWT 来实现用户的无状态认证和访问保护功能，未来计划加入更多功能，如双因素认证、刷新令牌等。
 

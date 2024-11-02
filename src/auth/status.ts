@@ -1,17 +1,24 @@
-import { errorResponse, jsonMessageContent } from '@/lib/helper'
-import { createRoute } from '@hono/zod-openapi'
+import { getUserByUserId } from '@/lib/db'
+import { errorResponse, jsonContent } from '@/lib/helper'
+import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 import { getSignedCookie } from 'hono/cookie'
 import { verify } from 'hono/jwt'
 
-// authStatusRoute
+const authStatusSchema = z.object({
+  user_id: z.number(),
+  username: z.string(),
+  user_role_id: z.number(),
+  created_at: z.string(),
+})
+
 export const authStatusRoute = createRoute({
   method: 'get',
   path: '/auth/status',
   responses: {
-    200: jsonMessageContent('Logged in'),
-    401: errorResponse('Not logged in or token expired'),
-    403: errorResponse('Invalid token or token verification failed'),
+    200: jsonContent(authStatusSchema, 'User details'),
+    401: errorResponse('Token expired'),
+    403: errorResponse('Invalid token'),
   },
 })
 
@@ -23,8 +30,27 @@ export const authStatusHandler = async (c: Context) => {
   }
 
   try {
-    await verify(token, c.env.JWT_SECRET)
-    return c.json({ message: 'Logged in' }, 200)
+    const decoded = await verify(token, c.env.JWT_SECRET)
+
+    if (!decoded || typeof decoded.user_id !== 'number') {
+      return c.json({ error: 'Invalid token' }, 403)
+    }
+
+    const user = await getUserByUserId(c.env.DB, decoded.user_id)
+
+    if (!user) {
+      return c.json({ error: 'User not found' }, 403)
+    }
+
+    return c.json(
+      {
+        user_id: user.user_id,
+        username: user.username,
+        user_role_id: user.user_role_id,
+        created_at: user.created_at,
+      },
+      200
+    )
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === 'TokenExpiredError') {

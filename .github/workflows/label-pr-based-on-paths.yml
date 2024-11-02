@@ -28,9 +28,11 @@ jobs:
             const labelsToColor = {
               auth: 'f66a0a', // Orange
               utils: '1f77b4', // Blue
+              lib: '1f77b4', // Blue
               settings: '8c564b', // Brown
               dependency: '2ca02c', // Green
               db: '9467bd', // Purple
+              test: 'd62728', // Red
             };
 
             const labels = new Set();
@@ -39,8 +41,14 @@ jobs:
               if (file.filename.startsWith('src/auth')) {
                 labels.add('auth');
               }
+              if (file.filename.endsWith('.test.ts')) {
+                labels.add('test');
+              }
               if (file.filename.startsWith('src/utils')) {
                 labels.add('utils');
+              }
+              if (file.filename.startsWith('src/lib')) {
+                labels.add('lib');
               }
               if (file.filename.startsWith('src/settings')) {
                 labels.add('settings');
