@@ -2,7 +2,7 @@ name = "kumo-auth"
 main = "src/index.ts"
 compatibility_date = "2024-10-22"
 
-compatibility_flags = [ "nodejs_compat_v2" ]
+compatibility_flags = [ "nodejs_compat" ]
 
 [vars]
 JWT_SECRET = "${JWT_SECRET}"
