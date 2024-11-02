@@ -3,6 +3,7 @@ import { registerHandler, registerRoute } from '@/auth/register'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
 import type { Context } from 'hono'
+import { authStatusHandler, authStatusRoute } from './auth/status'
 
 const app = new OpenAPIHono()
 
@@ -14,7 +15,11 @@ app.get('/', (c: Context) => {
 // Login route
 app.openapi(loginRoute, loginHandler)
 
+// Register route
 app.openapi(registerRoute, registerHandler)
+
+// Auth Status route
+app.openapi(authStatusRoute, authStatusHandler)
 
 // Set OpenAPI documentation
 app.doc31('/doc', {
