@@ -6,10 +6,7 @@
     "strict": true,
     "skipLibCheck": true,
     "lib": ["ESNext"],
-    "types": [
-      "@cloudflare/workers-types/experimental",
-      "@cloudflare/vitest-pool-workers"
-    ],
+    "types": ["@cloudflare/workers-types/experimental", "@types/node"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "baseUrl": ".",
@@ -17,5 +14,7 @@
       "hono": [".yarn/$$virtual/hono-virtual-hono/jsx.js"],
       "@/*": ["src/*"]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", "build", ".yarn"]
 }

@@ -1,6 +1,4 @@
-import organizeImports from 'prettier-plugin-organize-imports'
-
-const config = {
+module.exports = {
   trailingComma: 'es5',
   tabWidth: 2,
   semi: false,
@@ -11,7 +9,5 @@ const config = {
   printWidth: 80,
   useTabs: false,
   endOfLine: 'lf',
-  plugins: [organizeImports],
+  plugins: [require.resolve('prettier-plugin-organize-imports')],
 }
-
-export default config

@@ -25,26 +25,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/vitest-pool-workers@npm:^0.5.24":
-  version: 0.5.24
-  resolution: "@cloudflare/vitest-pool-workers@npm:0.5.24"
-  dependencies:
-    birpc: "npm:0.2.14"
-    cjs-module-lexer: "npm:^1.2.3"
-    devalue: "npm:^4.3.0"
-    esbuild: "npm:0.17.19"
-    miniflare: "npm:3.20241022.0"
-    semver: "npm:^7.5.1"
-    wrangler: "npm:3.84.1"
-    zod: "npm:^3.22.3"
-  peerDependencies:
-    "@vitest/runner": 2.0.x - 2.1.x
-    "@vitest/snapshot": 2.0.x - 2.1.x
-    vitest: 2.0.x - 2.1.x
-  checksum: 10c0/fd9a07eea4535b004cc17c972cd24192eb813744f9ee88f7e5a0b16f33b4c13a5fd828027cc43cc40f5609383ef8225a53254105c2a517fd7b26061b8ec3a1e1
-  languageName: node
-  linkType: hard
-
 "@cloudflare/workerd-darwin-64@npm:1.20241022.0":
   version: 1.20241022.0
   resolution: "@cloudflare/workerd-darwin-64@npm:1.20241022.0"
@@ -495,17 +475,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.14.0":
+"@eslint/js@npm:9.14.0, @eslint/js@npm:^9.14.0":
   version: 9.14.0
   resolution: "@eslint/js@npm:9.14.0"
   checksum: 10c0/a423dd435e10aa3b461599aa02f6cbadd4b5128cb122467ee4e2c798e7ca4f9bb1fce4dcea003b29b983090238cf120899c1af657cf86300b399e4f996b83ddc
-  languageName: node
-  linkType: hard
-
-"@eslint/js@npm:^9.13.0":
-  version: 9.13.0
-  resolution: "@eslint/js@npm:9.13.0"
-  checksum: 10c0/672257bffe17777b8a98bd80438702904cc7a0b98b9c2e426a8a10929198b3553edf8a3fc20feed4133c02e7c8f7331a0ef1b23e5dab8e4469f7f1791beff1e0
   languageName: node
   linkType: hard
 
@@ -855,7 +828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/bcryptjs@npm:^2":
+"@types/bcryptjs@npm:^2.4.6":
   version: 2.4.6
   resolution: "@types/bcryptjs@npm:2.4.6"
   checksum: 10c0/1182663f0c081c5c58760019459cd309335e9b5fc6552780b0fd21b6c5f25661a844709e46218796f4bdbebe6736e11cfc5af0729bc2cdb0160943650aceb3da
@@ -1069,7 +1042,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/runner@npm:2.1.4, @vitest/runner@npm:^2.1.4":
+"@vitest/runner@npm:2.1.4":
   version: 2.1.4
   resolution: "@vitest/runner@npm:2.1.4"
   dependencies:
@@ -1079,7 +1052,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/snapshot@npm:2.1.4, @vitest/snapshot@npm:^2.1.4":
+"@vitest/snapshot@npm:2.1.4":
   version: 2.1.4
   resolution: "@vitest/snapshot@npm:2.1.4"
   dependencies:
@@ -1301,13 +1274,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"birpc@npm:0.2.14":
-  version: 0.2.14
-  resolution: "birpc@npm:0.2.14"
-  checksum: 10c0/1acff3dab8c089410982ab086f7bb788840e51ef38ae68967962782df58f044ec2dddf4f9cc8027a4813a6ea7f8721a3ff0a1ac25ac4faff1dacea2cc3670039
-  languageName: node
-  linkType: hard
-
 "blake3-wasm@npm:^2.1.5":
   version: 2.1.5
   resolution: "blake3-wasm@npm:2.1.5"
@@ -1450,13 +1416,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cjs-module-lexer@npm:^1.2.3":
-  version: 1.4.1
-  resolution: "cjs-module-lexer@npm:1.4.1"
-  checksum: 10c0/5a7d8279629c9ba8ccf38078c2fed75b7737973ced22b9b5a54180efa57fb2fe2bb7bec6aec55e3b8f3f5044f5d7b240347ad9bd285e7c3d0ee5b0a1d0504dfc
-  languageName: node
-  linkType: hard
-
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -1582,13 +1541,6 @@ __metadata:
   version: 6.1.4
   resolution: "defu@npm:6.1.4"
   checksum: 10c0/2d6cc366262dc0cb8096e429368e44052fdf43ed48e53ad84cc7c9407f890301aa5fcb80d0995abaaf842b3949f154d060be4160f7a46cb2bc2f7726c81526f5
-  languageName: node
-  linkType: hard
-
-"devalue@npm:^4.3.0":
-  version: 4.3.3
-  resolution: "devalue@npm:4.3.3"
-  checksum: 10c0/f7217b6fa631b2e7f56697d3354645d2f028f0c0734fa6e09462e7889082da08e57a3504cb208b6b80ec79a3f249f4f9289064fd59c7bc419c9c8cd0592201f7
   languageName: node
   linkType: hard
 
@@ -2578,17 +2530,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "kumo-auth@workspace:."
   dependencies:
-    "@cloudflare/vitest-pool-workers": "npm:^0.5.24"
     "@cloudflare/workers-types": "npm:^4.20241022.0"
-    "@eslint/js": "npm:^9.13.0"
+    "@eslint/js": "npm:^9.14.0"
     "@hono/zod-openapi": "npm:^0.16.4"
     "@scalar/hono-api-reference": "npm:^0.5.158"
-    "@types/bcryptjs": "npm:^2"
+    "@types/bcryptjs": "npm:^2.4.6"
     "@types/node": "npm:^22.8.6"
     "@typescript-eslint/eslint-plugin": "npm:^8.12.2"
     "@typescript-eslint/parser": "npm:^8.12.2"
-    "@vitest/runner": "npm:^2.1.4"
-    "@vitest/snapshot": "npm:^2.1.4"
     "@vitest/ui": "npm:2.1.4"
     bad-words: "npm:^4.0.0"
     bcryptjs: "npm:^2.4.3"
@@ -3494,7 +3443,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.5, semver@npm:^7.5.1, semver@npm:^7.6.0":
+"semver@npm:^7.3.5, semver@npm:^7.6.0":
   version: 7.6.3
   resolution: "semver@npm:7.6.3"
   bin:
@@ -4151,7 +4100,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:3.84.1, wrangler@npm:^3.84.1":
+"wrangler@npm:^3.84.1":
   version: 3.84.1
   resolution: "wrangler@npm:3.84.1"
   dependencies:

@@ -6,7 +6,7 @@ import globals from 'globals'
 
 export default [
   {
-    files: ['**/*.{js,mjs,cjs,ts,tsx}'],
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
       parser: tsParser,
