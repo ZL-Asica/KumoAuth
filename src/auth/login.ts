@@ -17,6 +17,7 @@ const loginSchema = z.object({
 
 // Define the route
 export const loginRoute = createRoute({
+  tags: ['auth'],
   method: 'post',
   path: '/auth/login',
   request: {
