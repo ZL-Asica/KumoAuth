@@ -32,6 +32,7 @@ jobs:
               settings: '8c564b', // Brown
               dependency: '2ca02c', // Green
               db: '9467bd', // Purple
+              middleware: 'ff7f0e', // Orange for middleware
               test: 'd62728', // Red
             };
 
@@ -58,6 +59,9 @@ jobs:
               }
               if (file.filename.startsWith('db/')) {
                 labels.add('db');
+              }
+              if (file.filename.startsWith('src/middleware')) {
+                labels.add('middleware');
               }
             });
 
