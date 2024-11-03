@@ -24,6 +24,7 @@
 - [x] 用户登录功能（返回 JWT -通过Cookie）🔑
 - [x] 自动生成的 OpenAPI Schema 和可交互的 Reference 📚
 - [x] 用户登陆状态验证及自动刷新（通过Cookie和authMiddleware）🔄
+- [x] 404 处理及全局错误处理（JSON）🚫
 - [ ] 基础权限验证（基于 JWT 的路由保护）🔐
 - [ ] 密码重置功能 🔄 （in future）
 - [ ] 双因素身份验证（2FA）🔒 （in future）
@@ -43,26 +44,31 @@
 ```plaintext
 .
 ├── db
-│   └── schema.sql            # 数据库初始化脚本
+│   └── schema.sql              # 数据库初始化脚本
 ├── src
 │   ├── auth
-│   │   ├── login.ts          # 登录逻辑
-│   │   ├── register.ts       # 注册逻辑
-│   │   ├── reset.ts          # 密码重置（开发中）
-│   │   └── verify.ts         # 2FA 验证（开发中）
-│   ├── index.ts              # 主入口文件，初始化 Hono 应用
-│   └── utils
-│   │   ├── hash.ts           # 密码加密工具
-│   │   └── authToken.ts      # JWT生成、验证及自动刷新
-│   └── middleware
-│   │   └── authMiddleware.ts # 检测 Cookie 的登陆状态
+│   │   ├── login.ts            # 登录逻辑
+│   │   ├── register.ts         # 注册逻辑
+│   │   ├── reset.ts            # 密码重置（开发中）
+│   │   ├── status.ts           # 用户状态检测
+│   │   └── verify.ts           # 2FA 验证（开发中）
+│   ├── index.ts                # 主入口文件，初始化 Hono 应用
+│   ├── middleware
+│   │   ├── auth-middleware.ts  # 检测 Cookie 的登录状态
+│   │   ├── not-found.ts        # 404 处理
+│   │   └── on-error.ts         # 全局错误处理
+│   ├── utils
+│   │   ├── auth-token.ts       # JWT 生成、验证及自动刷新
+│   │   ├── hash.ts             # 密码加密工具
+│   │   ├── password-validator.ts # 密码验证
+│   │   └── username-validator.ts # 用户名验证
 │   └── lib
-│       ├── db                # 数据库操作
-│       └── helper            # JSON 构建和错误响应处理
-├── wrangler.toml             # Wrangler 配置文件
-├── package.json              # 项目依赖和脚本
-├── example.env               # 环境变量示例文件
-└── README.md                 # 项目说明文档
+│       ├── db                  # 数据库操作
+│       └── helper              # Zod JSON 构建和错误响应处理
+├── wrangler.toml               # Wrangler 配置文件
+├── package.json                # 项目依赖和脚本
+├── example.env                 # 环境变量示例文件
+└── README.md                   # 项目说明文档
 ```
 
 ## 🚀 快速开始
@@ -77,8 +83,8 @@
 
 2. 配置环境变量：
 
-   - 复制 `example.env` 并重命名为 `.env`
-   - 设置 JWT 密钥和其他必要配置
+   - 复制 `example.dev.vars` 并重命名为 `.dev.vars`
+   - 设置 JWT 密钥、有效时常和其他必要配置
 
 3. 使用 Wrangler 在本地初始化 D1 数据库：
 
@@ -94,9 +100,8 @@
 
 ## 📚 未来发展计划
 
-- 实现 Refresh Token 机制，改善用户体验
 - 加入双因素身份验证（2FA），提高账户安全性
-- 完善错误处理和日志记录功能
+- 完善日志记录功能
 - 提供详细的 API 文档，方便集成与二次开发
 
 ---

@@ -24,6 +24,7 @@ Designed for small applications and personal projects, this system provides a se
 - [x] User login (returns JWT via Cookie) 🔑
 - [x] Auto-generated OpenAPI Schema and Interactive Reference 📚
 - [x] User login status verification with auto-refresh (via Cookie and authMiddleware) 🔄
+- [x] 404 and global error handling (JSON) 🚫
 - [ ] Basic authorization (JWT-protected routes) 🔐
 - [ ] Password reset feature 🔄 (in future)
 - [ ] Two-factor authentication (2FA) 🔒 (in future)
@@ -43,26 +44,31 @@ Designed for small applications and personal projects, this system provides a se
 ```plaintext
 .
 ├── db
-│   └── schema.sql            # Database initialization script
+│   └── schema.sql              # Database initialization script
 ├── src
 │   ├── auth
-│   │   ├── login.ts          # Login logic
-│   │   ├── register.ts       # Registration logic
-│   │   ├── reset.ts          # Password reset (in development)
-│   │   └── verify.ts         # 2FA verification (in development)
-│   ├── index.ts              # Main entry, initializes Hono app
-│   └── utils
-│   │   ├── hash.ts           # Password hashing utilities
-│   │   └── authToken.ts      # JWT generate, validate, and refresh
-│   └── middleware
-│   │   └── authMiddleware.ts # Check user auth status through Cookie
+│   │   ├── login.ts            # Login logic
+│   │   ├── register.ts         # Registration logic
+│   │   ├── reset.ts            # Password reset (in development)
+│   │   ├── status.ts           # User status check
+│   │   └── verify.ts           # 2FA verification (in development)
+│   ├── index.ts                # Main entry file, initializing Hono application
+│   ├── middleware
+│   │   ├── auth-middleware.ts  # Check login status via Cookie
+│   │   ├── not-found.ts        # 404 handling
+│   │   └── on-error.ts         # Global error handling
+│   ├── utils
+│   │   ├── auth-token.ts       # JWT generation, validation, and auto-refresh
+│   │   ├── hash.ts             # Password hashing utility
+│   │   ├── password-validator.ts # Password validation
+│   │   └── username-validator.ts # Username validation
 │   └── lib
-│       ├── db                # Database query
-│       └── helper            # Data structure builder
-├── wrangler.toml             # Wrangler configuration file
-├── package.json              # Project dependencies and scripts
-├── example.env               # Environment variable sample file
-└── README.md                 # Project documentation
+│       ├── db                  # Database operations
+│       └── helper              # Zod JSON building and error response handling
+├── wrangler.toml               # Wrangler configuration file
+├── package.json                # Project dependencies and scripts
+├── example.env                 # Environment variable sample file
+└── README.md                   # Project documentation
 ```
 
 ## 🚀 Quick Start
@@ -77,8 +83,8 @@ Designed for small applications and personal projects, this system provides a se
 
 2. Set up environment variables:
 
-   - Copy `example.env` and rename it to `.env`
-   - Set the JWT secret and other necessary configurations
+   - Copy `example.dev.vars` and rename it to `.dev.vars`
+   - Set the JWT secret, expire time, and other necessary configurations
 
 3. Initialize the D1 database locally with Wrangler:
 
@@ -94,9 +100,8 @@ Designed for small applications and personal projects, this system provides a se
 
 ## 📚 Future Plans
 
-- Implement a refresh token mechanism to improve user experience
 - Add two-factor authentication (2FA) for enhanced account security
-- Improve error handling and logging
+- Implement logging
 - Provide comprehensive API documentation for easy integration and development
 
 ---
