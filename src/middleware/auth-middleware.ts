@@ -1,4 +1,4 @@
-import { validateAuthToken } from '@/utils/authToken'
+import { validateAuthToken } from '@/utils/auth-token'
 import type { Context, Next } from 'hono'
 import { createMiddleware } from 'hono/factory'
 

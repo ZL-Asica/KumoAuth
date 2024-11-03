@@ -3,16 +3,16 @@ import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
-import { generateAuthTokenAndSetCookie } from '@/utils/authToken'
+import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
 import { hashPassword } from '@/utils/hash'
-import { passwordValidator } from '@/utils/passwordValidator'
-import { usernameValidator } from '@/utils/usernameValidator'
+import { passwordValidator } from '@/utils/password-validator'
+import { usernameValidator } from '@/utils/username-validator'
 
 // Mock implementations
 vi.mock('@/utils/hash')
-vi.mock('@/utils/authToken')
-vi.mock('@/utils/passwordValidator')
-vi.mock('@/utils/usernameValidator')
+vi.mock('@/utils/auth-token')
+vi.mock('@/utils/password-validator')
+vi.mock('@/utils/username-validator')
 
 // Mock database
 const mockDB = {

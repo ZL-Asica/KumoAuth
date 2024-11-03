@@ -1,4 +1,4 @@
-import { passwordValidator } from '@/utils/passwordValidator'
+import { passwordValidator } from '@/utils/password-validator'
 import type { Context } from 'hono'
 import { describe, expect, it, vi } from 'vitest'
 

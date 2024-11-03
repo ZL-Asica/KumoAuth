@@ -1,5 +1,5 @@
 import { z } from '@hono/zod-openapi'
-import { jsonContent } from './jsonContent'
+import { jsonContent } from './json-content'
 
 export const errorResponse = (message: string) => {
   return jsonContent(
