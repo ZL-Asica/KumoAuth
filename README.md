@@ -25,6 +25,7 @@
 - [x] 自动生成的 OpenAPI Schema 和可交互的 Reference 📚
 - [x] 用户登陆状态验证及自动刷新（通过Cookie和authMiddleware）🔄
 - [x] 404 处理及全局错误处理（JSON）🚫
+- [x] 请求及响应的详细日志功能 (排除 404 响应) 📈
 - [ ] 基础权限验证（基于 JWT 的路由保护）🔐
 - [ ] 密码重置功能 🔄 （in future）
 - [ ] 双因素身份验证（2FA）🔒 （in future）
@@ -37,6 +38,7 @@
 - **用户登录**：通过 `/auth/login` 登录，验证通过后会返回 JWT 令牌，并在 `HttpOnly` 的 Cookie 中储存。
 - **登陆状态验证**：通过 `/auth/status` 使用 `authMiddleware` 验证用户的登陆状态。此功能检查请求中 JWT 的有效性并在有效时自动刷新 Cookie 中的 JWT。
 - **OpenAPI Schema**：目前还没有添加权限验证，在 `/doc` 的路径下可以直接获取到符合 [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html) 结构的 JSON 格式的 Schema（采用了 [Zod OpenAPI](https://hono.dev/examples/zod-openapi) 实现)。
+- **日志**: 记录每一次请求和对应的响应，忽略 404 响应，对于状态码 >= 400 的，记录错误信息。
 - **交互式 API 文档**：目前还没有添加权限验证，在 `/reference` 的路径下可以直接使用和查看可交互的在线文档，并且可以查看对应的 Schema、不同语言进行请求的代码架构、示例等。（采用了 [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md) 实现)。
 
 ## 📂 项目结构
@@ -56,7 +58,8 @@
 │   ├── middleware
 │   │   ├── auth-middleware.ts  # 检测 Cookie 的登录状态
 │   │   ├── not-found.ts        # 404 处理
-│   │   └── on-error.ts         # 全局错误处理
+│   │   ├── on-error.ts         # 全局错误处理
+│   │   └── worker-logger.ts    # 自定义日志记录
 │   ├── utils
 │   │   ├── auth-token.ts       # JWT 生成、验证及自动刷新
 │   │   ├── hash.ts             # 密码加密工具
@@ -101,8 +104,8 @@
 ## 📚 未来发展计划
 
 - 加入双因素身份验证（2FA），提高账户安全性
-- 完善日志记录功能
 - 提供详细的 API 文档，方便集成与二次开发
+- 接入第三方验证
 
 ---
 
