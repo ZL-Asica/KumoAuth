@@ -10,6 +10,7 @@ const authStatusSchema = z.object({
 })
 
 export const authStatusRoute = createRoute({
+  tags: ['auth'],
   method: 'get',
   path: '/auth/status',
   responses: {

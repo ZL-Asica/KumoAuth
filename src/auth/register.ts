@@ -20,6 +20,7 @@ const registerSuccessResponseSchema = z.object({
 })
 
 export const registerRoute = createRoute({
+  tags: ['auth'],
   method: 'post',
   path: '/auth/register',
   request: {
