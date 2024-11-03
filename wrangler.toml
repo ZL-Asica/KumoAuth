@@ -24,6 +24,7 @@ database_id = "${D1_DATABASE_ID}"
 # [ai]
 # binding = "AI"
 
-# [observability]
-# enabled = true
-# head_sampling_rate = 1
+# head_sampling_rate set to 1 is log all, 0 is no log at all.
+[observability]
+enabled = true
+head_sampling_rate = 1

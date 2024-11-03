@@ -25,6 +25,7 @@ Designed for small applications and personal projects, this system provides a se
 - [x] Auto-generated OpenAPI Schema and Interactive Reference 📚
 - [x] User login status verification with auto-refresh (via Cookie and authMiddleware) 🔄
 - [x] 404 and global error handling (JSON) 🚫
+- [x] Structured logging for request and response details (excluding 404) 📈
 - [ ] Basic authorization (JWT-protected routes) 🔐
 - [ ] Password reset feature 🔄 (in future)
 - [ ] Two-factor authentication (2FA) 🔒 (in future)
@@ -36,6 +37,7 @@ Designed for small applications and personal projects, this system provides a se
 - **User Registration**: Users can register a new account via `/auth/register`, with passwords encrypted and stored in the database.
 - **User Login**: Users can log in via `/auth/login` to receive a JWT upon successful authentication, which is stored in an `HttpOnly` Cookie.
 - **Login Status Verification**: Verifies user login status via `/auth/status` using `authMiddleware`. This functionality checks the validity of the JWT in the request and automatically refreshes the JWT in the Cookie if valid.
+- **Structured logging**: Logs each request and response detail, skipping 404 responses, and captures error messages for status codes >= 400.
 - **OpenAPI Schema**: Available at `/doc` as a JSON-compliant schema matching [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html), using [Zod OpenAPI](https://hono.dev/examples/zod-openapi).
 - **Interactive API Documentation**: Accessible at `/reference` for interactive documentation, code examples, and request templates, built with [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md).
 
@@ -56,7 +58,8 @@ Designed for small applications and personal projects, this system provides a se
 │   ├── middleware
 │   │   ├── auth-middleware.ts  # Check login status via Cookie
 │   │   ├── not-found.ts        # 404 handling
-│   │   └── on-error.ts         # Global error handling
+│   │   ├── on-error.ts         # Global error handling
+│   │   └── worker-logger.ts    # Custom structured logger
 │   ├── utils
 │   │   ├── auth-token.ts       # JWT generation, validation, and auto-refresh
 │   │   ├── hash.ts             # Password hashing utility
@@ -101,8 +104,8 @@ Designed for small applications and personal projects, this system provides a se
 ## 📚 Future Plans
 
 - Add two-factor authentication (2FA) for enhanced account security
-- Implement logging
 - Provide comprehensive API documentation for easy integration and development
+- Third party auth.
 
 ---
 
