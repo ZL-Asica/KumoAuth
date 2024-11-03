@@ -1,5 +1,8 @@
-import { errorResponse, jsonContent } from '@/lib/helper'
-import { authMiddleware } from '@/middleware/auth-middleware'
+import { jsonContent } from '@/lib/helper'
+import {
+  authMiddleware,
+  authMiddlewareSchema,
+} from '@/middleware/auth-middleware'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 
@@ -16,14 +19,11 @@ export const authStatusRoute = createRoute({
   path: '/status',
   middleware: [authMiddleware],
   responses: {
+    ...authMiddlewareSchema,
     200: jsonContent(authStatusSchema, 'User details'),
-    401: errorResponse('Token expired'),
-    403: errorResponse('Invalid token'),
-    404: errorResponse('User not found'),
-    500: errorResponse('Failed to generate JWT'),
   },
 })
 
-export const authStatusHandler = async (c: Context) => {
+export const authStatusHandler = (c: Context) => {
   return c.json(c.get('user'), 200)
 }

@@ -1,6 +1,14 @@
+import { errorResponse } from '@/lib/helper'
 import { validateAuthToken } from '@/utils/auth-token'
 import type { Context, Next } from 'hono'
 import { createMiddleware } from 'hono/factory'
+
+export const authMiddlewareSchema = {
+  401: errorResponse('Token expired'),
+  403: errorResponse('Invalid token'),
+  404: errorResponse('User not found'),
+  500: errorResponse('Failed to generate JWT'),
+}
 
 export const authMiddleware = createMiddleware(
   async (c: Context, next: Next) => {
