@@ -1,8 +1,4 @@
-import { loginHandler, loginRoute } from '@/auth/login'
-import { registerHandler, registerRoute } from '@/auth/register'
-import { authStatusHandler, authStatusRoute } from '@/auth/status'
-import { errorHook } from '@/lib/helper'
-import { authMiddleware } from '@/middleware/auth-middleware'
+import auth from '@/auth'
 import { notFound } from '@/middleware/not-found'
 import { onError } from '@/middleware/on-error'
 import { OpenAPIHono } from '@hono/zod-openapi'
@@ -14,22 +10,12 @@ type Bindings = {
   JWT_EXPIRE_IN: string
 }
 
-const app = new OpenAPIHono<{ Bindings: Bindings }>()
+const app = new OpenAPIHono<{ Bindings: Bindings }>().route('/auth', auth)
 
 // Home route
 app.get('/', (c: Context) => {
   return c.text('Hello Hono!')
 })
-
-// Login route
-app.openapi(loginRoute, loginHandler, errorHook)
-
-// Register route
-app.openapi(registerRoute, registerHandler, errorHook)
-
-// Auth Status route
-app.use('/auth/status', authMiddleware)
-app.openapi(authStatusRoute, authStatusHandler, errorHook)
 
 // Not found route
 app.notFound(notFound)

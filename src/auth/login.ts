@@ -19,7 +19,7 @@ const loginSchema = z.object({
 export const loginRoute = createRoute({
   tags: ['auth'],
   method: 'post',
-  path: '/auth/login',
+  path: '/login',
   request: {
     body: jsonContentRequired(loginSchema, 'Login request'),
   },

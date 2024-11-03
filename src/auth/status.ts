@@ -1,4 +1,5 @@
 import { errorResponse, jsonContent } from '@/lib/helper'
+import { authMiddleware } from '@/middleware/auth-middleware'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 
@@ -12,7 +13,8 @@ const authStatusSchema = z.object({
 export const authStatusRoute = createRoute({
   tags: ['auth'],
   method: 'get',
-  path: '/auth/status',
+  path: '/status',
+  middleware: [authMiddleware],
   responses: {
     200: jsonContent(authStatusSchema, 'User details'),
     401: errorResponse('Token expired'),
