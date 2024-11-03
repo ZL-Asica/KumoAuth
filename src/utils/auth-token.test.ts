@@ -2,7 +2,7 @@ import { getUserByUserId } from '@/lib/db'
 import {
   generateAuthTokenAndSetCookie,
   validateAuthToken,
-} from '@/utils/authToken'
+} from '@/utils/auth-token'
 import type { Context } from 'hono'
 import { getSignedCookie, setSignedCookie } from 'hono/cookie'
 import { sign, verify } from 'hono/jwt'

@@ -1,3 +1,3 @@
-export { getPasswordRoleByUserRoleId } from './getPasswordRole'
-export { getUserByUserId, getUserByUsername } from './getUser'
-export { createNewUser } from './setUser'
+export { getPasswordRoleByUserRoleId } from './get-password-role'
+export { getUserByUserId, getUserByUsername } from './get-user'
+export { createNewUser } from './set-user'
