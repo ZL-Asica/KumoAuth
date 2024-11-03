@@ -1,11 +1,12 @@
 import { loginHandler, loginRoute } from '@/auth/login'
 import { registerHandler, registerRoute } from '@/auth/register'
+import { authStatusHandler, authStatusRoute } from '@/auth/status'
 import { errorHook } from '@/lib/helper'
+import { authMiddleware } from '@/middleware/authMiddleware'
+import { notFound } from '@/middleware/not-found'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
 import type { Context } from 'hono'
-import { authStatusHandler, authStatusRoute } from './auth/status'
-import { authMiddleware } from './middleware/authMiddleware'
 
 type Bindings = {
   JWT_SECRET: string
@@ -28,6 +29,9 @@ app.openapi(registerRoute, registerHandler, errorHook)
 // Auth Status route
 app.use('/auth/status', authMiddleware)
 app.openapi(authStatusRoute, authStatusHandler, errorHook)
+
+// Not found route
+app.notFound(notFound)
 
 // Set OpenAPI documentation
 app.doc31('/doc', {
