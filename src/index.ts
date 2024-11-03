@@ -1,6 +1,7 @@
 import auth from '@/auth'
 import { notFound } from '@/middleware/not-found'
 import { onError } from '@/middleware/on-error'
+import { workerLogger } from '@/middleware/worker-logger'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
 import type { Context } from 'hono'
@@ -11,6 +12,9 @@ type Bindings = {
 }
 
 const app = new OpenAPIHono<{ Bindings: Bindings }>().route('/auth', auth)
+
+// Add worker logger middleware to all routes
+app.use(workerLogger)
 
 // Home route
 app.get('/', (c: Context) => {
