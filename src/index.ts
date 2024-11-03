@@ -4,6 +4,7 @@ import { authStatusHandler, authStatusRoute } from '@/auth/status'
 import { errorHook } from '@/lib/helper'
 import { authMiddleware } from '@/middleware/authMiddleware'
 import { notFound } from '@/middleware/not-found'
+import { onError } from '@/middleware/on-error'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
 import type { Context } from 'hono'
@@ -32,6 +33,9 @@ app.openapi(authStatusRoute, authStatusHandler, errorHook)
 
 // Not found route
 app.notFound(notFound)
+
+// On error
+app.onError(onError)
 
 // Set OpenAPI documentation
 app.doc31('/doc', {
