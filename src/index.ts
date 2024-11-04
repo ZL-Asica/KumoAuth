@@ -6,14 +6,16 @@ import { workerLogger } from '@/middleware/worker-logger'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
 import type { Context } from 'hono'
+import type { JwtVariables } from 'hono/jwt'
 
 type Bindings = {
   JWT_SECRET: string
   JWT_EXPIRE_IN: string
   CORS_CSRF_ORIGIN: string
 }
+type Variables = JwtVariables
 
-const app = new OpenAPIHono<{ Bindings: Bindings }>()
+const app = new OpenAPIHono<{ Bindings: Bindings; Variables: Variables }>()
 
 // Add worker logger middleware to all routes
 app.use(workerLogger)

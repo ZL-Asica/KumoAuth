@@ -67,21 +67,18 @@ export const registerHandler = async (c: Context) => {
   }
 
   // Generate a JWT token and set it as a cookie
-  const catchError = await generateAuthTokenAndSetCookie(
-    c,
-    user.user_id,
-    user.user_role_id
-  )
-
-  if (catchError) {
-    return c.json(catchError, 500)
-  }
+  await generateAuthTokenAndSetCookie(c, {
+    user_id: user.user_id,
+    username: user.username,
+    user_role_id: user.user_role_id,
+    created_at: user.created_at,
+  })
 
   return c.json(
     {
-      id: user.user_id,
+      user_id: user.user_id,
       username: user.username,
-      role: user.user_role_id,
+      user_role_id: user.user_role_id,
     },
     201
   )

@@ -71,9 +71,9 @@ describe('registerHandler', () => {
 
     expect(mockContext.json).toHaveBeenCalledWith(
       {
-        id: 1,
+        user_id: 1,
         username: 'newUser',
-        role: 1,
+        user_role_id: 1,
       },
       201
     )
