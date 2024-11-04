@@ -1,5 +1,5 @@
 import auth from '@/auth'
-import { corsMiddlewareHandler } from '@/middleware/cors'
+import { corsCsrfMiddlewareHandler } from '@/middleware/cors-csrf'
 import { notFound } from '@/middleware/not-found'
 import { onError } from '@/middleware/on-error'
 import { workerLogger } from '@/middleware/worker-logger'
@@ -29,8 +29,8 @@ app.notFound(notFound)
 // On error
 app.onError(onError)
 
-// CORS middleware
-app.use(corsMiddlewareHandler)
+// CORS and CSRF middleware
+app.use(corsCsrfMiddlewareHandler)
 
 // Auth routes
 app.route('/auth', auth)
