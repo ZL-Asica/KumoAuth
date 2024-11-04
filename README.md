@@ -6,8 +6,9 @@
 
 [![Test by Github Action][github-test-badge]][github-test-link]
 [![GitHub License][license-badge]][license-link]
-[![Yarn Version][yarn-badge]][yarn-link] |
 [![Hono][hono-badge]][hono-link]
+[![Node js][node-badge]][node-link]
+[![Yarn Version][yarn-badge]][yarn-link] |
 [![Cloudflare][cloudflare-badge]][cloudflare-link]
 [![Eslint][eslint-badge]][eslint-link]
 [![Prettier][prettier-badge]][prettier-link]
@@ -117,8 +118,9 @@
 
 [github-test-badge]: https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test
 [license-badge]: https://img.shields.io/github/license/ZL-Asica/KumoAuth
+[hono-badge]: https://img.shields.io/github/package-json/dependency-version/ZL-Asica/KumoAuth/hono?label=Hono&color=E36002&logo=hono&logoColor=white&labelColor=E36002
+[node-badge]: https://img.shields.io/github/package-json/engines/node/ZL-Asica/KumoAuth?label=&logo=node.js&color=339933&logoColor=white&labelColor=339933
 [yarn-badge]: https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff
-[hono-badge]: https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff
 [cloudflare-badge]: https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white
 [eslint-badge]: https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white
 [prettier-badge]: https://img.shields.io/badge/Prettier-F7B93E?logo=Prettier&logoColor=white
@@ -127,8 +129,9 @@
 
 [github-test-link]: https://github.com/ZL-Asica/KumoAuth/actions/workflows/auto-test.yml
 [license-link]: https://github.com/ZL-Asica/KumoAuth?tab=GPL-3.0-1-ov-file#readme
-[yarn-link]: https://yarnpkg.com/
 [hono-link]: https://hono.dev/
+[node-link]: https://nodejs.org/
+[yarn-link]: https://yarnpkg.com/
 [cloudflare-link]: https://www.cloudflare.com/
 [eslint-link]: https://eslint.org/
 [prettier-link]: https://prettier.io/

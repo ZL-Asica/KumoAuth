@@ -1,4 +1,5 @@
 import auth from '@/auth'
+import { corsMiddlewareHandler } from '@/middleware/cors'
 import { notFound } from '@/middleware/not-found'
 import { onError } from '@/middleware/on-error'
 import { workerLogger } from '@/middleware/worker-logger'
@@ -9,9 +10,10 @@ import type { Context } from 'hono'
 type Bindings = {
   JWT_SECRET: string
   JWT_EXPIRE_IN: string
+  CORS_ORIGIN: string
 }
 
-const app = new OpenAPIHono<{ Bindings: Bindings }>().route('/auth', auth)
+const app = new OpenAPIHono<{ Bindings: Bindings }>()
 
 // Add worker logger middleware to all routes
 app.use(workerLogger)
@@ -26,6 +28,12 @@ app.notFound(notFound)
 
 // On error
 app.onError(onError)
+
+// CORS middleware
+app.use(corsMiddlewareHandler)
+
+// Auth routes
+app.route('/auth', auth)
 
 // Set OpenAPI documentation
 app.doc31('/doc', {

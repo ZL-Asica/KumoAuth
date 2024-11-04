@@ -54,5 +54,8 @@
     "vitest": "^2.1.4",
     "wrangler": "^3.84.1"
   },
+  "engines": {
+    "node": ">=20.11"
+  },
   "packageManager": "yarn@4.5.1"
 }
