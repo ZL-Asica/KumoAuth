@@ -2,6 +2,7 @@ import { getUserByUserId } from '@/lib/db'
 import type { Context } from 'hono'
 import { getSignedCookie, setSignedCookie } from 'hono/cookie'
 import { sign, verify } from 'hono/jwt'
+import * as JwtErrors from 'hono/utils/jwt/types'
 import type { ValidationResult } from './types'
 
 // Generate JWT token and set it as a cookie
@@ -15,10 +16,15 @@ export const generateAuthTokenAndSetCookie = async (
       Math.floor(Date.now() / 1000) +
       (parseInt(c.env.JWT_EXPIRE_IN) || 30) * 24 * 60 * 60
 
+    const nbf = Math.floor(Date.now() / 1000) - 24 * 60 * 60
+    const iat = Math.floor(Date.now() / 1000) - 24 * 60 * 60
+
     const payload = {
       user_id,
       user_role_id,
       exp: exp,
+      nbf: nbf,
+      iat: iat,
     }
 
     const token = await sign(payload, c.env.JWT_SECRET)
@@ -78,10 +84,23 @@ export const validateAuthToken = async (
     }
   } catch (error) {
     if (error instanceof Error) {
-      if (error.message === 'TokenExpiredError') {
-        return { status: 401, error: 'Token expired' }
+      // Use the JwtErrors namespace to access each error type
+      switch (error.constructor) {
+        case JwtErrors.JwtTokenExpired:
+          return { status: 401, error: 'Token expired' }
+        case JwtErrors.JwtTokenInvalid:
+          return { status: 403, error: 'Invalid token' }
+        case JwtErrors.JwtTokenNotBefore:
+          return { status: 403, error: 'Token not valid yet' }
+        case JwtErrors.JwtTokenIssuedAt:
+          return { status: 403, error: 'Incorrect token issue date' }
+        case JwtErrors.JwtTokenSignatureMismatched:
+          return { status: 403, error: 'Token signature mismatch' }
+        case JwtErrors.JwtAlgorithmNotImplemented:
+          return { status: 500, error: 'Algorithm not implemented' }
+        default:
+          return { status: 403, error: 'Token verification failed' }
       }
-      return { status: 403, error: 'Invalid token' }
     }
     return { status: 403, error: 'Token verification failed' }
   }
