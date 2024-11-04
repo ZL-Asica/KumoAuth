@@ -10,7 +10,7 @@ import type { Context } from 'hono'
 type Bindings = {
   JWT_SECRET: string
   JWT_EXPIRE_IN: string
-  CORS_ORIGIN: string
+  CORS_CSRF_ORIGIN: string
 }
 
 const app = new OpenAPIHono<{ Bindings: Bindings }>()
