@@ -1,12 +1,8 @@
-import { getUserByUserId } from '@/lib/db'
-import {
-  generateAuthTokenAndSetCookie,
-  validateAuthToken,
-} from '@/utils/auth-token'
+import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
 import type { Context } from 'hono'
-import { getSignedCookie, setSignedCookie } from 'hono/cookie'
-import { sign, verify } from 'hono/jwt'
-import { JwtTokenExpired, JwtTokenInvalid } from 'hono/utils/jwt/types'
+import { setSignedCookie } from 'hono/cookie'
+import { HTTPException } from 'hono/http-exception'
+import { sign } from 'hono/jwt'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
@@ -32,11 +28,18 @@ describe('generateAuthTokenAndSetCookie', () => {
     vi.mocked(sign).mockResolvedValueOnce(mockToken)
     vi.mocked(setSignedCookie).mockResolvedValueOnce(undefined)
 
-    await generateAuthTokenAndSetCookie(mockContext, 1, 1)
+    await generateAuthTokenAndSetCookie(mockContext, {
+      user_id: 1,
+      username: 'testUser',
+      user_role_id: 1,
+      created_at: '2021-01-01T00:00:00.000Z',
+    })
 
     const expectedPayload = {
       user_id: 1,
+      username: 'testUser',
       user_role_id: 1,
+      created_at: '2021-01-01T00:00:00.000Z',
       exp: expect.any(Number),
       nbf: expect.any(Number),
       iat: expect.any(Number),
@@ -62,25 +65,37 @@ describe('generateAuthTokenAndSetCookie', () => {
     )
   })
 
-  it('should return an error if JWT generation fails', async () => {
+  it('should throw HTTPException if JWT generation fails', async () => {
     vi.mocked(sign).mockRejectedValueOnce(new Error('Failed to sign JWT'))
 
-    const result = await generateAuthTokenAndSetCookie(mockContext, 1, 1)
+    await expect(
+      generateAuthTokenAndSetCookie(mockContext, {
+        user_id: 1,
+        username: 'testUser',
+        user_role_id: 1,
+        created_at: '2021-01-01T00:00:00.000Z',
+      })
+    ).rejects.toThrow(HTTPException)
 
-    expect(result).toEqual({ error: 'Failed to generate JWT' })
     expect(setSignedCookie).not.toHaveBeenCalled()
   })
 
-  it('should return an error if setting the cookie fails', async () => {
+  it('should throw HTTPException if setting the cookie fails', async () => {
     const mockToken = 'mocked.jwt.token'
     vi.mocked(sign).mockResolvedValueOnce(mockToken)
     vi.mocked(setSignedCookie).mockRejectedValueOnce(
       new Error('Failed to set cookie')
     )
 
-    const result = await generateAuthTokenAndSetCookie(mockContext, 1, 1)
+    await expect(
+      generateAuthTokenAndSetCookie(mockContext, {
+        user_id: 1,
+        username: 'testUser',
+        user_role_id: 1,
+        created_at: '2021-01-01T00:00:00.000Z',
+      })
+    ).rejects.toThrow(HTTPException)
 
-    expect(result).toEqual({ error: 'Failed to generate JWT' })
     expect(sign).toHaveBeenCalled()
     expect(setSignedCookie).toHaveBeenCalledWith(
       mockContext,
@@ -89,94 +104,5 @@ describe('generateAuthTokenAndSetCookie', () => {
       mockContext.env.JWT_SECRET,
       expect.any(Object)
     )
-  })
-})
-
-describe('validateAuthToken', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
-  })
-
-  it('should return 401 if token is missing', async () => {
-    vi.mocked(getSignedCookie).mockResolvedValueOnce(undefined)
-
-    const result = await validateAuthToken(mockContext)
-
-    expect(result).toEqual({ status: 401, error: 'Not logged in' })
-  })
-
-  it('should return 403 if token is invalid', async () => {
-    vi.mocked(getSignedCookie).mockResolvedValueOnce('invalid.token')
-    vi.mocked(verify).mockRejectedValueOnce(
-      new JwtTokenInvalid('Invalid token')
-    )
-
-    const result = await validateAuthToken(mockContext)
-
-    expect(result).toEqual({ status: 403, error: 'Invalid token' })
-  })
-
-  it('should return 401 if token is expired', async () => {
-    vi.mocked(getSignedCookie).mockResolvedValueOnce('expired.token')
-    vi.mocked(verify).mockRejectedValueOnce(
-      new JwtTokenExpired('Token expired')
-    )
-
-    const result = await validateAuthToken(mockContext)
-
-    expect(result).toEqual({ status: 401, error: 'Token expired' })
-  })
-
-  it('should return 404 if user is not found', async () => {
-    vi.mocked(getSignedCookie).mockResolvedValueOnce('valid.token')
-    vi.mocked(verify).mockResolvedValueOnce({ user_id: 999 })
-    vi.mocked(getUserByUserId).mockResolvedValueOnce(null)
-
-    const result = await validateAuthToken(mockContext)
-
-    expect(result).toEqual({ status: 404, error: 'User not found' })
-  })
-
-  it('should return 500 if token refresh fails', async () => {
-    const mockUser = {
-      user_id: 1,
-      username: 'testUser',
-      user_role_id: 1,
-      password_hash: 'testHash',
-      created_at: '2023-11-01T12:00:00Z',
-    }
-    vi.mocked(getSignedCookie).mockResolvedValueOnce('valid.token')
-    vi.mocked(verify).mockResolvedValueOnce({ user_id: 1 })
-    vi.mocked(getUserByUserId).mockResolvedValueOnce(mockUser)
-    vi.mocked(setSignedCookie).mockRejectedValueOnce(
-      new Error('Failed to set cookie')
-    )
-
-    const result = await validateAuthToken(mockContext)
-
-    expect(result).toEqual({ status: 500, error: 'Failed to refresh token' })
-  })
-
-  it('should return user if token is valid and user exists', async () => {
-    const mockUser = {
-      user_id: 1,
-      username: 'testUser',
-      user_role_id: 1,
-      password_hash: 'testHash',
-      created_at: '2023-11-01T12:00:00Z',
-    }
-    vi.mocked(getSignedCookie).mockResolvedValueOnce('valid.token')
-    vi.mocked(verify).mockResolvedValueOnce({ user_id: 1 })
-    vi.mocked(getUserByUserId).mockResolvedValueOnce(mockUser)
-    vi.mocked(setSignedCookie).mockResolvedValueOnce(undefined)
-
-    const result = await validateAuthToken(mockContext)
-
-    expect(result).toEqual({
-      user_id: 1,
-      username: 'testUser',
-      user_role_id: 1,
-      created_at: '2023-11-01T12:00:00Z',
-    })
   })
 })
