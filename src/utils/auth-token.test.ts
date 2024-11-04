@@ -6,6 +6,7 @@ import {
 import type { Context } from 'hono'
 import { getSignedCookie, setSignedCookie } from 'hono/cookie'
 import { sign, verify } from 'hono/jwt'
+import { JwtTokenExpired, JwtTokenInvalid } from 'hono/utils/jwt/types'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
@@ -37,6 +38,8 @@ describe('generateAuthTokenAndSetCookie', () => {
       user_id: 1,
       user_role_id: 1,
       exp: expect.any(Number),
+      nbf: expect.any(Number),
+      iat: expect.any(Number),
     }
     expect(sign).toHaveBeenCalledWith(
       expectedPayload,
@@ -104,7 +107,9 @@ describe('validateAuthToken', () => {
 
   it('should return 403 if token is invalid', async () => {
     vi.mocked(getSignedCookie).mockResolvedValueOnce('invalid.token')
-    vi.mocked(verify).mockRejectedValueOnce(new Error('Invalid token'))
+    vi.mocked(verify).mockRejectedValueOnce(
+      new JwtTokenInvalid('Invalid token')
+    )
 
     const result = await validateAuthToken(mockContext)
 
@@ -113,7 +118,9 @@ describe('validateAuthToken', () => {
 
   it('should return 401 if token is expired', async () => {
     vi.mocked(getSignedCookie).mockResolvedValueOnce('expired.token')
-    vi.mocked(verify).mockRejectedValueOnce(new Error('TokenExpiredError'))
+    vi.mocked(verify).mockRejectedValueOnce(
+      new JwtTokenExpired('Token expired')
+    )
 
     const result = await validateAuthToken(mockContext)
 
