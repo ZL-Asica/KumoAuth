@@ -26,38 +26,38 @@ jobs:
             });
 
             const labelsToColor = {
-              auth: 'f66a0a', // Orange
-              utils: '1f77b4', // Blue
+              routes: 'f66a0a', // Orange
+              test: 'd62728', // Red
+              types: '1f77b4', // Blue
               lib: '1f77b4', // Blue
-              settings: '8c564b', // Brown
+              config: '8c564b', // Brown
               dependency: '2ca02c', // Green
               db: '9467bd', // Purple
               middleware: 'ff7f0e', // Orange for middleware
-              test: 'd62728', // Red
             };
 
             const labels = new Set();
 
             prFiles.data.forEach(file => {
-              if (file.filename.startsWith('src/auth')) {
-                labels.add('auth');
+              if (file.filename.startsWith('src/routes')) {
+                labels.add('routes');
               }
               if (file.filename.endsWith('.test.ts')) {
                 labels.add('test');
               }
-              if (file.filename.startsWith('src/utils')) {
-                labels.add('utils');
+              if (file.filename.startsWith('src/types') || file.filename.endsWith('.d.ts')) {
+                labels.add('types');
               }
               if (file.filename.startsWith('src/lib')) {
                 labels.add('lib');
               }
-              if (file.filename.startsWith('src/settings')) {
-                labels.add('settings');
+              if (file.filename.includes('.config.') || file.filename.endsWith('.toml') || file.filename.includes('.dev.')) {
+                labels.add('config');
               }
-              if (file.filename.startsWith('package.json')) {
+              if (file.filename === 'package.json' || file.filename === 'yarn.lock' || file.filename.startsWith('.pnp.')) {
                 labels.add('dependency');
               }
-              if (file.filename.startsWith('db/')) {
+              if (file.filename.startsWith('db/') || file.filename.startsWith('src/db')) {
                 labels.add('db');
               }
               if (file.filename.startsWith('src/middleware')) {
