@@ -1,53 +1,58 @@
 import type { Context, MiddlewareHandler } from 'hono'
+import { getConnInfo } from 'hono/cloudflare-workers'
 
 // Logging middleware dedicated for Cloudflare Workers
 export const workerLogger: MiddlewareHandler = async (c: Context, next) => {
-  const reqHeaders = Object.fromEntries(Object.entries(c.req.header()))
   const startTime = performance.now()
+  const info = getConnInfo(c)
+  const cfData = c.req.raw.cf || {}
 
   const logData: Record<string, unknown> = {
     method: c.req.method,
     url: c.req.url,
-    host: reqHeaders.host,
-    platform: reqHeaders['sec-ch-ua-platform'],
-    userAgent: reqHeaders['user-agent'],
-  }
-
-  // log requestCookies only if it exists
-  if (reqHeaders.cookie) {
-    // Extract cookie names
-    logData.requestCookies = reqHeaders.cookie
-      ?.split(';')
-      .map((c) => c.split('=')[0])
+    transport: info.remote.transport || null,
+    address: info.remote.address || null,
+    port: info.remote.port || null,
+    addressType: info.remote.addressType || null,
+    location:
+      `${cfData.city || ''}, ${cfData.region || ''}, ${cfData.country || ''}`.replace(
+        /(^,)|(,$)/g,
+        ''
+      ) || null,
+    timezone: cfData.timezone || null,
+    reqCookies:
+      c.req
+        .header('cookie')
+        ?.split(';')
+        .map((c) => c.split('=')[0].trim()) || null,
+    platform: c.req.header('sec-ch-ua-platform')?.replace(/"/g, '') || null,
+    UA: c.req.header('User-Agent') || null,
   }
 
   try {
     await next()
 
-    const responseTime = (performance.now() - startTime).toFixed(2)
-    const resHeaders = Object.fromEntries(c.res.headers)
-    const statusCode = c.res.status
+    const responseTime = `${(performance.now() - startTime).toFixed(2)} ms`
+    const statusCode = c.res.status || null
 
     // Validate status code
-    if (!statusCode || typeof statusCode !== 'number' || isNaN(statusCode)) {
+    if (!statusCode) {
       throw new Error('Invalid response status code')
     }
 
     // Skip logging for 404 responses
     if (statusCode !== 404) {
-      logData.responseTime = `${responseTime} ms`
       logData.statusCode = statusCode
-      if ('set-cookie' in resHeaders) {
-        logData.responseCookies = resHeaders['set-cookie']
-      }
+      logData.responseTime = responseTime
+      logData.resCookies = c.res.headers.get('set-cookie') || null
 
       // Extract `error` field if status code indicates an error
       if (statusCode >= 400) {
         try {
           const responseBody = await c.res.json<{ error: string }>()
-          logData.errorMessage = responseBody.error
+          logData.errorMessage = responseBody?.error || 'Unknown error'
         } catch {
-          logData.errorMessage = 'Failed to parse error message'
+          logData.errorMessage = 'Unknown error'
         }
       }
 
@@ -56,17 +61,17 @@ export const workerLogger: MiddlewareHandler = async (c: Context, next) => {
       console[level](
         JSON.stringify({
           level,
-          message: `Request processed - ${c.req.method} ${c.req.url}`,
+          message: `[${statusCode}] - [${c.req.method}] ${c.req.url}`,
           details: logData,
         })
       )
     }
   } catch (error) {
-    logData.errorMessage = (error as Error).message
+    logData.errorMessage = (error as Error).message || 'Unknown error'
     console.error(
       JSON.stringify({
         level: 'error',
-        message: `Request failed - ${c.req.method} ${c.req.url}`,
+        message: `[${logData.statusCode || '500'}] - [${c.req.method}] ${c.req.url} - ${logData.errorMessage}`,
         details: logData,
       })
     )
