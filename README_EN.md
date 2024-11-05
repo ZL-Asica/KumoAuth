@@ -39,7 +39,7 @@ Designed for small applications and personal projects, this system provides a se
 - **User Login**: Users can log in via `/auth/login` to receive a JWT upon successful authentication, which is stored in an `HttpOnly` Cookie.
 - **User Logout**: Users can log out via `/auth/logout` to receive a maxAge equal 0 Cookie upon successful authentication, which will guide the browser to remove it.
 - **Login Status Verification**: Verifies user login status via `/auth/status` using `authMiddleware`. This functionality checks the validity of the JWT in the request and automatically refreshes the JWT in the Cookie if valid.
-- **Structured logging**: Logs each request and response detail, skipping 404 responses, and captures error messages for status codes >= 400.
+- **Structured logging**: Logs each request and response detail (follows worker's logging standard), skipping 404 responses, and captures error messages for status codes >= 400.
 - **OpenAPI Schema**: Available at `/doc` as a JSON-compliant schema matching [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html), using [Zod OpenAPI](https://hono.dev/examples/zod-openapi).
 - **Interactive API Documentation**: Accessible at `/reference` for interactive documentation, code examples, and request templates, built with [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md).
 
@@ -54,6 +54,7 @@ Designed for small applications and personal projects, this system provides a se
 │   │   ├── login.ts            # Login logic
 │   │   ├── logout.ts           # Logout logic
 │   │   ├── register.ts         # Registration logic
+|   |   ├── change-password.ts  # Allows logged-in users to update their password if they know the current password
 │   │   ├── reset.ts            # Password reset (in development)
 │   │   ├── status.ts           # User status check
 │   │   └── verify.ts           # 2FA verification (in development)
@@ -62,6 +63,7 @@ Designed for small applications and personal projects, this system provides a se
 │   │   ├── auth-middleware.ts  # Check login status via Cookie
 │   │   ├── not-found.ts        # 404 handling
 │   │   ├── on-error.ts         # Global error handling
+│   │   ├── cors-csrf.ts        # CORS and CSRF handling
 │   │   └── worker-logger.ts    # Custom structured logger
 │   ├── utils
 │   │   ├── auth-token.ts       # JWT generation, validation, and auto-refresh
@@ -90,7 +92,7 @@ Designed for small applications and personal projects, this system provides a se
 2. Set up environment variables:
 
    - Copy `example.dev.vars` and rename it to `.dev.vars`
-   - Set the JWT secret, expire time, and other necessary configurations
+   - Set the JWT secret, expire time, CORS_CSRF_ORIGIN, and other necessary configurations
 
 3. Initialize the D1 database locally with Wrangler:
 

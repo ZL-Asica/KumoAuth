@@ -14,9 +14,10 @@ const registerSchema = z.object({
 })
 
 const registerSuccessResponseSchema = z.object({
-  id: z.number().openapi({ example: 1 }),
+  user_id: z.number().openapi({ example: 1 }),
   username: z.string().openapi({ example: 'username' }),
-  role: z.number().openapi({ example: 1 }),
+  user_role_id: z.number().openapi({ example: 1 }),
+  created_at: z.string().openapi({ example: '2021-07-01T00:00:00.000Z' }),
 })
 
 export const registerRoute = createRoute({
@@ -79,6 +80,7 @@ export const registerHandler = async (c: Context) => {
       user_id: user.user_id,
       username: user.username,
       user_role_id: user.user_role_id,
+      created_at: user.created_at,
     },
     201
   )
