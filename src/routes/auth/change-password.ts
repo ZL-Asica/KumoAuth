@@ -1,13 +1,13 @@
-import { getUserPasswordByUserId, setUserPasswordByUserId } from '@/lib/db'
+import { getUserPasswordByUserId, setUserPasswordByUserId } from '@/db'
+import { passwordValidator } from '@/lib/auth/password-validator'
 import {
   errorResponse,
   jsonContentRequired,
   jsonMessageContent,
 } from '@/lib/helper'
 import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
-import { passwordValidator } from '@/utils/password-validator'
+import type { Context } from '@/types'
 import { createRoute, z } from '@hono/zod-openapi'
-import type { Context } from 'hono'
 
 // Define the schema for the change password request
 const changePasswordSchema = z.object({

@@ -1,5 +1,5 @@
-import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
-import type { Context } from 'hono'
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
+import type { Context } from '@/types'
 import { setSignedCookie } from 'hono/cookie'
 import { HTTPException } from 'hono/http-exception'
 import { sign } from 'hono/jwt'
@@ -8,7 +8,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 // Mock dependencies
 vi.mock('hono/cookie')
 vi.mock('hono/jwt')
-vi.mock('@/lib/db')
+vi.mock('@/db')
 
 // Mock Context
 const mockContext = {

@@ -1,8 +1,8 @@
 # KumoAuth
 
-[中文](./README.md) | [English](./README_EN.md)
+[English](./README.md) | [中文](./README_CN.md)
 
-> Kumo - 日语中的雲☁️ - 一个基于 Cloudflare Workers、D1 数据库和 Hono 框架构建的高效身份认证系统
+> Kumo - means cloud (雲☁️) in Japanese - is a lightweight and efficient authentication system built with Cloudflare Workers, D1 Database, and the Hono framework.
 
 [![Test by Github Action][github-test-badge]][github-test-link]
 [![GitHub License][license-badge]][license-link]
@@ -13,75 +13,79 @@
 [![Eslint][eslint-badge]][eslint-link]
 [![Prettier][prettier-badge]][prettier-link]
 
-此项目旨在利用 Cloudflare 的无服务器架构搭建一个简单、轻量的身份认证系统。项目使用了 JWT 来实现用户的无状态认证和访问保护功能，未来计划加入更多功能，如双因素认证、刷新令牌等。
+This project leverages Cloudflare's serverless architecture to build a simple, lightweight authentication system. It uses JWTs for stateless authentication and access protection, with plans for additional features like two-factor authentication and refresh tokens.
 
-## ✨ 项目简介
+## ✨ Project Overview
 
-本项目的初衷是为小型应用和个人项目提供一个安全、高效的登录认证系统。使用 D1 作为数据库，通过 Cloudflare Workers 部署在全球边缘节点上，使得访问速度和响应时间最优。
+Designed for small applications and personal projects, this system provides a secure and efficient login solution. D1 is used as the database, and the app is deployed globally on Cloudflare Workers for optimal access speed and low latency.
 
-## 🎯 MVP 功能清单
+## 🎯 MVP Feature List
 
-- [x] 用户注册功能（带密码加密）📝
-- [x] 用户登录/登出功能（返回 JWT -通过Cookie）🔑
-- [x] 自动生成的 OpenAPI Schema 和可交互的 Reference 📚
-- [x] 用户登陆状态验证及自动刷新（通过Cookie和authMiddleware）🔄
-- [x] 404 处理及全局错误处理（JSON）🚫
-- [x] 请求及响应的详细日志功能 (排除 404 响应) 📈
-- [ ] 基础权限验证（基于 JWT 的路由保护）🔐
-- [ ] 密码重置功能 🔄 （in future）
-- [ ] 双因素身份验证（2FA）🔒 （in future）
-- [ ] Refresh Token 机制 ♻️ （in future）
-- [ ] 用户信息更新功能 👤 （in future）
+- [x] User registration with password encryption 📝
+- [x] User login/logout (returns JWT via Cookie) 🔑
+- [x] Auto-generated OpenAPI Schema and Interactive Reference 📚
+- [x] User login status verification with auto-refresh (via Cookie and authMiddleware) 🔄
+- [x] 404 and global error handling (JSON) 🚫
+- [x] Structured logging for request and response details (excluding 404) 📈
+- [ ] Basic authorization (JWT-protected routes) 🔐
+- [ ] Password reset feature 🔄 (in future)
+- [ ] Two-factor authentication (2FA) 🔒 (in future)
+- [ ] Refresh Token mechanism ♻️ (in future)
+- [ ] User profile updates 👤 (in future)
 
-## 📜 目前实现的功能
+## 📜 Current Features
 
-- **用户注册**：用户可以通过 `/auth/register` 注册新账户，密码将会被加密存储在数据库中。
-- **用户登录**：通过 `/auth/login` 登录，验证通过后会返回 JWT 令牌，并在 `HttpOnly` 的 Cookie 中储存。
-- **用户登出**：通过`/auth/logout`登出，验证通过后会自动设置maxAge为0，引导浏览器删除 Cookie。
-- **登陆状态验证**：通过 `/auth/status` 使用 `authMiddleware` 验证用户的登陆状态。此功能检查请求中 JWT 的有效性并在有效时自动刷新 Cookie 中的 JWT。
-- **OpenAPI Schema**：目前还没有添加权限验证，在 `/doc` 的路径下可以直接获取到符合 [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html) 结构的 JSON 格式的 Schema（采用了 [Zod OpenAPI](https://hono.dev/examples/zod-openapi) 实现)。
-- **日志**: 记录每一次请求和对应的响应（遵循 Cloudflare Worker 的日志标准），忽略 404 响应，对于状态码 >= 400 的，记录错误信息。
-- **交互式 API 文档**：目前还没有添加权限验证，在 `/reference` 的路径下可以直接使用和查看可交互的在线文档，并且可以查看对应的 Schema、不同语言进行请求的代码架构、示例等。（采用了 [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md) 实现)。
+- **User Registration**: Users can register a new account via `/auth/register`, with passwords encrypted and stored in the database.
+- **User Login**: Users can log in via `/auth/login` to receive a JWT upon successful authentication, which is stored in an `HttpOnly` Cookie.
+- **User Logout**: Users can log out via `/auth/logout` to receive a maxAge equal 0 Cookie upon successful authentication, which will guide the browser to remove it.
+- **Login Status Verification**: Verifies user login status via `/auth/status` using `authMiddleware`. This functionality checks the validity of the JWT in the request and automatically refreshes the JWT in the Cookie if valid.
+- **Structured logging**: Logs each request and response detail (follows worker's logging standard), skipping 404 responses, and captures error messages for status codes >= 400.
+- **OpenAPI Schema**: Available at `/doc` as a JSON-compliant schema matching [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html), using [Zod OpenAPI](https://hono.dev/examples/zod-openapi).
+- **Interactive API Documentation**: Accessible at `/reference` for interactive documentation, code examples, and request templates, built with [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md).
 
-## 📂 项目结构
+## 📂 Project Structure
 
 ```plaintext
 .
 ├── db
-│   └── schema.sql              # 数据库初始化脚本
+│   └── schema.sql              # Database initialization script
 ├── src
-│   ├── auth
-│   │   ├── login.ts            # 登录逻辑
-│   │   ├── logout.ts           # 登出逻辑
-│   │   ├── register.ts         # 注册逻辑
-|   |   ├── change-password.ts  # 允许已登录且知道当前密码的用户更新密码
-│   │   ├── reset.ts            # 密码重置（开发中）
-│   │   ├── status.ts           # 用户状态检测
-│   │   └── verify.ts           # 2FA 验证（开发中）
-│   ├── index.ts                # 主入口文件，初始化 Hono 应用
-│   ├── middleware
-│   │   ├── auth.ts             # 检测 Cookie 的登录状态
-│   │   ├── not-found.ts        # 404 处理
-│   │   ├── on-error.ts         # 全局错误处理
-│   │   ├── security.ts         # CORS 和 CSRF 处理中间件
-│   │   └── worker-logger.ts    # 自定义日志记录
-│   ├── utils
-│   │   ├── auth-token.ts       # JWT 生成、验证及自动刷新
-│   │   ├── hash.ts             # 密码加密工具
-│   │   ├── password-validator.ts # 密码验证
-│   │   └── username-validator.ts # 用户名验证
-│   └── lib
-│       ├── db                  # 数据库操作
-│       └── helper              # Zod JSON 构建和错误响应处理
-├── wrangler.toml               # Wrangler 配置文件
-├── package.json                # 项目依赖和脚本
-├── example.env                 # 环境变量示例文件
-└── README.md                   # 项目说明文档
+│   ├── index.ts                # Main entry point, initializes Hono application
+│   ├── db                      # Database operations
+│   ├── lib                     # General utilities and tools
+│   │   ├── auth                # Auth-related utilities
+│   │   │   ├── auth-token.ts   # JWT generation and cookie setting
+│   │   │   ├── hash.ts         # Password hashing utility
+│   │   │   ├── password-validator.ts # Password validation utility
+│   │   │   └── username-validator.ts # Username validation utility
+│   │   └── helper              # Helper functions module
+│   ├── middleware              # Middleware modules
+│   │   ├── auth.ts             # Checks login state via cookie
+│   │   ├── not-found.ts        # 404 handler
+│   │   ├── on-error.ts         # Global error handler
+│   │   ├── security.ts         # Middleware for CORS and CSRF protection
+│   │   └── worker-logger.ts    # Custom logging middleware
+│   ├── routes                  # Routing modules
+│   │   ├── auth
+│   │   │   ├── change-password.ts # Password change logic
+│   │   │   ├── index.ts        # Module entry route
+│   │   │   ├── login.ts        # Login logic
+│   │   │   ├── logout.ts       # Logout logic
+│   │   │   ├── register.ts     # Registration logic
+│   │   │   ├── reset.ts        # Password reset (in development)
+│   │   │   ├── status.ts       # User status check
+│   │   │   └── verify.ts       # 2FA verification (in development)
+│   │   └── settings            # System settings routes
+│   └── types                   # Global type definitions
+├── wrangler.toml               # Wrangler configuration file
+├── package.json                # Project dependencies and scripts
+├── example.dev.vars            # Example environment variables file
+└── README.md                   # Project documentation
 ```
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-1. 克隆项目并安装依赖：
+1. Clone the project and install dependencies:
 
    ```bash
    git clone https://github.com/ZL-Asica/KumoAuth.git
@@ -89,32 +93,32 @@
    yarn install
    ```
 
-2. 配置环境变量：
+2. Set up environment variables:
 
-   - 复制 `example.dev.vars` 并重命名为 `.dev.vars`
-   - 设置 JWT 密钥、有效时长、CORS_CSRF_ORIGIN和其他必要配置
+   - Copy `example.dev.vars` and rename it to `.dev.vars`
+   - Set the JWT secret, expire time, CORS_CSRF_ORIGIN, and other necessary configurations
 
-3. 使用 Wrangler 在本地初始化 D1 数据库：
+3. Initialize the D1 database locally with Wrangler:
 
    ```bash
    yarn run db:init
    ```
 
-4. 本地启动开发环境：
+4. Start the local development server:
 
    ```bash
    yarn run dev
    ```
 
-## 📚 未来发展计划
+## 📚 Future Plans
 
-- 加入双因素身份验证（2FA），提高账户安全性
-- 提供详细的 API 文档，方便集成与二次开发
-- 接入第三方验证
+- Add two-factor authentication (2FA) for enhanced account security
+- Provide comprehensive API documentation for easy integration and development
+- Third party auth.
 
 ---
 
-感谢你的关注与支持！欢迎提出建议或加入贡献，帮助我们一起完善这个项目 🙌
+Thank you for your interest and support! Feel free to suggest features or contribute to help us improve this project 🙌
 
 <!-- Badge Links -->
 

@@ -1,12 +1,6 @@
-import { getUserByUsername } from '@/lib/db'
+import { getUserByUsername } from '@/db'
+import type { Context, UsernamePatternInterface } from '@/types'
 import { Filter } from 'bad-words'
-import type { Context } from 'hono'
-
-interface UsernamePatternInterface {
-  minLength: number
-  maxLength: number
-  charsAllowed: RegExp[]
-}
 
 const usernamePattern: UsernamePatternInterface = {
   minLength: 5,

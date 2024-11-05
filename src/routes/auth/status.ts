@@ -1,7 +1,7 @@
 import { jsonContent } from '@/lib/helper'
 import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
+import type { Context } from '@/types'
 import { createRoute, z } from '@hono/zod-openapi'
-import type { Context } from 'hono'
 
 const authStatusSchema = z.object({
   user_id: z.number(),

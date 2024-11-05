@@ -1,6 +1,5 @@
-import type { Context, ErrorHandler } from 'hono'
+import type { Context, ErrorHandler, HTTPResponseError } from '@/types'
 import { HTTPException } from 'hono/http-exception'
-import type { HTTPResponseError } from 'hono/types'
 
 export const onError: ErrorHandler = (
   err: Error | HTTPResponseError,

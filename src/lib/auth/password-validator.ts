@@ -1,5 +1,5 @@
-import { getPasswordRoleByUserRoleId } from '@/lib/db'
-import type { Context } from 'hono'
+import { getPasswordRoleByUserRoleId } from '@/db'
+import type { Context } from '@/types'
 
 export const passwordValidator = async (
   c: Context,

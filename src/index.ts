@@ -1,19 +1,11 @@
-import auth from '@/auth'
 import { notFound } from '@/middleware/not-found'
 import { onError } from '@/middleware/on-error'
 import { securityMiddlewareHandler } from '@/middleware/security'
 import { workerLogger } from '@/middleware/worker-logger'
+import auth from '@/routes/auth'
+import type { Bindings, Context, Variables } from '@/types'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
-import type { Context } from 'hono'
-import type { JwtVariables } from 'hono/jwt'
-
-type Bindings = {
-  JWT_SECRET: string
-  JWT_EXPIRE_IN: string
-  CORS_CSRF_ORIGIN: string
-}
-type Variables = JwtVariables
 
 const app = new OpenAPIHono<{ Bindings: Bindings; Variables: Variables }>()
 

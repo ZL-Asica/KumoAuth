@@ -1,7 +1,7 @@
 import { errorResponse, jsonMessageContent } from '@/lib/helper'
 import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
+import type { Context } from '@/types'
 import { createRoute } from '@hono/zod-openapi'
-import type { Context } from 'hono'
 import { deleteCookie } from 'hono/cookie'
 
 export const logoutRoute = createRoute({

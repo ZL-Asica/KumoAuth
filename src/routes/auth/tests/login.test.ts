@@ -1,16 +1,16 @@
-import { loginHandler } from '@/auth/login'
+import { loginHandler } from '@/routes/auth/login'
 import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
-import { getUserByUsername } from '@/lib/db'
-import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
-import { verifyPassword } from '@/utils/hash'
+import { getUserByUsername } from '@/db'
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
+import { verifyPassword } from '@/lib/auth/hash'
 
 // Mock implementations
-vi.mock('@/lib/db')
-vi.mock('@/utils/hash')
-vi.mock('@/utils/auth-token')
+vi.mock('@/db')
+vi.mock('@/lib/auth/hash')
+vi.mock('@/lib/auth/auth-token')
 
 // Mock database and environment
 const mockDB = {

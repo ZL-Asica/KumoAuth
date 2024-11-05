@@ -1,5 +1,5 @@
-import { usernameValidator } from '@/utils/username-validator'
-import type { Context } from 'hono'
+import { usernameValidator } from '@/lib/auth/username-validator'
+import type { Context } from '@/types'
 import { describe, expect, it, vi } from 'vitest'
 
 // Mock database preparation function

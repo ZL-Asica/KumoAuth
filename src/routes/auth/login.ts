@@ -1,13 +1,13 @@
-import { getUserByUsername } from '@/lib/db'
+import { getUserByUsername } from '@/db'
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
+import { verifyPassword } from '@/lib/auth/hash'
 import {
   errorResponse,
   jsonContentRequired,
   jsonMessageContent,
 } from '@/lib/helper'
-import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
-import { verifyPassword } from '@/utils/hash'
+import type { Context } from '@/types'
 import { createRoute, z } from '@hono/zod-openapi'
-import type { Context } from 'hono'
 
 // Define the schema for the login request
 const loginSchema = z.object({
