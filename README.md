@@ -40,7 +40,7 @@
 - **用户登出**：通过`/auth/logout`登出，验证通过后会自动设置maxAge为0，引导浏览器删除 Cookie。
 - **登陆状态验证**：通过 `/auth/status` 使用 `authMiddleware` 验证用户的登陆状态。此功能检查请求中 JWT 的有效性并在有效时自动刷新 Cookie 中的 JWT。
 - **OpenAPI Schema**：目前还没有添加权限验证，在 `/doc` 的路径下可以直接获取到符合 [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html) 结构的 JSON 格式的 Schema（采用了 [Zod OpenAPI](https://hono.dev/examples/zod-openapi) 实现)。
-- **日志**: 记录每一次请求和对应的响应，忽略 404 响应，对于状态码 >= 400 的，记录错误信息。
+- **日志**: 记录每一次请求和对应的响应（遵循 Cloudflare Worker 的日志标准），忽略 404 响应，对于状态码 >= 400 的，记录错误信息。
 - **交互式 API 文档**：目前还没有添加权限验证，在 `/reference` 的路径下可以直接使用和查看可交互的在线文档，并且可以查看对应的 Schema、不同语言进行请求的代码架构、示例等。（采用了 [Scalar for Hono](https://github.com/scalar/scalar/blob/main/packages/hono-api-reference/README.md) 实现)。
 
 ## 📂 项目结构
@@ -54,6 +54,7 @@
 │   │   ├── login.ts            # 登录逻辑
 │   │   ├── logout.ts           # 登出逻辑
 │   │   ├── register.ts         # 注册逻辑
+|   |   ├── change-password.ts  # 允许已登录且知道当前密码的用户更新密码
 │   │   ├── reset.ts            # 密码重置（开发中）
 │   │   ├── status.ts           # 用户状态检测
 │   │   └── verify.ts           # 2FA 验证（开发中）
@@ -62,6 +63,7 @@
 │   │   ├── auth-middleware.ts  # 检测 Cookie 的登录状态
 │   │   ├── not-found.ts        # 404 处理
 │   │   ├── on-error.ts         # 全局错误处理
+│   │   ├── cors-csrf.ts        # CORS 和 CSRF 处理中间件
 │   │   └── worker-logger.ts    # 自定义日志记录
 │   ├── utils
 │   │   ├── auth-token.ts       # JWT 生成、验证及自动刷新
@@ -90,7 +92,7 @@
 2. 配置环境变量：
 
    - 复制 `example.dev.vars` 并重命名为 `.dev.vars`
-   - 设置 JWT 密钥、有效时常和其他必要配置
+   - 设置 JWT 密钥、有效时长、CORS_CSRF_ORIGIN和其他必要配置
 
 3. 使用 Wrangler 在本地初始化 D1 数据库：
 
