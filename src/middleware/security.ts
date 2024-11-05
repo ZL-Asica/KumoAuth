@@ -3,7 +3,7 @@ import { cors } from 'hono/cors'
 import { csrf } from 'hono/csrf'
 
 // Combined CORS and CSRF middleware handler
-export const corsCsrfMiddlewareHandler: MiddlewareHandler = async (
+export const securityMiddlewareHandler: MiddlewareHandler = async (
   c: Context,
   next
 ) => {

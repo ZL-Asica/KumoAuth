@@ -1,8 +1,5 @@
 import { errorResponse, jsonMessageContent } from '@/lib/helper'
-import {
-  authMiddleware,
-  authMiddlewareSchema,
-} from '@/middleware/auth-middleware'
+import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
 import { createRoute } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 import { deleteCookie } from 'hono/cookie'

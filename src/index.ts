@@ -1,7 +1,7 @@
 import auth from '@/auth'
-import { corsCsrfMiddlewareHandler } from '@/middleware/cors-csrf'
 import { notFound } from '@/middleware/not-found'
 import { onError } from '@/middleware/on-error'
+import { securityMiddlewareHandler } from '@/middleware/security'
 import { workerLogger } from '@/middleware/worker-logger'
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { apiReference } from '@scalar/hono-api-reference'
@@ -32,7 +32,7 @@ app.notFound(notFound)
 app.onError(onError)
 
 // CORS and CSRF middleware
-app.use(corsCsrfMiddlewareHandler)
+app.use(securityMiddlewareHandler)
 
 // Auth routes
 app.route('/auth', auth)

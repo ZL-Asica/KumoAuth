@@ -4,10 +4,7 @@ import {
   jsonContentRequired,
   jsonMessageContent,
 } from '@/lib/helper'
-import {
-  authMiddleware,
-  authMiddlewareSchema,
-} from '@/middleware/auth-middleware'
+import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
 import { passwordValidator } from '@/utils/password-validator'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
