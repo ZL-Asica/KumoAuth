@@ -60,10 +60,10 @@ Designed for small applications and personal projects, this system provides a se
 │   │   └── verify.ts           # 2FA verification (in development)
 │   ├── index.ts                # Main entry file, initializing Hono application
 │   ├── middleware
-│   │   ├── auth-middleware.ts  # Check login status via Cookie
+│   │   ├── auth.ts             # Check login status via Cookie
 │   │   ├── not-found.ts        # 404 handling
 │   │   ├── on-error.ts         # Global error handling
-│   │   ├── cors-csrf.ts        # CORS and CSRF handling
+│   │   ├── security.ts         # CORS and CSRF handling
 │   │   └── worker-logger.ts    # Custom structured logger
 │   ├── utils
 │   │   ├── auth-token.ts       # JWT generation, validation, and auto-refresh

@@ -60,10 +60,10 @@
 │   │   └── verify.ts           # 2FA 验证（开发中）
 │   ├── index.ts                # 主入口文件，初始化 Hono 应用
 │   ├── middleware
-│   │   ├── auth-middleware.ts  # 检测 Cookie 的登录状态
+│   │   ├── auth.ts             # 检测 Cookie 的登录状态
 │   │   ├── not-found.ts        # 404 处理
 │   │   ├── on-error.ts         # 全局错误处理
-│   │   ├── cors-csrf.ts        # CORS 和 CSRF 处理中间件
+│   │   ├── security.ts         # CORS 和 CSRF 处理中间件
 │   │   └── worker-logger.ts    # 自定义日志记录
 │   ├── utils
 │   │   ├── auth-token.ts       # JWT 生成、验证及自动刷新
