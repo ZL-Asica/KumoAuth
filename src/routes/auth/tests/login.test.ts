@@ -1,4 +1,4 @@
-import { loginHandler } from '@/auth/login'
+import { loginHandler } from '@/routes/auth/login'
 import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
