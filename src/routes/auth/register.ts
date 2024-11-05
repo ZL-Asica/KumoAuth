@@ -1,4 +1,4 @@
-import { createNewUser, getUserByUserId } from '@/lib/db'
+import { createNewUser, getUserByUserId } from '@/db'
 import { errorResponse, jsonContentRequired } from '@/lib/helper'
 import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
 import { hashPassword } from '@/utils/hash'

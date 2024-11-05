@@ -1,4 +1,4 @@
-import { getUserPasswordByUserId, setUserPasswordByUserId } from '@/lib/db'
+import { getUserPasswordByUserId, setUserPasswordByUserId } from '@/db'
 import {
   errorResponse,
   jsonContentRequired,

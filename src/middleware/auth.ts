@@ -1,4 +1,4 @@
-import { getUserByUserId } from '@/lib/db'
+import { getUserByUserId } from '@/db'
 import { errorResponse } from '@/lib/helper'
 import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
 import type { Context, MiddlewareHandler, Next } from 'hono'

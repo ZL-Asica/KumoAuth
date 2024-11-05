@@ -1,4 +1,4 @@
-import { getPasswordRoleByUserRoleId } from '@/lib/db'
+import { getPasswordRoleByUserRoleId } from '@/db'
 import type { Context } from 'hono'
 
 export const passwordValidator = async (

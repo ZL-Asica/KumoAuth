@@ -1,4 +1,4 @@
-import { getUserByUsername } from '@/lib/db'
+import { getUserByUsername } from '@/db'
 import {
   errorResponse,
   jsonContentRequired,

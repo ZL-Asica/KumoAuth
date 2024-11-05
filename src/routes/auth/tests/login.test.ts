@@ -3,12 +3,12 @@ import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
-import { getUserByUsername } from '@/lib/db'
+import { getUserByUsername } from '@/db'
 import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
 import { verifyPassword } from '@/utils/hash'
 
 // Mock implementations
-vi.mock('@/lib/db')
+vi.mock('@/db')
 vi.mock('@/utils/hash')
 vi.mock('@/utils/auth-token')
 

@@ -1,4 +1,4 @@
-import { getUserByUsername } from '@/lib/db'
+import { getUserByUsername } from '@/db'
 import { Filter } from 'bad-words'
 import type { Context } from 'hono'
 
