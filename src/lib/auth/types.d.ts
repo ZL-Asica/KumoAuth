@@ -6,3 +6,9 @@ export type ValidationResult =
       created_at: string
     }
   | { status: 401 | 403 | 404 | 500; error: string }
+
+export type UsernamePatternInterface = {
+  minLength: number
+  maxLength: number
+  charsAllowed: RegExp[]
+}

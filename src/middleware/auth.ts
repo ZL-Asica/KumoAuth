@@ -1,7 +1,7 @@
 import { getUserByUserId } from '@/db'
 import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { errorResponse } from '@/lib/helper'
-import type { Context, MiddlewareHandler, Next } from 'hono'
+import type { Context, MiddlewareHandler, Next } from '@/types'
 import { HTTPException } from 'hono/http-exception'
 import { jwt } from 'hono/jwt'
 

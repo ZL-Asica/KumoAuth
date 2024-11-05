@@ -1,4 +1,4 @@
-import type { Context } from 'hono'
+import type { Context } from '@/types'
 import { setSignedCookie } from 'hono/cookie'
 import { HTTPException } from 'hono/http-exception'
 import { sign } from 'hono/jwt'

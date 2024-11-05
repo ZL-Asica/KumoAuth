@@ -1,4 +1,4 @@
-import type { Context, MiddlewareHandler } from 'hono'
+import type { Context, MiddlewareHandler } from '@/types'
 import { cors } from 'hono/cors'
 import { csrf } from 'hono/csrf'
 

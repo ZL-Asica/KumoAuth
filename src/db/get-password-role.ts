@@ -1,4 +1,4 @@
-import type { DBType, PasswordRule } from './types'
+import type { DBType, PasswordRule } from '@/types'
 
 export const getPasswordRoleByUserRoleId = async (
   db: DBType,

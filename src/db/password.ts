@@ -1,4 +1,4 @@
-import type { DBType, User } from './types'
+import type { DBType, User } from '@/types'
 
 export const getUserPasswordByUserId = async (
   db: DBType,

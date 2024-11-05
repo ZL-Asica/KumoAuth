@@ -1,5 +1,4 @@
-import type { Context } from 'hono'
-import type { ZodError } from 'zod'
+import type { Context, ZodError } from '@/types'
 
 export const errorHook = (
   result: { success: boolean; error?: ZodError },

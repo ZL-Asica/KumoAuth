@@ -6,8 +6,8 @@ import {
   jsonContentRequired,
   jsonMessageContent,
 } from '@/lib/helper'
+import type { Context } from '@/types'
 import { createRoute, z } from '@hono/zod-openapi'
-import type { Context } from 'hono'
 
 // Define the schema for the login request
 const loginSchema = z.object({

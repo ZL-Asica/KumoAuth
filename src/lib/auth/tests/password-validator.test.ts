@@ -1,5 +1,5 @@
 import { passwordValidator } from '@/lib/auth/password-validator'
-import type { Context } from 'hono'
+import type { Context } from '@/types'
 import { describe, expect, it, vi } from 'vitest'
 
 // Mock database preparation function

@@ -4,8 +4,8 @@ import { hashPassword } from '@/lib/auth/hash'
 import { passwordValidator } from '@/lib/auth/password-validator'
 import { usernameValidator } from '@/lib/auth/username-validator'
 import { errorResponse, jsonContentRequired } from '@/lib/helper'
+import type { Context } from '@/types'
 import { createRoute, z } from '@hono/zod-openapi'
-import type { Context } from 'hono'
 
 // Define the schema for the register request
 const registerSchema = z.object({

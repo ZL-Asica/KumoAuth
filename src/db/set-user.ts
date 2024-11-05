@@ -1,4 +1,4 @@
-import type { DBType, UserQueryResult } from './types'
+import type { DBType, UserQueryResult } from '@/types'
 
 export const createNewUser = async (
   db: DBType,
