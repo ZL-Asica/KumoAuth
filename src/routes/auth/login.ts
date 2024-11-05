@@ -1,11 +1,11 @@
 import { getUserByUsername } from '@/db'
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
+import { verifyPassword } from '@/lib/auth/hash'
 import {
   errorResponse,
   jsonContentRequired,
   jsonMessageContent,
 } from '@/lib/helper'
-import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
-import { verifyPassword } from '@/utils/hash'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 

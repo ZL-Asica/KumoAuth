@@ -1,9 +1,9 @@
 import { createNewUser, getUserByUserId } from '@/db'
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
+import { hashPassword } from '@/lib/auth/hash'
+import { passwordValidator } from '@/lib/auth/password-validator'
+import { usernameValidator } from '@/lib/auth/username-validator'
 import { errorResponse, jsonContentRequired } from '@/lib/helper'
-import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
-import { hashPassword } from '@/utils/hash'
-import { passwordValidator } from '@/utils/password-validator'
-import { usernameValidator } from '@/utils/username-validator'
 import { createRoute, z } from '@hono/zod-openapi'
 import type { Context } from 'hono'
 

@@ -4,13 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
 import { getUserByUsername } from '@/db'
-import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
-import { verifyPassword } from '@/utils/hash'
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
+import { verifyPassword } from '@/lib/auth/hash'
 
 // Mock implementations
 vi.mock('@/db')
-vi.mock('@/utils/hash')
-vi.mock('@/utils/auth-token')
+vi.mock('@/lib/auth/hash')
+vi.mock('@/lib/auth/auth-token')
 
 // Mock database and environment
 const mockDB = {

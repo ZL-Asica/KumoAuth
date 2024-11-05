@@ -1,4 +1,4 @@
-import { usernameValidator } from '@/utils/username-validator'
+import { usernameValidator } from '@/lib/auth/username-validator'
 import type { Context } from 'hono'
 import { describe, expect, it, vi } from 'vitest'
 

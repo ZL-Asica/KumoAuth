@@ -1,6 +1,6 @@
 import { getUserByUserId } from '@/db'
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { errorResponse } from '@/lib/helper'
-import { generateAuthTokenAndSetCookie } from '@/utils/auth-token'
 import type { Context, MiddlewareHandler, Next } from 'hono'
 import { HTTPException } from 'hono/http-exception'
 import { jwt } from 'hono/jwt'
