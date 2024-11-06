@@ -1,2 +1,2 @@
-yarn lint-staged
-yarn run test:ci
+pnpm lint-staged
+pnpm run test:ci

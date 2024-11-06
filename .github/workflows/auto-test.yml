@@ -27,25 +27,25 @@ jobs:
         with:
           node-version: 'lts/*' # Use LTS version of Node.js
 
-      # 📦 Install Yarn
-      - name: 📦 Install Yarn
-        run: corepack enable && yarn set version stable
+      # 📦 Install pnpm
+      - name: 📦 Install pnpm
+        run: corepack enable pnpm
 
       # 📥 Install dependencies
       - name: 📥 Install dependencies
-        run: yarn install
+        run: pnpm install
 
       # 🚨 Run Lint check
       - name: 🚨 Run Lint
-        run: yarn run lint | tee lint-results.txt
+        run: pnpm run lint | tee lint-results.txt
 
       # 🎨 Run Prettier format check
       - name: 🎨 Run Prettier
-        run: yarn run format | tee prettier-results.txt
+        run: pnpm run format | tee prettier-results.txt
 
       # 🧪 Run tests
       - name: 🧪 Run tests
-        run: yarn run test:ci | tee test-results.txt
+        run: pnpm run test:ci | tee test-results.txt
 
       # 🚮 Clean up all results for comment
       - name: 🚮 Clean up results

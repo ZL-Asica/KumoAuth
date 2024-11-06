@@ -19,6 +19,7 @@ pnp.* linguist-generated
 yarn.lock linguist-generated
 package-lock.json linguist-generated
 node_modules/ linguist-generated
+pnpm-lock.yaml linguist-generated
 # Build files
 dist/ linguist-generated
 build/ linguist-generated

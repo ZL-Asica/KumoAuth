@@ -5,13 +5,10 @@
     "source.organizeImports": "always"
   },
   "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true,
-    "**/node_modules": true
+    "**/node_modules": true,
+    "**/.wrangler": true,
+    "pnpm-lock.yaml": true
   },
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "prettier.requireConfig": true,
-  "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
-  "typescript.tsdk": ".yarn/sdks/typescript/lib"
+  "prettier.requireConfig": true
 }

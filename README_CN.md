@@ -7,7 +7,7 @@
 [![Test by Github Action][github-test-badge]][github-test-link]
 [![GitHub License][license-badge]][license-link]
 [![Node js][node-badge]][node-link]
-[![Yarn Version][yarn-badge]][yarn-link] |
+[![pnpm Version][pnpm-badge]][pnpm-link] |
 [![Hono][hono-badge]][hono-link]
 [![Cloudflare][cloudflare-badge]][cloudflare-link]
 [![Eslint][eslint-badge]][eslint-link]
@@ -124,8 +124,8 @@
 
 [github-test-badge]: https://img.shields.io/github/actions/workflow/status/ZL-Asica/KumoAuth/auto-test.yml?logo=github&label=Test
 [license-badge]: https://img.shields.io/github/license/ZL-Asica/KumoAuth
-[node-badge]: https://img.shields.io/badge/node%3E=20.11-339933?logo=node.js&logoColor=white&labelColor=339933
-[yarn-badge]: https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=yarn&logoColor=fff
+[node-badge]: https://img.shields.io/badge/node%3E=20.11-339933?logo=node.js&logoColor=white
+[pnpm-badge]: https://img.shields.io/github/package-json/packageManager/ZL-Asica/KumoAuth?label=&logo=pnpm&logoColor=fff&color=F69220
 [hono-badge]: https://img.shields.io/badge/Hono-E36002?logo=hono&logoColor=fff
 [cloudflare-badge]: https://img.shields.io/badge/Cloudflare-F38020?logo=Cloudflare&logoColor=white
 [eslint-badge]: https://img.shields.io/badge/eslint-4B32C3?logo=eslint&logoColor=white
@@ -136,7 +136,7 @@
 [github-test-link]: https://github.com/ZL-Asica/KumoAuth/actions/workflows/auto-test.yml
 [license-link]: https://github.com/ZL-Asica/KumoAuth?tab=GPL-3.0-1-ov-file#readme
 [node-link]: https://nodejs.org/
-[yarn-link]: https://yarnpkg.com/
+[pnpm-link]: https://pnpm.io/
 [hono-link]: https://hono.dev/
 [cloudflare-link]: https://www.cloudflare.com/
 [eslint-link]: https://eslint.org/
