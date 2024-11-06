@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  vitest: 2.0.5
-
 importers:
 
   .:
@@ -114,7 +111,7 @@ packages:
     peerDependencies:
       '@vitest/runner': 2.0.x - 2.1.x
       '@vitest/snapshot': 2.0.x - 2.1.x
-      vitest: 2.0.5
+      vitest: 2.0.x - 2.1.x
 
   '@cloudflare/workerd-darwin-64@1.20241022.0':
     resolution: {integrity: sha512-1NNYun37myMTgCUiPQEJ0cMal4mKZVTpkD0b2tx9hV70xji+frVJcSK8YVLeUm1P+Rw1d/ct8DMgQuCpsz3Fsw==}
