@@ -1,13 +1,4 @@
 module.exports = {
-  trailingComma: 'es5',
-  tabWidth: 2,
+  ...require('@zl-asica/prettier-config'),
   semi: false,
-  singleQuote: true,
-  jsxSingleQuote: true,
-  bracketSpacing: true,
-  arrowParens: 'always',
-  printWidth: 80,
-  useTabs: false,
-  endOfLine: 'lf',
-  plugins: [require.resolve('prettier-plugin-organize-imports')],
 }
