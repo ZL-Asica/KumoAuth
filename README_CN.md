@@ -134,10 +134,10 @@
 <!-- Badge URL Links -->
 
 [github-test-link]: https://github.com/ZL-Asica/KumoAuth/actions/workflows/auto-test.yml
-[license-link]: https://github.com/ZL-Asica/KumoAuth?tab=GPL-3.0-1-ov-file#readme
+[license-link]: https://github.com/ZL-Asica/eslint-config/blob/main/LICENSE
 [node-link]: https://nodejs.org/
 [pnpm-link]: https://pnpm.io/
 [hono-link]: https://hono.dev/
 [cloudflare-link]: https://www.cloudflare.com/
-[eslint-link]: https://eslint.org/
-[prettier-link]: https://prettier.io/
+[eslint-link]: https://www.npmjs.com/package/eslint-config-zl-asica
+[prettier-link]: https://www.npmjs.com/package/@zl-asica/prettier-config

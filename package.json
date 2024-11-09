@@ -11,7 +11,8 @@
   "funding": "https://github.com/sponsors/ZL-Asica",
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint src/**/* --fix",
+    "lint": "eslint 'src/**/*.{js,jsx,mjs,cjs,ts,tsx,mtx}'",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,mjs,cjs,ts,tsx,mtx}' --fix",
     "test": "vitest --ui",
     "test:ci": "vitest run",
     "dev": "wrangler dev",
@@ -28,7 +29,7 @@
     ]
   },
   "dependencies": {
-    "@hono/zod-openapi": "^0.16.4",
+    "@hono/zod-openapi": "^0.17.0",
     "@scalar/hono-api-reference": "^0.5.158",
     "bad-words": "^4.0.0",
     "bcryptjs": "^2.4.3",
@@ -36,21 +37,21 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.5.24",
-    "@cloudflare/workers-types": "^4.20241022.0",
+    "@cloudflare/vitest-pool-workers": "^0.5.26",
+    "@cloudflare/workers-types": "^4.20241106.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.9.0",
     "@vitest/ui": "2.0.5",
     "@zl-asica/prettier-config": "^1.0.7",
-    "eslint-config-zl-asica": "^1.0.14",
+    "eslint-config-zl-asica": "^1.0.17",
     "globals": "^15.12.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
-    "vite-tsconfig-paths": "^5.1.0",
+    "vite-tsconfig-paths": "^5.1.2",
     "vitest": "2.0.5",
-    "wrangler": "^3.84.1"
+    "wrangler": "^3.86.0"
   },
   "engines": {
     "node": ">=20.11"

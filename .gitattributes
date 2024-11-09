@@ -4,15 +4,8 @@
 
 *.md diff=text
 
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.pdf binary
-
 .gitattributes export-ignore
 README.md export-subst
-
 
 # Node.js / Yarn Related
 pnp.* linguist-generated
@@ -39,3 +32,25 @@ out/ linguist-generated
 .github/ linguist-generated
 .gitlab-ci.yml linguist-generated
 .circleci/ linguist-generated
+
+# Pic and video
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.mp4 binary
+*.mov binary
+*.mkv binary
+*.mp3 binary
+
+# Archive
+*.zip binary
+*.rar binary
+*.gz binary
+*.7z binary
+
+# Executable
+*.exe binary
+*.msi binary
+*.dmg binary
+*.iso binary

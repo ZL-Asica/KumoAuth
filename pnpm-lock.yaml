@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@hono/zod-openapi':
-        specifier: ^0.16.4
-        version: 0.16.4(hono@4.6.9)(zod@3.23.8)
+        specifier: ^0.17.0
+        version: 0.17.0(hono@4.6.9)(zod@3.23.8)
       '@scalar/hono-api-reference':
         specifier: ^0.5.158
         version: 0.5.159(hono@4.6.9)
@@ -28,10 +28,10 @@ importers:
         version: 3.23.8
     devDependencies:
       '@cloudflare/vitest-pool-workers':
-        specifier: ^0.5.24
+        specifier: ^0.5.26
         version: 0.5.26(@cloudflare/workers-types@4.20241106.0)(@vitest/runner@2.0.5)(@vitest/snapshot@2.0.5)(vitest@2.0.5)
       '@cloudflare/workers-types':
-        specifier: ^4.20241022.0
+        specifier: ^4.20241106.0
         version: 4.20241106.0
       '@types/bcryptjs':
         specifier: ^2.4.6
@@ -46,8 +46,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(prettier@3.3.3)
       eslint-config-zl-asica:
-        specifier: ^1.0.14
-        version: 1.0.14(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3))
+        specifier: ^1.0.17
+        version: 1.0.17(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3))
       globals:
         specifier: ^15.12.0
         version: 15.12.0
@@ -64,13 +64,13 @@ importers:
         specifier: ^5.4.10
         version: 5.4.10(@types/node@22.9.0)
       vite-tsconfig-paths:
-        specifier: ^5.1.0
-        version: 5.1.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.9.0))
+        specifier: ^5.1.2
+        version: 5.1.2(typescript@5.6.3)(vite@5.4.10(@types/node@22.9.0))
       vitest:
         specifier: 2.0.5
         version: 2.0.5(@types/node@22.9.0)(@vitest/ui@2.0.5)
       wrangler:
-        specifier: ^3.84.1
+        specifier: ^3.86.0
         version: 3.86.0(@cloudflare/workers-types@4.20241106.0)
 
 packages:
@@ -462,8 +462,8 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@hono/zod-openapi@0.16.4':
-    resolution: {integrity: sha512-mnF6GthBaKex0D5PsY/4lYNtkaGJNE38bjeUI//EUqq7Ee4TNm2su35IUiFH4HcmJp5fWYMLyOJOpjnkClzEGw==}
+  '@hono/zod-openapi@0.17.0':
+    resolution: {integrity: sha512-Ed6U/6cbCOBQYl0N3E94Q9UKAT5eg+x1RtShGU9OERH9ZM/SYMSLk2Biu8Eba2myu7MuzDsne9rVLrUpno1GnA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       hono: '>=4.3.6'
@@ -902,8 +902,8 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
-  caniuse-lite@1.0.30001679:
-    resolution: {integrity: sha512-j2YqID/YwpLnKzCmBOS4tlZdWprXm3ZmQLBH9ZBXFOhoxLA46fwyBvx6toCBWBmnuwUY/qB3kEU6gFx8qgCroA==}
+  caniuse-lite@1.0.30001680:
+    resolution: {integrity: sha512-rPQy70G6AGUMnbwS1z6Xg+RkHYPAi18ihs47GH0jcxIG7wArmPgY3XbS2sRdBbxJljp3thdT8BIqv9ccCypiPA==}
 
   capnp-ts@0.7.0:
     resolution: {integrity: sha512-XKxXAC3HVPv7r674zP0VC3RTXz+/JKhfyw94ljvF80yynK6VkTnqE3jMuN8b3dUVmmc43TjyxjW4KTsmB3c86g==}
@@ -1113,8 +1113,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-config-zl-asica@1.0.14:
-    resolution: {integrity: sha512-CwINsLv8IgD3LW4by9X+xD7GyRPaY0bNp1dNtmYjyp6S/7XspxWKZO1uSNLXU4HRbeaUitlR3+PdfX8kjQY4lw==}
+  eslint-config-zl-asica@1.0.17:
+    resolution: {integrity: sha512-VMYqdIOMu5e5wbwFUQqvFcXq6uDfBtgQwV8oZ7/6goUEnansO6h9TOQTPhfFNb8VhMuIcujl0tk7Ycf4A2z7MQ==}
     peerDependencies:
       '@eslint/js': ^9
       '@typescript-eslint/parser': ^8
@@ -1124,6 +1124,7 @@ packages:
       eslint-plugin-jsx-a11y: ^6
       eslint-plugin-react: ^7
       eslint-plugin-react-hooks: ^5
+      eslint-plugin-react-refresh: ^0.4.14
       eslint-plugin-unicorn: ^56
       globals: ^15
       typescript-eslint: ^8
@@ -1173,6 +1174,11 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
+
+  eslint-plugin-react-refresh@0.4.14:
+    resolution: {integrity: sha512-aXvzCTK7ZBv1e7fahFuR3Z/fyQQSIQ711yPgYRj+Oj64tyTgO4iQIDmYXDBqvSWQ/FA4OSCsXOStlF+noU0/NA==}
+    peerDependencies:
+      eslint: '>=7'
 
   eslint-plugin-react@7.37.2:
     resolution: {integrity: sha512-EsTAnj9fLVr/GZleBLFbj/sSuXeWmp1eXIN60ceYnZveqEaUCyW4X+Vh4WTdUhCkW4xutXYqTXCUSyqD4rB75w==}
@@ -1732,8 +1738,8 @@ packages:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
 
-  object-inspect@1.13.2:
-    resolution: {integrity: sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==}
+  object-inspect@1.13.3:
+    resolution: {integrity: sha512-kDCGIbxkDSXE3euJZZXzc6to7fCrKHNI/hSRQnRuQ+BWjFNzZwiFF8fj/6o2t2G9/jTj8PSIYTfCLelLZEeRpA==}
     engines: {node: '>= 0.4'}
 
   object-keys@1.1.1:
@@ -2235,8 +2241,8 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
-  vite-tsconfig-paths@5.1.0:
-    resolution: {integrity: sha512-Y1PLGHCJfAq1Zf4YIGEsmuU/NCX1epoZx9zwSr32Gjn3aalwQHRKr5aUmbo6r0JHeHkqmWpmDg7WOynhYXw1og==}
+  vite-tsconfig-paths@5.1.2:
+    resolution: {integrity: sha512-gEIbKfJzSEv0yR3XS2QEocKetONoWkbROj6hGx0FHM18qKUojhvcokQsxQx5nMkelZq2n37zbSGCJn+FSODSjA==}
     peerDependencies:
       vite: '*'
     peerDependenciesMeta:
@@ -2640,7 +2646,7 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@hono/zod-openapi@0.16.4(hono@4.6.9)(zod@3.23.8)':
+  '@hono/zod-openapi@0.17.0(hono@4.6.9)(zod@3.23.8)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 7.2.0(zod@3.23.8)
       '@hono/zod-validator': 0.3.0(hono@4.6.9)(zod@3.23.8)
@@ -3075,7 +3081,7 @@ snapshots:
 
   browserslist@4.24.2:
     dependencies:
-      caniuse-lite: 1.0.30001679
+      caniuse-lite: 1.0.30001680
       electron-to-chromium: 1.5.55
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.2)
@@ -3094,7 +3100,7 @@ snapshots:
 
   callsites@3.1.0: {}
 
-  caniuse-lite@1.0.30001679: {}
+  caniuse-lite@1.0.30001680: {}
 
   capnp-ts@0.7.0:
     dependencies:
@@ -3274,7 +3280,7 @@ snapshots:
       is-string: 1.0.7
       is-typed-array: 1.1.13
       is-weakref: 1.0.2
-      object-inspect: 1.13.2
+      object-inspect: 1.13.3
       object-keys: 1.1.1
       object.assign: 4.1.5
       regexp.prototype.flags: 1.5.3
@@ -3395,7 +3401,7 @@ snapshots:
     dependencies:
       eslint: 9.14.0
 
-  eslint-config-zl-asica@1.0.14(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3)):
+  eslint-config-zl-asica@1.0.17(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3)):
     dependencies:
       '@eslint/js': 9.14.0
       '@typescript-eslint/parser': 8.13.0(eslint@9.14.0)(typescript@5.6.3)
@@ -3405,6 +3411,7 @@ snapshots:
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.14.0)
       eslint-plugin-react: 7.37.2(eslint@9.14.0)
       eslint-plugin-react-hooks: 5.0.0(eslint@9.14.0)
+      eslint-plugin-react-refresh: 0.4.14(eslint@9.14.0)
       eslint-plugin-unicorn: 56.0.0(eslint@9.14.0)
       globals: 15.12.0
       typescript-eslint: 8.13.0(eslint@9.14.0)(typescript@5.6.3)
@@ -3476,6 +3483,10 @@ snapshots:
       string.prototype.includes: 2.0.1
 
   eslint-plugin-react-hooks@5.0.0(eslint@9.14.0):
+    dependencies:
+      eslint: 9.14.0
+
+  eslint-plugin-react-refresh@0.4.14(eslint@9.14.0):
     dependencies:
       eslint: 9.14.0
 
@@ -4071,7 +4082,7 @@ snapshots:
 
   object-assign@4.1.1: {}
 
-  object-inspect@1.13.2: {}
+  object-inspect@1.13.3: {}
 
   object-keys@1.1.1: {}
 
@@ -4365,7 +4376,7 @@ snapshots:
       call-bind: 1.0.7
       es-errors: 1.3.0
       get-intrinsic: 1.2.4
-      object-inspect: 1.13.2
+      object-inspect: 1.13.3
 
   siginfo@2.0.0: {}
 
@@ -4632,7 +4643,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@5.1.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.9.0)):
+  vite-tsconfig-paths@5.1.2(typescript@5.6.3)(vite@5.4.10(@types/node@22.9.0)):
     dependencies:
       debug: 4.3.7
       globrex: 0.1.2
