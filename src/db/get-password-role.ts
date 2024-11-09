@@ -1,11 +1,11 @@
 import type { DBType, PasswordRule } from '@/types'
 
 export const getPasswordRoleByUserRoleId = async (
-  db: DBType,
+  database: DBType,
   userRoleId: number
 ): Promise<PasswordRule | undefined | null> => {
   try {
-    return await db
+    return await database
       .prepare(
         `SELECT min_length, min_type, require_special, require_upper, require_number
          FROM PasswordRules

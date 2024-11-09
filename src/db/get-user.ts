@@ -1,11 +1,11 @@
 import type { DBType, User } from '@/types'
 
-export const getUserByUsername = async (
-  db: DBType,
+const getUserByUsername = async (
+  database: DBType,
   username: string
 ): Promise<User | undefined | null> => {
   try {
-    return await db
+    return await database
       .prepare('SELECT * FROM users WHERE username = ?')
       .bind(username)
       .first()
@@ -14,12 +14,12 @@ export const getUserByUsername = async (
   }
 }
 
-export const getUserByUserId = async (
-  db: DBType,
+const getUserByUserId = async (
+  database: DBType,
   user_id: number
 ): Promise<User | undefined | null> => {
   try {
-    return await db
+    return await database
       .prepare('SELECT * FROM users WHERE user_id = ?')
       .bind(user_id)
       .first()
@@ -27,3 +27,5 @@ export const getUserByUserId = async (
     return null
   }
 }
+
+export { getUserByUserId, getUserByUsername }

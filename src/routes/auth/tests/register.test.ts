@@ -1,4 +1,3 @@
-import { registerHandler } from '@/routes/auth/register'
 import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -7,6 +6,7 @@ import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { hashPassword } from '@/lib/auth/hash'
 import { passwordValidator } from '@/lib/auth/password-validator'
 import { usernameValidator } from '@/lib/auth/username-validator'
+import { registerHandler } from '@/routes/auth/register'
 
 // Mock implementations
 vi.mock('@/lib/auth/hash')

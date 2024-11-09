@@ -1,7 +1,8 @@
+import { createRoute, z } from '@hono/zod-openapi'
+
 import { jsonContent } from '@/lib/helper'
 import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
 import type { Context } from '@/types'
-import { createRoute, z } from '@hono/zod-openapi'
 
 const authStatusSchema = z.object({
   user_id: z.number(),
@@ -10,7 +11,7 @@ const authStatusSchema = z.object({
   created_at: z.string(),
 })
 
-export const authStatusRoute = createRoute({
+const authStatusRoute = createRoute({
   tags: ['auth'],
   method: 'get',
   path: '/status',
@@ -21,6 +22,8 @@ export const authStatusRoute = createRoute({
   },
 })
 
-export const authStatusHandler = (c: Context) => {
+const authStatusHandler = (c: Context) => {
   return c.json(c.get('user'), 200)
 }
+
+export { authStatusHandler, authStatusRoute }

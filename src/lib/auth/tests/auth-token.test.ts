@@ -1,9 +1,10 @@
-import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
-import type { Context } from '@/types'
 import { setSignedCookie } from 'hono/cookie'
 import { HTTPException } from 'hono/http-exception'
 import { sign } from 'hono/jwt'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
+import type { Context } from '@/types'
 
 // Mock dependencies
 vi.mock('hono/cookie')
@@ -26,7 +27,7 @@ describe('generateAuthTokenAndSetCookie', () => {
   it('should generate a JWT and set it as a signed cookie', async () => {
     const mockToken = 'mocked.jwt.token'
     vi.mocked(sign).mockResolvedValueOnce(mockToken)
-    vi.mocked(setSignedCookie).mockResolvedValueOnce(undefined)
+    vi.mocked(setSignedCookie).mockResolvedValueOnce()
 
     await generateAuthTokenAndSetCookie(mockContext, {
       user_id: 1,

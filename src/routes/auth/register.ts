@@ -1,3 +1,5 @@
+import { createRoute, z } from '@hono/zod-openapi'
+
 import { createNewUser, getUserByUserId } from '@/db'
 import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { hashPassword } from '@/lib/auth/hash'
@@ -5,7 +7,6 @@ import { passwordValidator } from '@/lib/auth/password-validator'
 import { usernameValidator } from '@/lib/auth/username-validator'
 import { errorResponse, jsonContentRequired } from '@/lib/helper'
 import type { Context } from '@/types'
-import { createRoute, z } from '@hono/zod-openapi'
 
 // Define the schema for the register request
 const registerSchema = z.object({
@@ -20,7 +21,7 @@ const registerSuccessResponseSchema = z.object({
   created_at: z.string().openapi({ example: '2021-07-01T00:00:00.000Z' }),
 })
 
-export const registerRoute = createRoute({
+const registerRoute = createRoute({
   tags: ['auth'],
   method: 'post',
   path: '/register',
@@ -37,7 +38,7 @@ export const registerRoute = createRoute({
   },
 })
 
-export const registerHandler = async (c: Context) => {
+const registerHandler = async (c: Context) => {
   const { username, password } = await c.req.json()
 
   // Username validation
@@ -54,14 +55,14 @@ export const registerHandler = async (c: Context) => {
 
   // Hash password and insert user into DB
   const hashedPassword = await hashPassword(password)
-  const db = c.env.DB
-  const result = await createNewUser(db, username, hashedPassword)
+  const database = c.env.DB
+  const result = await createNewUser(database, username, hashedPassword)
 
   if (!result || !result.meta.last_row_id) {
     return c.json({ error: 'User registration failed' }, 500)
   }
 
-  const user = await getUserByUserId(db, result.meta.last_row_id)
+  const user = await getUserByUserId(database, result.meta.last_row_id)
 
   if (!user) {
     return c.json({ error: 'User retrieval failed' }, 500)
@@ -85,3 +86,5 @@ export const registerHandler = async (c: Context) => {
     201
   )
 }
+
+export { registerHandler, registerRoute }

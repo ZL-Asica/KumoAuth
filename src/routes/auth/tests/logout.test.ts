@@ -1,7 +1,8 @@
-import { logoutHandler } from '@/routes/auth/logout'
-import type { Context } from '@/types'
 import { deleteCookie } from 'hono/cookie'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { logoutHandler } from '@/routes/auth/logout'
+import type { Context } from '@/types'
 
 // Mock Context
 const mockContext = {

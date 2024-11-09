@@ -1,4 +1,3 @@
-import { loginHandler } from '@/routes/auth/login'
 import type { Context } from 'hono'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -6,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { getUserByUsername } from '@/db'
 import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { verifyPassword } from '@/lib/auth/hash'
+import { loginHandler } from '@/routes/auth/login'
 
 // Mock implementations
 vi.mock('@/db')

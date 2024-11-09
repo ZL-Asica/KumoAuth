@@ -30,12 +30,12 @@ export const passwordValidator = async (
       message: 'uppercase letter',
     },
     {
-      regex: /[0-9]/,
+      regex: /\d/,
       required: passwordRule.require_number,
       message: 'number',
     },
     {
-      regex: /[!@#$%^&*(),.?":{}|<>]/,
+      regex: /[!"#$%&()*,.:<>?@^{|}]/,
       required: passwordRule.require_special,
       message: 'special character',
     },

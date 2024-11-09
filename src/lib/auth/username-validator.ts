@@ -1,6 +1,7 @@
+import { Filter } from 'bad-words'
+
 import { getUserByUsername } from '@/db'
 import type { Context, UsernamePatternInterface } from '@/types'
-import { Filter } from 'bad-words'
 
 const usernamePattern: UsernamePatternInterface = {
   minLength: 5,
@@ -8,7 +9,7 @@ const usernamePattern: UsernamePatternInterface = {
   charsAllowed: [
     /^[a-z]$/, // Lowercase letters
     /^[A-Z]$/, // Uppercase letters
-    /^[0-9]$/, // Numbers
+    /^\d$/, // Numbers
     /^[._-]$/, // Special characters(only . _ -)
   ],
 }
@@ -23,14 +24,14 @@ const riskyWords = [
   'contact',
   'god',
 ]
-const reservedSystemWords = [
+const reservedSystemWords = new Set([
   'system',
   'null',
   'undefined',
   'true',
   'false',
   'undefined',
-]
+])
 
 // Create a filter instance
 const filter = new Filter()
@@ -47,7 +48,7 @@ export const usernameValidator = async (c: Context, username: string) => {
   const lowercaseUsername = username.toLowerCase()
   if (
     riskyWords.some((word) => lowercaseUsername.includes(word)) ||
-    reservedSystemWords.includes(lowercaseUsername)
+    reservedSystemWords.has(lowercaseUsername)
   ) {
     return `Username cannot contain the word ${username}`
   }

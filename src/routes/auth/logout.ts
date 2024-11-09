@@ -1,10 +1,11 @@
-import { errorResponse, jsonMessageContent } from '@/lib/helper'
-import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
-import type { Context } from '@/types'
 import { createRoute } from '@hono/zod-openapi'
 import { deleteCookie } from 'hono/cookie'
 
-export const logoutRoute = createRoute({
+import { errorResponse, jsonMessageContent } from '@/lib/helper'
+import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
+import type { Context } from '@/types'
+
+const logoutRoute = createRoute({
   tags: ['auth'],
   method: 'post',
   path: '/logout',
@@ -16,7 +17,7 @@ export const logoutRoute = createRoute({
   },
 })
 
-export const logoutHandler = (c: Context) => {
+const logoutHandler = (c: Context) => {
   try {
     deleteCookie(c, 'access_token', {
       httpOnly: true,
@@ -32,3 +33,5 @@ export const logoutHandler = (c: Context) => {
     return c.json({ error: 'Failed to log out' }, 500)
   }
 }
+
+export { logoutHandler, logoutRoute }

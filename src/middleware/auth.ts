@@ -1,20 +1,18 @@
+import { HTTPException } from 'hono/http-exception'
+import { jwt } from 'hono/jwt'
+
 import { getUserByUserId } from '@/db'
 import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { errorResponse } from '@/lib/helper'
 import type { Context, MiddlewareHandler, Next } from '@/types'
-import { HTTPException } from 'hono/http-exception'
-import { jwt } from 'hono/jwt'
 
-export const authMiddlewareSchema = {
+const authMiddlewareSchema = {
   401: errorResponse('token verification failure'),
   404: errorResponse('User not found'),
   500: errorResponse('Failed to refresh token'),
 }
 
-export const authMiddleware: MiddlewareHandler = async (
-  c: Context,
-  next: Next
-) => {
+const authMiddleware: MiddlewareHandler = async (c: Context, next: Next) => {
   const jwtMiddleware = jwt({
     secret: c.env.JWT_SECRET,
     cookie: 'access_token',
@@ -45,3 +43,5 @@ export const authMiddleware: MiddlewareHandler = async (
     await next()
   })
 }
+
+export { authMiddleware, authMiddlewareSchema }

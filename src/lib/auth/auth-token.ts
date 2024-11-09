@@ -1,7 +1,8 @@
-import type { Context } from '@/types'
 import { setSignedCookie } from 'hono/cookie'
 import { HTTPException } from 'hono/http-exception'
 import { sign } from 'hono/jwt'
+
+import type { Context } from '@/types'
 
 interface PayloadToSignInterface {
   user_id: number
@@ -18,7 +19,7 @@ export const generateAuthTokenAndSetCookie = async (
   try {
     const exp =
       Math.floor(Date.now() / 1000) +
-      (parseInt(c.env.JWT_EXPIRE_IN) || 30) * 24 * 60 * 60
+      (Number.parseInt(c.env.JWT_EXPIRE_IN) || 30) * 24 * 60 * 60
 
     const nbf = Math.floor(Date.now() / 1000) - 24 * 60 * 60
     const iat = Math.floor(Date.now() / 1000) - 24 * 60 * 60

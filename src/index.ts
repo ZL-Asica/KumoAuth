@@ -1,11 +1,12 @@
+import { OpenAPIHono } from '@hono/zod-openapi'
+import { apiReference } from '@scalar/hono-api-reference'
+
 import { notFound } from '@/middleware/not-found'
 import { onError } from '@/middleware/on-error'
 import { securityMiddlewareHandler } from '@/middleware/security'
 import { workerLogger } from '@/middleware/worker-logger'
 import auth from '@/routes/auth'
 import type { Bindings, Context, Variables } from '@/types'
-import { OpenAPIHono } from '@hono/zod-openapi'
-import { apiReference } from '@scalar/hono-api-reference'
 
 const app = new OpenAPIHono<{ Bindings: Bindings; Variables: Variables }>()
 

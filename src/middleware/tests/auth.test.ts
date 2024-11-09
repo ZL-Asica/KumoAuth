@@ -1,19 +1,23 @@
+import { HTTPException } from 'hono/http-exception'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { authMiddleware } from '@/middleware/auth'
 import type { Context, User } from '@/types'
-import { HTTPException } from 'hono/http-exception'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock dependencies
 vi.mock('@/lib/auth/auth-token')
 
+// Define the async function outside of the main mock
+const mockJwtMiddleware = async (c: Context, next: () => Promise<void>) => {
+  // Directly set the payload in the context
+  c.set('jwtPayload', { user_id: 1, raw: 'mockRawToken' })
+  await next()
+}
+
 // Mock the JWT middleware to directly set a payload
 vi.mock('hono/jwt', () => ({
-  jwt: () => async (c: Context, next: () => Promise<void>) => {
-    // Directly set the payload in the context
-    c.set('jwtPayload', { user_id: 1, raw: 'mockRawToken' })
-    await next()
-  },
+  jwt: () => mockJwtMiddleware,
 }))
 
 const mockDB = {
@@ -41,7 +45,7 @@ describe('authMiddleware', () => {
     // Set up mock JWT payload and user data
     mockContext.get = vi.fn().mockImplementation((key) => {
       if (key === 'jwtPayload') return { user_id: 1, raw: 'mockRawToken' }
-      return undefined
+      return
     }) // Ensure `jwtPayload` is set
     const mockUser = {
       user_id: 1,
@@ -73,7 +77,7 @@ describe('authMiddleware', () => {
   it('should throw 404 if user is not found', async () => {
     mockContext.get = vi.fn().mockImplementation((key) => {
       if (key === 'jwtPayload') return { user_id: 1, raw: 'mockRawToken' }
-      return undefined
+      return
       // User not found in DB
     }) // Valid JWT payload with raw
     mockDB.first.mockResolvedValueOnce(null)
@@ -86,7 +90,7 @@ describe('authMiddleware', () => {
   it('should throw 500 if token generation fails', async () => {
     mockContext.get = vi.fn().mockImplementation((key) => {
       if (key === 'jwtPayload') return { user_id: 1, raw: 'mockRawToken' }
-      return undefined
+      return
     }) // Valid JWT payload with raw
     const mockUser = {
       user_id: 1,

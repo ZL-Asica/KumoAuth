@@ -1,6 +1,7 @@
-import type { Context, MiddlewareHandler } from '@/types'
 import { cors } from 'hono/cors'
 import { csrf } from 'hono/csrf'
+
+import type { Context, MiddlewareHandler } from '@/types'
 
 // Combined CORS and CSRF middleware handler
 export const securityMiddlewareHandler: MiddlewareHandler = async (

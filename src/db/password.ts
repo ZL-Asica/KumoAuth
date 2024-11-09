@@ -1,11 +1,11 @@
 import type { DBType, User } from '@/types'
 
-export const getUserPasswordByUserId = async (
-  db: DBType,
+const getUserPasswordByUserId = async (
+  database: DBType,
   user_id: number
 ): Promise<string | null> => {
   try {
-    const result = await db
+    const result = await database
       .prepare('SELECT * FROM users WHERE user_id = ?')
       .bind(user_id)
       .first()
@@ -17,13 +17,13 @@ export const getUserPasswordByUserId = async (
   }
 }
 
-export const setUserPasswordByUserId = async (
-  db: DBType,
+const setUserPasswordByUserId = async (
+  database: DBType,
   user_id: number,
   password_hash: string
 ): Promise<boolean> => {
   try {
-    await db
+    await database
       .prepare('UPDATE users SET password_hash = ? WHERE user_id = ?')
       .bind(password_hash, user_id)
       .run()
@@ -33,3 +33,5 @@ export const setUserPasswordByUserId = async (
     return false
   }
 }
+
+export { getUserPasswordByUserId, setUserPasswordByUserId }

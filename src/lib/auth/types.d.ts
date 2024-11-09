@@ -1,4 +1,4 @@
-export type ValidationResult =
+type ValidationResult =
   | {
       user_id: number
       username: string
@@ -7,8 +7,10 @@ export type ValidationResult =
     }
   | { status: 401 | 403 | 404 | 500; error: string }
 
-export type UsernamePatternInterface = {
+type UsernamePatternInterface = {
   minLength: number
   maxLength: number
   charsAllowed: RegExp[]
 }
+
+export type { UsernamePatternInterface, ValidationResult }

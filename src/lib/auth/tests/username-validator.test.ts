@@ -1,6 +1,7 @@
+import { describe, expect, it, vi } from 'vitest'
+
 import { usernameValidator } from '@/lib/auth/username-validator'
 import type { Context } from '@/types'
-import { describe, expect, it, vi } from 'vitest'
 
 // Mock database preparation function
 const mockDB = {

@@ -1,8 +1,9 @@
-import { securityMiddlewareHandler } from '@/middleware/security'
-import type { Context } from '@/types'
 import { cors } from 'hono/cors'
 import { csrf } from 'hono/csrf'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { securityMiddlewareHandler } from '@/middleware/security'
+import type { Context } from '@/types'
 
 // Mock CORS and CSRF middlewares
 vi.mock('hono/cors')

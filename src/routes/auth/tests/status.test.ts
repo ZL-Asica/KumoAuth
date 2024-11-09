@@ -1,6 +1,7 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { authStatusHandler } from '@/routes/auth/status'
 import type { Context } from '@/types'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock Context
 const mockContext = {

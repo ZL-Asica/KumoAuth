@@ -1,3 +1,5 @@
+import { createRoute, z } from '@hono/zod-openapi'
+
 import { getUserPasswordByUserId, setUserPasswordByUserId } from '@/db'
 import { passwordValidator } from '@/lib/auth/password-validator'
 import {
@@ -7,7 +9,6 @@ import {
 } from '@/lib/helper'
 import { authMiddleware, authMiddlewareSchema } from '@/middleware/auth'
 import type { Context } from '@/types'
-import { createRoute, z } from '@hono/zod-openapi'
 
 // Define the schema for the change password request
 const changePasswordSchema = z.object({
@@ -16,7 +17,7 @@ const changePasswordSchema = z.object({
 })
 
 // Define the route
-export const changePasswordRoute = createRoute({
+const changePasswordRoute = createRoute({
   tags: ['auth'],
   method: 'put',
   path: '/change-password',
@@ -33,7 +34,7 @@ export const changePasswordRoute = createRoute({
   },
 })
 
-export const changePasswordHandler = async (c: Context) => {
+const changePasswordHandler = async (c: Context) => {
   const { currentPassword, newPassword } = await c.req.json()
   const user_id = c.get('jwtPayload').user_id
 
@@ -63,3 +64,5 @@ export const changePasswordHandler = async (c: Context) => {
 
   return c.json({ message: 'Password changed successfully' }, 200)
 }
+
+export { changePasswordHandler, changePasswordRoute }

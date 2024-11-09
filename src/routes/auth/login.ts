@@ -1,3 +1,5 @@
+import { createRoute, z } from '@hono/zod-openapi'
+
 import { getUserByUsername } from '@/db'
 import { generateAuthTokenAndSetCookie } from '@/lib/auth/auth-token'
 import { verifyPassword } from '@/lib/auth/hash'
@@ -7,7 +9,6 @@ import {
   jsonMessageContent,
 } from '@/lib/helper'
 import type { Context } from '@/types'
-import { createRoute, z } from '@hono/zod-openapi'
 
 // Define the schema for the login request
 const loginSchema = z.object({
@@ -16,7 +17,7 @@ const loginSchema = z.object({
 })
 
 // Define the route
-export const loginRoute = createRoute({
+const loginRoute = createRoute({
   tags: ['auth'],
   method: 'post',
   path: '/login',
@@ -31,7 +32,7 @@ export const loginRoute = createRoute({
   },
 })
 
-export const loginHandler = async (c: Context) => {
+const loginHandler = async (c: Context) => {
   const { username, password } = await c.req.json()
 
   // Get the user from the database
@@ -58,3 +59,5 @@ export const loginHandler = async (c: Context) => {
 
   return c.json({ message: 'Login successful' }, 200)
 }
+
+export { loginHandler, loginRoute }

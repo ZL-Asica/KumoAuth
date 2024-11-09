@@ -1,8 +1,9 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { getUserPasswordByUserId, setUserPasswordByUserId } from '@/db'
 import { passwordValidator } from '@/lib/auth/password-validator'
 import { changePasswordHandler } from '@/routes/auth/change-password'
 import type { Context } from '@/types'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Mock implementations
 vi.mock('@/lib/auth/password-validator')

@@ -1,8 +1,8 @@
 import type { D1Database } from '@cloudflare/workers-types'
 
-export type DBType = D1Database
+type DBType = D1Database
 
-export type User = {
+type User = {
   user_id: number // main key
   username: string
   user_role_id: number // foreign key to UserRole
@@ -10,13 +10,13 @@ export type User = {
   created_at: string
 }
 
-export type UserRole = {
+type UserRole = {
   id: number // main key
   role_name: string
   password_rule_id: number // foreign key to PasswordRule
 }
 
-export type PasswordRule = {
+type PasswordRule = {
   id: number // main key
   min_length: number
   min_type: number
@@ -27,8 +27,10 @@ export type PasswordRule = {
   updated_at: string
 }
 
-export type UserQueryResult = {
+type UserQueryResult = {
   meta: {
     last_row_id: number
   }
 }
+
+export type { DBType, PasswordRule, User, UserQueryResult, UserRole }

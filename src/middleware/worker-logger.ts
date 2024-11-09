@@ -15,7 +15,7 @@ export const workerLogger: MiddlewareHandler = async (c: Context, next) => {
     port: info.remote.port || null,
     addressType: info.remote.addressType || null,
     location:
-      `${cfData.city || ''}, ${cfData.region || ''}, ${cfData.country || ''}`.replace(
+      `${cfData.city || ''}, ${cfData.region || ''}, ${cfData.country || ''}`.replaceAll(
         /(^,)|(,$)/g,
         ''
       ) || null,
