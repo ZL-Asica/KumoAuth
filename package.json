@@ -37,7 +37,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.5.26",
+    "@cloudflare/vitest-pool-workers": "^0.5.28",
     "@cloudflare/workers-types": "^4.20241106.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.9.0",
