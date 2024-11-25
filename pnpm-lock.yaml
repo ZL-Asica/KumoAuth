@@ -46,8 +46,8 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(prettier@3.3.3)
       eslint-config-zl-asica:
-        specifier: ^1.0.18
-        version: 1.0.18(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3))
+        specifier: ^1.0.19
+        version: 1.0.19(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3))
       globals:
         specifier: ^15.12.0
         version: 15.12.0
@@ -1105,8 +1105,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-config-zl-asica@1.0.18:
-    resolution: {integrity: sha512-Ie6C8frK7AOO2h9LhhT5MMOSCoWusobnCL/TTokIWU3oS+PHhzJm/gWCa2c80SoylfhYIF9xDJGprXUnbUYCMQ==}
+  eslint-config-zl-asica@1.0.19:
+    resolution: {integrity: sha512-TlN4mwj9Wh58Jmw9qQu6ZX2mLSrwaMsTxhUqQjyMBqQRL31k/Us329S9xRRHC46mK/OIhCq2KiH7wjtQ3FlIlA==}
     peerDependencies:
       '@eslint/js': ^9
       '@typescript-eslint/parser': ^8
@@ -3386,7 +3386,7 @@ snapshots:
     dependencies:
       eslint: 9.14.0
 
-  eslint-config-zl-asica@1.0.18(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3)):
+  eslint-config-zl-asica@1.0.19(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3)):
     dependencies:
       '@eslint/js': 9.14.0
       '@typescript-eslint/parser': 8.13.0(eslint@9.14.0)(typescript@5.6.3)

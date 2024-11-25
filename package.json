@@ -44,7 +44,7 @@
     "@types/node": "^22.9.1",
     "@vitest/ui": "2.1.5",
     "@zl-asica/prettier-config": "^1.0.7",
-    "eslint-config-zl-asica": "^1.0.18",
+    "eslint-config-zl-asica": "^1.0.19",
     "globals": "^15.12.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
