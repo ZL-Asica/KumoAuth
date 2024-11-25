@@ -43,8 +43,8 @@ importers:
         specifier: 2.1.5
         version: 2.1.5(vitest@2.1.5)
       '@zl-asica/prettier-config':
-        specifier: ^1.0.7
-        version: 1.0.7(prettier@3.3.3)
+        specifier: ^1.0.9
+        version: 1.0.9(prettier@3.3.3)
       eslint-config-zl-asica:
         specifier: ^1.0.18
         version: 1.0.18(@eslint/js@9.14.0)(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint-config-prettier@9.1.0(eslint@9.14.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.13.0(eslint@9.14.0)(typescript@5.6.3))(eslint@9.14.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@9.14.0))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0))(eslint-plugin-react@7.37.2(eslint@9.14.0))(eslint-plugin-unicorn@56.0.0(eslint@9.14.0))(eslint@9.14.0)(globals@15.12.0)(typescript-eslint@8.13.0(eslint@9.14.0)(typescript@5.6.3))
@@ -738,8 +738,8 @@ packages:
   '@vitest/utils@2.1.5':
     resolution: {integrity: sha512-yfj6Yrp0Vesw2cwJbP+cl04OC+IHFsuQsrsJBL9pyGeQXE56v1UAOQco+SR55Vf1nQzfV0QJg1Qum7AaWUwwYg==}
 
-  '@zl-asica/prettier-config@1.0.7':
-    resolution: {integrity: sha512-t6MZ975LLN3FplXf6TXdHbDioYlsaOLXbDVpPp1lGjzlT7humbsXIA56IbccTNdRkuIxXMWR+SAadMQS4UIKzQ==}
+  '@zl-asica/prettier-config@1.0.9':
+    resolution: {integrity: sha512-ZKo+3D6OEscq1Axd3DAMIZX3jCj7KGmiYWdD6pvtkn5u7ljhtnc94T8RCY8pOM34XxPv9O7KoT1LGSzUZR1p8Q==}
     peerDependencies:
       prettier: ^3.0.0
 
@@ -2919,7 +2919,7 @@ snapshots:
       loupe: 3.1.2
       tinyrainbow: 1.2.0
 
-  '@zl-asica/prettier-config@1.0.7(prettier@3.3.3)':
+  '@zl-asica/prettier-config@1.0.9(prettier@3.3.3)':
     dependencies:
       prettier: 3.3.3
 
